@@ -1,0 +1,30 @@
+[project]
+name = "scooter-parking-detection"
+version = "0.1.0"
+description = "Vision Model Benchmarking on Improper Scooter Parking Detection"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "torch>=2.6.0",
+    "torchvision>=0.21.0",
+    "transformers>=5.16.1",
+    "datasets>=5.0.1",
+    "evaluate>=0.4.6",
+    "accelerate>=1.14.0",
+    "scikit-learn>=1.9.0",
+    "kagglehub>=1.0.2",
+    "pillow>=12.3.0",
+    "pydantic>=2.10.0",
+    "tabulate>=0.10.0",
+    "tqdm>=4.70.0",
+    "timm>=1.0.29",
+]
+
+[[tool.uv.index]]
+name = "pytorch"
+url = "https://download.pytorch.org/whl/cu126"
+explicit = true
+
+[tool.uv.sources]
+torch = [{ index = "pytorch" }]
+torchvision = [{ index = "pytorch" }]
