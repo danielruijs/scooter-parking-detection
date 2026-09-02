@@ -104,6 +104,7 @@ def main():
         benchmark(cfg, Path(args.model_dir), Path(args.val_dir), dev)
         for cfg in MODELS.values()
     ]
+    rows.sort(key=lambda x: x[3], reverse=True)  # Sort by F1 score
     headers = [
         "Model",
         "Params (M)",
