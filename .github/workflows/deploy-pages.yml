@@ -1,0 +1,44 @@
+name: Deploy VLM Gallery to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "gallery/**"
+      - "vlm_output/**"
+      - ".github/workflows/deploy-pages.yml"
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Prepare Site Artifacts
+        run: |
+          mkdir -p _site
+          cp -r gallery _site/gallery
+          cp -r vlm_output _site/vlm_output
+          cp gallery/index.html _site/index.html
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v6
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: "_site"
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
