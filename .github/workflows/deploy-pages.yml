@@ -27,9 +27,9 @@ jobs:
       - name: Prepare Site Artifacts
         run: |
           mkdir -p _site
-          cp -r gallery _site/gallery
-          cp -r vlm_output _site/vlm_output
-          cp gallery/index.html _site/index.html
+          cp -r gallery/* _site/
+          mkdir -p _site/vlm_output
+          cp -r vlm_output/* _site/vlm_output/
 
       - name: Setup Pages
         uses: actions/configure-pages@v6

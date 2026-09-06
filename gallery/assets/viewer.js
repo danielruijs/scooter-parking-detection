@@ -26,7 +26,10 @@ async function loadBenchmarkGallery(split) {
     const modelSelect = document.getElementById('modelFilterSelect');
 
     try {
-        const response = await fetch(`../vlm_output/vlm_predictions_${split}.json`);
+        let response = await fetch(`./vlm_output/vlm_predictions_${split}.json`);
+        if (!response.ok) {
+            response = await fetch(`../vlm_output/vlm_predictions_${split}.json`);
+        }
         if (!response.ok) {
             throw new Error(`Failed to load predictions: HTTP ${response.status}`);
         }
