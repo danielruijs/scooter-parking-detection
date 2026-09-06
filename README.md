@@ -66,12 +66,19 @@ uv run vlm_benchmark.py --model all --split [train|val]
 
 #### Outputs
 
-- **Interactive HTML Galleries**:
-  - `vlm_output/vlm_results_val.html` (Validation set visual gallery)
-  - `vlm_output/vlm_results_train.html` (Training set visual gallery)
-- **Structured Predictions**:
-  - `vlm_output/vlm_predictions_val.json`
-  - `vlm_output/vlm_predictions_train.json`
+- `vlm_output/vlm_predictions_{split}.json`
+
+where `{split}` is the dataset split (`train` or `val`) that was evaluated.
+
+#### View Results in Browser
+
+Serve the interactive gallery from the repository root:
+
+```bash
+uv run python -m http.server 8000
+```
+
+Then open [http://localhost:8000/gallery/](http://localhost:8000/gallery/).
 
 ### 5. Attempted Models & Technical Findings
 

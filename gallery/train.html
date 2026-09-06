@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VLM Scooter Parking Gallery - VAL Split</title>
+    <title>VLM Scooter Parking Gallery - TRAIN Split</title>
     <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -12,19 +12,19 @@
             <div class="header-top">
                 <div style="display: flex; align-items: center; gap: 12px;">
                     <h1>🛴 Scooter Parking VLM Benchmark</h1>
-                    <span class="split-pill">VAL SET</span>
+                    <span class="split-pill" style="background: var(--accent);">TRAIN SET</span>
                 </div>
                 <div class="header-nav">
                     <a href="index.html" class="nav-link">← Split Selection</a>
-                    <a href="vlm_results_train.html" class="nav-link">Train Split →</a>
+                    <a href="val.html" class="nav-link">← Validation Split</a>
                 </div>
             </div>
-            <p class="subtitle">Zero-shot evaluation on classification accuracy and natural language actionable feedback generation.</p>
+            <p class="subtitle">Zero-shot evaluation on classification accuracy and natural language actionable feedback generation (unseen test set).</p>
         </header>
 
         <div class="metrics-card">
             <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px;">
-                <h2>Summary Performance Table (VAL)</h2>
+                <h2>Summary Performance Table (TRAIN)</h2>
                 <span class="table-hint">💡 Click model name for Hugging Face page &bull; Click row to filter gallery &bull; Click column to sort</span>
             </div>
             <table id="summaryTable">
@@ -74,7 +74,7 @@
     <script src="assets/viewer.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            loadBenchmarkGallery('val');
+            loadBenchmarkGallery('train');
         });
     </script>
 </body>
