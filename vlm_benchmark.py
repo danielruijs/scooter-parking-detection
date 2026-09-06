@@ -155,8 +155,8 @@ def main():
             print(
                 f"\nSkipping {adapter.display_name} - already evaluated for [{args.split}]."
             )
-            continue
-        all_results[adapter.name] = run_model_benchmark(adapter, items)
+        else:
+            all_results[adapter.name] = run_model_benchmark(adapter, items)
         save_benchmark_reports(items, all_results, out_path, split=args.split)
 
     html_file = out_path / f"vlm_results_{args.split}.html"

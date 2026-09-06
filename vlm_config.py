@@ -39,6 +39,7 @@ AVAILABLE_VLM_MODELS: dict[str, VLMAdapter] = {
         image_size=None,
         system_as_list=False,
         repetition_penalty=None,
+        release_date="Apr 2026",
     ),
     "lfm2.5-vl-1.6b": StandardVLMAdapter(
         name="lfm2.5-vl-1.6b",
@@ -49,6 +50,7 @@ AVAILABLE_VLM_MODELS: dict[str, VLMAdapter] = {
         image_size=None,
         system_as_list=False,
         repetition_penalty=None,
+        release_date="Jan 2026",
     ),
     "lfm2.5-vl-3b": StandardVLMAdapter(
         name="lfm2.5-vl-3b",
@@ -59,8 +61,9 @@ AVAILABLE_VLM_MODELS: dict[str, VLMAdapter] = {
         image_size=None,
         system_as_list=False,
         repetition_penalty=None,
+        release_date="Aug 2026",
     ),
-    # --- Mistral AI Series (2026) ---
+    # --- Mistral AI Series (2025) ---
     "ministral-3-3b-instruct-2512": StandardVLMAdapter(
         name="ministral-3-3b-instruct-2512",
         hf_id="mistralai/Ministral-3-3B-Instruct-2512",
@@ -70,6 +73,7 @@ AVAILABLE_VLM_MODELS: dict[str, VLMAdapter] = {
         image_size=None,
         system_as_list=False,
         repetition_penalty=None,
+        release_date="Dec 2025",
     ),
     # --- Qwen 3.5 & Qwen 3-VL Series (2026) ---
     "qwen3.5-0.8b": StandardVLMAdapter(
@@ -81,6 +85,7 @@ AVAILABLE_VLM_MODELS: dict[str, VLMAdapter] = {
         image_size=(640, 640),
         system_as_list=False,
         repetition_penalty=None,
+        release_date="Mar 2026",
     ),
     "qwen3.5-2b": StandardVLMAdapter(
         name="qwen3.5-2b",
@@ -91,6 +96,7 @@ AVAILABLE_VLM_MODELS: dict[str, VLMAdapter] = {
         image_size=(640, 640),
         system_as_list=False,
         repetition_penalty=None,
+        release_date="Mar 2026",
     ),
     "qwen3.5-4b": StandardVLMAdapter(
         name="qwen3.5-4b",
@@ -101,6 +107,7 @@ AVAILABLE_VLM_MODELS: dict[str, VLMAdapter] = {
         image_size=(640, 640),
         system_as_list=False,
         repetition_penalty=None,
+        release_date="Mar 2026",
     ),
     "qwen3-vl-2b-instruct": StandardVLMAdapter(
         name="qwen3-vl-2b-instruct",
@@ -111,6 +118,7 @@ AVAILABLE_VLM_MODELS: dict[str, VLMAdapter] = {
         image_size=(640, 640),
         system_as_list=False,
         repetition_penalty=None,
+        release_date="Oct 2025",
     ),
     # --- Google Gemma 4 Series (April 2026) ---
     "gemma-4-e2b-it": StandardVLMAdapter(
@@ -122,6 +130,7 @@ AVAILABLE_VLM_MODELS: dict[str, VLMAdapter] = {
         image_size=(448, 448),
         system_as_list=True,
         repetition_penalty=None,
+        release_date="Apr 2026",
     ),
     # --- OpenBMB MiniCPM-V Series ---
     "minicpm-v-4_6": StandardVLMAdapter(
@@ -133,6 +142,7 @@ AVAILABLE_VLM_MODELS: dict[str, VLMAdapter] = {
         image_size=(448, 448),
         system_as_list=False,
         repetition_penalty=None,
+        release_date="May 2026",
     ),
     # --- HuggingFace SmolVLM / SmolVLM2 Series ---
     "smolvlm2-2.2b-instruct": StandardVLMAdapter(
@@ -144,6 +154,7 @@ AVAILABLE_VLM_MODELS: dict[str, VLMAdapter] = {
         image_size=(640, 640),
         system_as_list=True,
         repetition_penalty=1.15,
+        release_date="Feb 2025",
     ),
     "smolvlm2-500m-instruct": StandardVLMAdapter(
         name="smolvlm2-500m-instruct",
@@ -154,6 +165,7 @@ AVAILABLE_VLM_MODELS: dict[str, VLMAdapter] = {
         image_size=(640, 640),
         system_as_list=True,
         repetition_penalty=1.15,
+        release_date="Feb 2025",
     ),
     "smolvlm-256m-instruct": StandardVLMAdapter(
         name="smolvlm-256m-instruct",
@@ -164,6 +176,7 @@ AVAILABLE_VLM_MODELS: dict[str, VLMAdapter] = {
         image_size=(640, 640),
         system_as_list=True,
         repetition_penalty=1.15,
+        release_date="Nov 2024",
     ),
     # --- Dedicated Architecture Adapters ---
     "qwen2.5-vl-3b-instruct": Qwen2_5VLAdapter(
@@ -171,10 +184,12 @@ AVAILABLE_VLM_MODELS: dict[str, VLMAdapter] = {
         hf_id="Qwen/Qwen2.5-VL-3B-Instruct",
         display_name="Qwen2.5-VL (3B Instruct, 4-bit)",
         use_4bit=True,
+        release_date="Jan 2025",
     ),
     "internvl3_5-1b": InternVLAdapter(
         name="internvl3_5-1b",
         hf_id="OpenGVLab/InternVL3_5-1B",
         display_name="InternVL 3.5 (1B, 2026)",
+        release_date="Aug 2026",
     ),
 }

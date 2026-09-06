@@ -31,6 +31,8 @@ class PredictionRecord(BaseModel):
 class BenchmarkResult(BaseModel):
     model_name: str
     display_name: str
+    hf_id: str
+    release_date: str
     accuracy: float
     macro_f1: float
     precision_macro: float
@@ -65,6 +67,8 @@ class BenchmarkResult(BaseModel):
         return cls(
             model_name=adapter.name,
             display_name=adapter.display_name,
+            hf_id=adapter.hf_id,
+            release_date=adapter.release_date,
             accuracy=acc,
             macro_f1=f1,
             precision_macro=prec,

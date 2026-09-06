@@ -12,7 +12,7 @@ def generate_html_gallery(
     items: list[DatasetImage],
     results_by_model: dict[str, BenchmarkResult],
     output_html_path: Path,
-    split: str = "val",
+    split: str,
 ):
     """Generate self-contained interactive HTML report comparing model predictions and feedback."""
     model_keys = list(results_by_model.keys())
@@ -108,18 +108,38 @@ def generate_html_gallery(
         key=lambda k: (results_by_model[k].macro_f1, results_by_model[k].accuracy),
         reverse=True,
     )
+
+    # Month abbreviation lookup for chronological sorting
+    month_map = {
+        "Jan": "01", "Feb": "02", "Mar": "03", "Apr": "04",
+        "May": "05", "Jun": "06", "Jul": "07", "Aug": "08",
+        "Sep": "09", "Oct": "10", "Nov": "11", "Dec": "12",
+    }
+
     summary_rows = []
     for k in sorted_model_keys:
         res = results_by_model[k]
+        date_str = res.release_date
+        # Convert "Feb 2026" to "2026-02" for accurate chronological sorting
+        parts = date_str.split()
+        if len(parts) == 2 and parts[0] in month_map:
+            sort_val = f"{parts[1]}-{month_map[parts[0]]}"
+        else:
+            sort_val = date_str
+
         summary_rows.append(
             f"""
-            <tr class="model-summary-row" data-model="{k}" onclick="selectModelFromTable('{k}')" title="Click to filter feedback gallery by {res.display_name}">
+            <tr class="model-summary-row" data-model="{k}" onclick="selectModelFromTable('{k}')" title="Click row to filter feedback gallery below">
                 <td data-val="{res.display_name}">
                     <div class="model-name-cell">
-                        <strong>{res.display_name}</strong>
+                        <a href="https://huggingface.co/{res.hf_id}" target="_blank" rel="noopener noreferrer" class="model-hf-link" onclick="event.stopPropagation()" title="Open {res.display_name} on Hugging Face">
+                            <strong>{res.display_name}</strong>
+                            <span class="hf-link-icon">↗</span>
+                        </a>
                         <span class="filter-hint">🔍 filter</span>
                     </div>
                 </td>
+                <td data-val="{sort_val}"><span class="year-pill">{date_str}</span></td>
                 <td data-val="{res.accuracy:.4f}">{res.accuracy:.1f}%</td>
                 <td data-val="{res.macro_f1:.4f}">{res.macro_f1:.1f}%</td>
                 <td data-val="{res.parse_rate:.4f}">{res.parse_rate:.1f}%</td>
@@ -232,6 +252,27 @@ def generate_html_gallery(
             align-items: center;
             gap: 8px;
         }}
+        .model-hf-link {{
+            color: #fff;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.15s;
+        }}
+        .model-hf-link:hover {{
+            color: var(--primary);
+            text-decoration: underline;
+        }}
+        .hf-link-icon {{
+            font-size: 11px;
+            opacity: 0.55;
+            transition: opacity 0.15s, transform 0.15s;
+        }}
+        .model-hf-link:hover .hf-link-icon {{
+            opacity: 1;
+            transform: translate(1px, -1px);
+        }}
         .filter-hint {{
             font-size: 11px;
             color: var(--primary);
@@ -248,6 +289,16 @@ def generate_html_gallery(
             font-size: 12px;
             color: var(--text-muted);
             margin-bottom: 8px;
+        }}
+        .year-pill {{
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 9999px;
+            font-size: 12px;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.06);
+            color: #cbd5e1;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }}
         
         .controls {{
@@ -436,16 +487,17 @@ def generate_html_gallery(
         <div class="metrics-card">
             <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px;">
                 <h2>Summary Performance Table ({split_title})</h2>
-                <span class="table-hint">💡 Click column to sort &bull; Click model row to filter feedback gallery</span>
+                <span class="table-hint">💡 Click model name for Hugging Face page &bull; Click row to filter gallery &bull; Click column to sort</span>
             </div>
             <table id="summaryTable">
                 <thead>
                     <tr>
                         <th class="sortable" onclick="sortTable(0, 'string')">Model <span class="sort-icon">⇅</span></th>
-                        <th class="sortable" onclick="sortTable(1, 'number')">Accuracy <span class="sort-icon">⇅</span></th>
-                        <th class="sortable sorted-desc" onclick="sortTable(2, 'number')">Macro F1 <span class="sort-icon">▼</span></th>
-                        <th class="sortable" onclick="sortTable(3, 'number')">Valid JSON Rate <span class="sort-icon">⇅</span></th>
-                        <th class="sortable" onclick="sortTable(4, 'number')">Mean Latency <span class="sort-icon">⇅</span></th>
+                        <th class="sortable" onclick="sortTable(1, 'string')">Release Date <span class="sort-icon">⇅</span></th>
+                        <th class="sortable" onclick="sortTable(2, 'number')">Accuracy <span class="sort-icon">⇅</span></th>
+                        <th class="sortable sorted-desc" onclick="sortTable(3, 'number')">Macro F1 <span class="sort-icon">▼</span></th>
+                        <th class="sortable" onclick="sortTable(4, 'number')">Valid JSON Rate <span class="sort-icon">⇅</span></th>
+                        <th class="sortable" onclick="sortTable(5, 'number')">Mean Latency <span class="sort-icon">⇅</span></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -481,7 +533,7 @@ def generate_html_gallery(
     </div>
 
     <script>
-        let currentSortCol = 2;
+        let currentSortCol = 3;
         let currentSortDir = 'desc';
 
         function sortTable(colIndex, type) {{
@@ -495,7 +547,7 @@ def generate_html_gallery(
                 currentSortDir = currentSortDir === 'asc' ? 'desc' : 'asc';
             }} else {{
                 currentSortCol = colIndex;
-                if (colIndex === 0 || colIndex === 4) {{
+                if (colIndex === 0 || colIndex === 5) {{
                     currentSortDir = 'asc';
                 }} else {{
                     currentSortDir = 'desc';
@@ -700,7 +752,7 @@ def save_benchmark_reports(
     items: list[DatasetImage],
     current_results: dict[str, BenchmarkResult],
     out_dir: Path,
-    split: str = "val",
+    split: str,
 ):
     """Save raw JSON predictions and split-specific interactive HTML gallery."""
     out_dir.mkdir(parents=True, exist_ok=True)

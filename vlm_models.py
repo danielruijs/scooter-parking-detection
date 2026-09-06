@@ -98,11 +98,13 @@ class VLMAdapter(ABC):
         hf_id: str,
         display_name: str,
         use_4bit: bool,
+        release_date: str,
     ):
         self.name = name
         self.hf_id = hf_id
         self.display_name = display_name
         self.use_4bit = use_4bit
+        self.release_date = release_date
         self.device = DEVICE
         self.model: Any = None
         self.processor: Any = None
@@ -210,8 +212,9 @@ class StandardVLMAdapter(VLMAdapter):
         image_size: tuple[int, int] | None,
         system_as_list: bool,
         repetition_penalty: float | None,
+        release_date: str,
     ):
-        super().__init__(name, hf_id, display_name, use_4bit)
+        super().__init__(name, hf_id, display_name, use_4bit, release_date=release_date)
         self.style = style
         self.image_size = image_size
         self.system_as_list = system_as_list
@@ -292,8 +295,9 @@ class Qwen2_5VLAdapter(VLMAdapter):
         hf_id: str,
         display_name: str,
         use_4bit: bool,
+        release_date: str,
     ):
-        super().__init__(name, hf_id, display_name, use_4bit)
+        super().__init__(name, hf_id, display_name, use_4bit, release_date=release_date)
 
     def load(self):
         from qwen_vl_utils import process_vision_info
@@ -344,8 +348,9 @@ class InternVLAdapter(VLMAdapter):
         name: str,
         hf_id: str,
         display_name: str,
+        release_date: str,
     ):
-        super().__init__(name, hf_id, display_name, use_4bit=False)
+        super().__init__(name, hf_id, display_name, use_4bit=False, release_date=release_date)
         self.transform: Any = None
 
     def load(self):
