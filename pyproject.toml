@@ -18,6 +18,10 @@ dependencies = [
     "tabulate>=0.10.0",
     "tqdm>=4.70.0",
     "timm>=1.0.29",
+    "qwen-vl-utils>=0.0.14",
+    "einops>=0.8.2",
+    "bitsandbytes>=0.50.2",
+    "num2words>=0.5.14",
 ]
 
 [[tool.uv.index]]
