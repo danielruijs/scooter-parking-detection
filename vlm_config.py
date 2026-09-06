@@ -167,17 +167,6 @@ AVAILABLE_VLM_MODELS: dict[str, VLMAdapter] = {
         repetition_penalty=1.15,
         release_date="Feb 2025",
     ),
-    "smolvlm-256m-instruct": StandardVLMAdapter(
-        name="smolvlm-256m-instruct",
-        hf_id="HuggingFaceTB/SmolVLM-256M-Instruct",
-        display_name="SmolVLM (256M Instruct)",
-        use_4bit=False,
-        style="two_stage",
-        image_size=(640, 640),
-        system_as_list=True,
-        repetition_penalty=1.15,
-        release_date="Nov 2024",
-    ),
     # --- Dedicated Architecture Adapters ---
     "qwen2.5-vl-3b-instruct": Qwen2_5VLAdapter(
         name="qwen2.5-vl-3b-instruct",

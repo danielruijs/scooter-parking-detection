@@ -50,7 +50,6 @@ Supported models:
 - `minicpm-v-4_6` (MiniCPM-V 4.6, 2026, FP16)
 - `smolvlm2-2.2b-instruct` (SmolVLM2 2.2B Instruct, 4-bit)
 - `smolvlm2-500m-instruct` (SmolVLM2 500M Instruct, FP16)
-- `smolvlm-256m-instruct` (SmolVLM 256M Instruct, FP16, ultra-lightweight)
 - `qwen2.5-vl-3b-instruct` (Qwen2.5-VL 3B Instruct, 4-bit)
 - `internvl3_5-1b` (InternVL 3.5 1B, 2026, FP16)
 

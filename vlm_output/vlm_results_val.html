@@ -96,6 +96,27 @@
             align-items: center;
             gap: 8px;
         }
+        .model-hf-link {
+            color: #fff;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.15s;
+        }
+        .model-hf-link:hover {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+        .hf-link-icon {
+            font-size: 11px;
+            opacity: 0.55;
+            transition: opacity 0.15s, transform 0.15s;
+        }
+        .model-hf-link:hover .hf-link-icon {
+            opacity: 1;
+            transform: translate(1px, -1px);
+        }
         .filter-hint {
             font-size: 11px;
             color: var(--primary);
@@ -112,6 +133,16 @@
             font-size: 12px;
             color: var(--text-muted);
             margin-bottom: 8px;
+        }
+        .year-pill {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 9999px;
+            font-size: 12px;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.06);
+            color: #cbd5e1;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .controls {
@@ -300,213 +331,257 @@
         <div class="metrics-card">
             <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px;">
                 <h2>Summary Performance Table (VAL)</h2>
-                <span class="table-hint">💡 Click column to sort &bull; Click model row to filter feedback gallery</span>
+                <span class="table-hint">💡 Click model name for Hugging Face page &bull; Click row to filter gallery &bull; Click column to sort</span>
             </div>
             <table id="summaryTable">
                 <thead>
                     <tr>
                         <th class="sortable" onclick="sortTable(0, 'string')">Model <span class="sort-icon">⇅</span></th>
-                        <th class="sortable" onclick="sortTable(1, 'number')">Accuracy <span class="sort-icon">⇅</span></th>
-                        <th class="sortable sorted-desc" onclick="sortTable(2, 'number')">Macro F1 <span class="sort-icon">▼</span></th>
-                        <th class="sortable" onclick="sortTable(3, 'number')">Valid JSON Rate <span class="sort-icon">⇅</span></th>
-                        <th class="sortable" onclick="sortTable(4, 'number')">Mean Latency <span class="sort-icon">⇅</span></th>
+                        <th class="sortable" onclick="sortTable(1, 'string')">Release Date <span class="sort-icon">⇅</span></th>
+                        <th class="sortable" onclick="sortTable(2, 'number')">Accuracy <span class="sort-icon">⇅</span></th>
+                        <th class="sortable sorted-desc" onclick="sortTable(3, 'number')">Macro F1 <span class="sort-icon">▼</span></th>
+                        <th class="sortable" onclick="sortTable(4, 'number')">Valid JSON Rate <span class="sort-icon">⇅</span></th>
+                        <th class="sortable" onclick="sortTable(5, 'number')">Mean Latency <span class="sort-icon">⇅</span></th>
                     </tr>
                 </thead>
                 <tbody>
                     
-            <tr class="model-summary-row" data-model="qwen3-vl-2b-instruct" onclick="selectModelFromTable('qwen3-vl-2b-instruct')" title="Click to filter feedback gallery by Qwen3-VL (2B Instruct, 4-bit)">
+            <tr class="model-summary-row" data-model="qwen3-vl-2b-instruct" onclick="selectModelFromTable('qwen3-vl-2b-instruct')" title="Click row to filter feedback gallery below">
                 <td data-val="Qwen3-VL (2B Instruct, 4-bit)">
                     <div class="model-name-cell">
-                        <strong>Qwen3-VL (2B Instruct, 4-bit)</strong>
+                        <a href="https://huggingface.co/Qwen/Qwen3-VL-2B-Instruct" target="_blank" rel="noopener noreferrer" class="model-hf-link" onclick="event.stopPropagation()" title="Open Qwen3-VL (2B Instruct, 4-bit) on Hugging Face">
+                            <strong>Qwen3-VL (2B Instruct, 4-bit)</strong>
+                            <span class="hf-link-icon">↗</span>
+                        </a>
                         <span class="filter-hint">🔍 filter</span>
                     </div>
                 </td>
+                <td data-val="2025-09"><span class="year-pill">Sep 2025</span></td>
                 <td data-val="95.7447">95.7%</td>
                 <td data-val="95.3922">95.4%</td>
                 <td data-val="100.0000">100.0%</td>
                 <td data-val="16903.9977">16904.0 ms</td>
             </tr>
             
-            <tr class="model-summary-row" data-model="internvl3_5-1b" onclick="selectModelFromTable('internvl3_5-1b')" title="Click to filter feedback gallery by InternVL 3.5 (1B, 2026)">
+            <tr class="model-summary-row" data-model="internvl3_5-1b" onclick="selectModelFromTable('internvl3_5-1b')" title="Click row to filter feedback gallery below">
                 <td data-val="InternVL 3.5 (1B, 2026)">
                     <div class="model-name-cell">
-                        <strong>InternVL 3.5 (1B, 2026)</strong>
+                        <a href="https://huggingface.co/OpenGVLab/InternVL3_5-1B" target="_blank" rel="noopener noreferrer" class="model-hf-link" onclick="event.stopPropagation()" title="Open InternVL 3.5 (1B, 2026) on Hugging Face">
+                            <strong>InternVL 3.5 (1B, 2026)</strong>
+                            <span class="hf-link-icon">↗</span>
+                        </a>
                         <span class="filter-hint">🔍 filter</span>
                     </div>
                 </td>
+                <td data-val="2026-03"><span class="year-pill">Mar 2026</span></td>
                 <td data-val="93.6170">93.6%</td>
                 <td data-val="93.3144">93.3%</td>
                 <td data-val="100.0000">100.0%</td>
                 <td data-val="5412.1534">5412.2 ms</td>
             </tr>
             
-            <tr class="model-summary-row" data-model="minicpm-v-4_6" onclick="selectModelFromTable('minicpm-v-4_6')" title="Click to filter feedback gallery by MiniCPM-V 4.6 (2026)">
+            <tr class="model-summary-row" data-model="minicpm-v-4_6" onclick="selectModelFromTable('minicpm-v-4_6')" title="Click row to filter feedback gallery below">
                 <td data-val="MiniCPM-V 4.6 (2026)">
                     <div class="model-name-cell">
-                        <strong>MiniCPM-V 4.6 (2026)</strong>
+                        <a href="https://huggingface.co/openbmb/MiniCPM-V-4_6" target="_blank" rel="noopener noreferrer" class="model-hf-link" onclick="event.stopPropagation()" title="Open MiniCPM-V 4.6 (2026) on Hugging Face">
+                            <strong>MiniCPM-V 4.6 (2026)</strong>
+                            <span class="hf-link-icon">↗</span>
+                        </a>
                         <span class="filter-hint">🔍 filter</span>
                     </div>
                 </td>
+                <td data-val="2026-01"><span class="year-pill">Jan 2026</span></td>
                 <td data-val="87.2340">87.2%</td>
                 <td data-val="85.3125">85.3%</td>
                 <td data-val="100.0000">100.0%</td>
                 <td data-val="4734.0843">4734.1 ms</td>
             </tr>
             
-            <tr class="model-summary-row" data-model="smolvlm2-2.2b-instruct" onclick="selectModelFromTable('smolvlm2-2.2b-instruct')" title="Click to filter feedback gallery by SmolVLM2 (2.2B Instruct, 4-bit)">
+            <tr class="model-summary-row" data-model="smolvlm2-2.2b-instruct" onclick="selectModelFromTable('smolvlm2-2.2b-instruct')" title="Click row to filter feedback gallery below">
                 <td data-val="SmolVLM2 (2.2B Instruct, 4-bit)">
                     <div class="model-name-cell">
-                        <strong>SmolVLM2 (2.2B Instruct, 4-bit)</strong>
+                        <a href="https://huggingface.co/HuggingFaceTB/SmolVLM2-2.2B-Instruct" target="_blank" rel="noopener noreferrer" class="model-hf-link" onclick="event.stopPropagation()" title="Open SmolVLM2 (2.2B Instruct, 4-bit) on Hugging Face">
+                            <strong>SmolVLM2 (2.2B Instruct, 4-bit)</strong>
+                            <span class="hf-link-icon">↗</span>
+                        </a>
                         <span class="filter-hint">🔍 filter</span>
                     </div>
                 </td>
+                <td data-val="2025-02"><span class="year-pill">Feb 2025</span></td>
                 <td data-val="82.9787">83.0%</td>
                 <td data-val="82.3308">82.3%</td>
                 <td data-val="100.0000">100.0%</td>
                 <td data-val="24318.8202">24318.8 ms</td>
             </tr>
             
-            <tr class="model-summary-row" data-model="lfm2.5-vl-450m" onclick="selectModelFromTable('lfm2.5-vl-450m')" title="Click to filter feedback gallery by LFM2.5-VL (450M, FP16, 2026)">
+            <tr class="model-summary-row" data-model="lfm2.5-vl-450m" onclick="selectModelFromTable('lfm2.5-vl-450m')" title="Click row to filter feedback gallery below">
                 <td data-val="LFM2.5-VL (450M, FP16, 2026)">
                     <div class="model-name-cell">
-                        <strong>LFM2.5-VL (450M, FP16, 2026)</strong>
+                        <a href="https://huggingface.co/LiquidAI/LFM2.5-VL-450M" target="_blank" rel="noopener noreferrer" class="model-hf-link" onclick="event.stopPropagation()" title="Open LFM2.5-VL (450M, FP16, 2026) on Hugging Face">
+                            <strong>LFM2.5-VL (450M, FP16, 2026)</strong>
+                            <span class="hf-link-icon">↗</span>
+                        </a>
                         <span class="filter-hint">🔍 filter</span>
                     </div>
                 </td>
+                <td data-val="2026-04"><span class="year-pill">Apr 2026</span></td>
                 <td data-val="80.8511">80.9%</td>
                 <td data-val="76.6169">76.6%</td>
                 <td data-val="100.0000">100.0%</td>
                 <td data-val="4791.2779">4791.3 ms</td>
             </tr>
             
-            <tr class="model-summary-row" data-model="qwen3.5-2b" onclick="selectModelFromTable('qwen3.5-2b')" title="Click to filter feedback gallery by Qwen3.5 (2B, 4-bit, 2026)">
+            <tr class="model-summary-row" data-model="qwen3.5-2b" onclick="selectModelFromTable('qwen3.5-2b')" title="Click row to filter feedback gallery below">
                 <td data-val="Qwen3.5 (2B, 4-bit, 2026)">
                     <div class="model-name-cell">
-                        <strong>Qwen3.5 (2B, 4-bit, 2026)</strong>
+                        <a href="https://huggingface.co/Qwen/Qwen3.5-2B" target="_blank" rel="noopener noreferrer" class="model-hf-link" onclick="event.stopPropagation()" title="Open Qwen3.5 (2B, 4-bit, 2026) on Hugging Face">
+                            <strong>Qwen3.5 (2B, 4-bit, 2026)</strong>
+                            <span class="hf-link-icon">↗</span>
+                        </a>
                         <span class="filter-hint">🔍 filter</span>
                     </div>
                 </td>
+                <td data-val="2026-02"><span class="year-pill">Feb 2026</span></td>
                 <td data-val="74.4681">74.5%</td>
                 <td data-val="66.4286">66.4%</td>
                 <td data-val="100.0000">100.0%</td>
                 <td data-val="17485.7764">17485.8 ms</td>
             </tr>
             
-            <tr class="model-summary-row" data-model="qwen3.5-0.8b" onclick="selectModelFromTable('qwen3.5-0.8b')" title="Click to filter feedback gallery by Qwen3.5 (0.8B, FP16, 2026)">
+            <tr class="model-summary-row" data-model="qwen3.5-0.8b" onclick="selectModelFromTable('qwen3.5-0.8b')" title="Click row to filter feedback gallery below">
                 <td data-val="Qwen3.5 (0.8B, FP16, 2026)">
                     <div class="model-name-cell">
-                        <strong>Qwen3.5 (0.8B, FP16, 2026)</strong>
+                        <a href="https://huggingface.co/Qwen/Qwen3.5-0.8B" target="_blank" rel="noopener noreferrer" class="model-hf-link" onclick="event.stopPropagation()" title="Open Qwen3.5 (0.8B, FP16, 2026) on Hugging Face">
+                            <strong>Qwen3.5 (0.8B, FP16, 2026)</strong>
+                            <span class="hf-link-icon">↗</span>
+                        </a>
                         <span class="filter-hint">🔍 filter</span>
                     </div>
                 </td>
+                <td data-val="2026-02"><span class="year-pill">Feb 2026</span></td>
                 <td data-val="65.9574">66.0%</td>
                 <td data-val="52.5253">52.5%</td>
                 <td data-val="100.0000">100.0%</td>
                 <td data-val="4581.2611">4581.3 ms</td>
             </tr>
             
-            <tr class="model-summary-row" data-model="ministral-3-3b-instruct-2512" onclick="selectModelFromTable('ministral-3-3b-instruct-2512')" title="Click to filter feedback gallery by Ministral 3 (3B Instruct 2512, FP8)">
+            <tr class="model-summary-row" data-model="ministral-3-3b-instruct-2512" onclick="selectModelFromTable('ministral-3-3b-instruct-2512')" title="Click row to filter feedback gallery below">
                 <td data-val="Ministral 3 (3B Instruct 2512, FP8)">
                     <div class="model-name-cell">
-                        <strong>Ministral 3 (3B Instruct 2512, FP8)</strong>
+                        <a href="https://huggingface.co/mistralai/Ministral-3-3B-Instruct-2512" target="_blank" rel="noopener noreferrer" class="model-hf-link" onclick="event.stopPropagation()" title="Open Ministral 3 (3B Instruct 2512, FP8) on Hugging Face">
+                            <strong>Ministral 3 (3B Instruct 2512, FP8)</strong>
+                            <span class="hf-link-icon">↗</span>
+                        </a>
                         <span class="filter-hint">🔍 filter</span>
                     </div>
                 </td>
+                <td data-val="2025-12"><span class="year-pill">Dec 2025</span></td>
                 <td data-val="61.7021">61.7%</td>
                 <td data-val="38.1579">38.2%</td>
                 <td data-val="100.0000">100.0%</td>
                 <td data-val="66450.8560">66450.9 ms</td>
             </tr>
             
-            <tr class="model-summary-row" data-model="gemma-4-e2b-it" onclick="selectModelFromTable('gemma-4-e2b-it')" title="Click to filter feedback gallery by Gemma 4 (E2B-it, 4-bit)">
+            <tr class="model-summary-row" data-model="gemma-4-e2b-it" onclick="selectModelFromTable('gemma-4-e2b-it')" title="Click row to filter feedback gallery below">
                 <td data-val="Gemma 4 (E2B-it, 4-bit)">
                     <div class="model-name-cell">
-                        <strong>Gemma 4 (E2B-it, 4-bit)</strong>
+                        <a href="https://huggingface.co/google/gemma-4-E2B-it" target="_blank" rel="noopener noreferrer" class="model-hf-link" onclick="event.stopPropagation()" title="Open Gemma 4 (E2B-it, 4-bit) on Hugging Face">
+                            <strong>Gemma 4 (E2B-it, 4-bit)</strong>
+                            <span class="hf-link-icon">↗</span>
+                        </a>
                         <span class="filter-hint">🔍 filter</span>
                     </div>
                 </td>
+                <td data-val="2026-04"><span class="year-pill">Apr 2026</span></td>
                 <td data-val="61.7021">61.7%</td>
                 <td data-val="38.1579">38.2%</td>
                 <td data-val="100.0000">100.0%</td>
                 <td data-val="10065.6764">10065.7 ms</td>
             </tr>
             
-            <tr class="model-summary-row" data-model="lfm2.5-vl-3b" onclick="selectModelFromTable('lfm2.5-vl-3b')" title="Click to filter feedback gallery by LFM2.5-VL (3B, 4-bit, 2026)">
+            <tr class="model-summary-row" data-model="lfm2.5-vl-3b" onclick="selectModelFromTable('lfm2.5-vl-3b')" title="Click row to filter feedback gallery below">
                 <td data-val="LFM2.5-VL (3B, 4-bit, 2026)">
                     <div class="model-name-cell">
-                        <strong>LFM2.5-VL (3B, 4-bit, 2026)</strong>
+                        <a href="https://huggingface.co/LiquidAI/LFM2.5-VL-3B" target="_blank" rel="noopener noreferrer" class="model-hf-link" onclick="event.stopPropagation()" title="Open LFM2.5-VL (3B, 4-bit, 2026) on Hugging Face">
+                            <strong>LFM2.5-VL (3B, 4-bit, 2026)</strong>
+                            <span class="hf-link-icon">↗</span>
+                        </a>
                         <span class="filter-hint">🔍 filter</span>
                     </div>
                 </td>
+                <td data-val="2026-08"><span class="year-pill">Aug 2026</span></td>
                 <td data-val="40.4255">40.4%</td>
                 <td data-val="38.1579">38.2%</td>
                 <td data-val="100.0000">100.0%</td>
                 <td data-val="25387.3530">25387.4 ms</td>
             </tr>
             
-            <tr class="model-summary-row" data-model="qwen2.5-vl-3b-instruct" onclick="selectModelFromTable('qwen2.5-vl-3b-instruct')" title="Click to filter feedback gallery by Qwen2.5-VL (3B Instruct, 4-bit)">
+            <tr class="model-summary-row" data-model="qwen2.5-vl-3b-instruct" onclick="selectModelFromTable('qwen2.5-vl-3b-instruct')" title="Click row to filter feedback gallery below">
                 <td data-val="Qwen2.5-VL (3B Instruct, 4-bit)">
                     <div class="model-name-cell">
-                        <strong>Qwen2.5-VL (3B Instruct, 4-bit)</strong>
+                        <a href="https://huggingface.co/Qwen/Qwen2.5-VL-3B-Instruct" target="_blank" rel="noopener noreferrer" class="model-hf-link" onclick="event.stopPropagation()" title="Open Qwen2.5-VL (3B Instruct, 4-bit) on Hugging Face">
+                            <strong>Qwen2.5-VL (3B Instruct, 4-bit)</strong>
+                            <span class="hf-link-icon">↗</span>
+                        </a>
                         <span class="filter-hint">🔍 filter</span>
                     </div>
                 </td>
+                <td data-val="2025-01"><span class="year-pill">Jan 2025</span></td>
                 <td data-val="63.8298">63.8%</td>
                 <td data-val="32.2374">32.2%</td>
                 <td data-val="97.8723">97.9%</td>
                 <td data-val="13549.7245">13549.7 ms</td>
             </tr>
             
-            <tr class="model-summary-row" data-model="lfm2.5-vl-1.6b" onclick="selectModelFromTable('lfm2.5-vl-1.6b')" title="Click to filter feedback gallery by LFM2.5-VL (1.6B, FP16, 2026)">
+            <tr class="model-summary-row" data-model="lfm2.5-vl-1.6b" onclick="selectModelFromTable('lfm2.5-vl-1.6b')" title="Click row to filter feedback gallery below">
                 <td data-val="LFM2.5-VL (1.6B, FP16, 2026)">
                     <div class="model-name-cell">
-                        <strong>LFM2.5-VL (1.6B, FP16, 2026)</strong>
+                        <a href="https://huggingface.co/LiquidAI/LFM2.5-VL-1.6B" target="_blank" rel="noopener noreferrer" class="model-hf-link" onclick="event.stopPropagation()" title="Open LFM2.5-VL (1.6B, FP16, 2026) on Hugging Face">
+                            <strong>LFM2.5-VL (1.6B, FP16, 2026)</strong>
+                            <span class="hf-link-icon">↗</span>
+                        </a>
                         <span class="filter-hint">🔍 filter</span>
                     </div>
                 </td>
+                <td data-val="2026-01"><span class="year-pill">Jan 2026</span></td>
                 <td data-val="63.8298">63.8%</td>
                 <td data-val="29.6349">29.6%</td>
                 <td data-val="97.8723">97.9%</td>
                 <td data-val="17751.3030">17751.3 ms</td>
             </tr>
             
-            <tr class="model-summary-row" data-model="smolvlm2-500m-instruct" onclick="selectModelFromTable('smolvlm2-500m-instruct')" title="Click to filter feedback gallery by SmolVLM2 (500M Instruct)">
+            <tr class="model-summary-row" data-model="smolvlm2-500m-instruct" onclick="selectModelFromTable('smolvlm2-500m-instruct')" title="Click row to filter feedback gallery below">
                 <td data-val="SmolVLM2 (500M Instruct)">
                     <div class="model-name-cell">
-                        <strong>SmolVLM2 (500M Instruct)</strong>
+                        <a href="https://huggingface.co/HuggingFaceTB/SmolVLM2-500M-Instruct" target="_blank" rel="noopener noreferrer" class="model-hf-link" onclick="event.stopPropagation()" title="Open SmolVLM2 (500M Instruct) on Hugging Face">
+                            <strong>SmolVLM2 (500M Instruct)</strong>
+                            <span class="hf-link-icon">↗</span>
+                        </a>
                         <span class="filter-hint">🔍 filter</span>
                     </div>
                 </td>
+                <td data-val="2025-02"><span class="year-pill">Feb 2025</span></td>
                 <td data-val="38.2979">38.3%</td>
                 <td data-val="19.0476">19.0%</td>
                 <td data-val="95.7447">95.7%</td>
                 <td data-val="8269.5687">8269.6 ms</td>
             </tr>
             
-            <tr class="model-summary-row" data-model="qwen3.5-4b" onclick="selectModelFromTable('qwen3.5-4b')" title="Click to filter feedback gallery by Qwen3.5 (4B, 4-bit, 2026)">
+            <tr class="model-summary-row" data-model="qwen3.5-4b" onclick="selectModelFromTable('qwen3.5-4b')" title="Click row to filter feedback gallery below">
                 <td data-val="Qwen3.5 (4B, 4-bit, 2026)">
                     <div class="model-name-cell">
-                        <strong>Qwen3.5 (4B, 4-bit, 2026)</strong>
+                        <a href="https://huggingface.co/Qwen/Qwen3.5-4B" target="_blank" rel="noopener noreferrer" class="model-hf-link" onclick="event.stopPropagation()" title="Open Qwen3.5 (4B, 4-bit, 2026) on Hugging Face">
+                            <strong>Qwen3.5 (4B, 4-bit, 2026)</strong>
+                            <span class="hf-link-icon">↗</span>
+                        </a>
                         <span class="filter-hint">🔍 filter</span>
                     </div>
                 </td>
+                <td data-val="2026-02"><span class="year-pill">Feb 2026</span></td>
                 <td data-val="0.0000">0.0%</td>
                 <td data-val="0.0000">0.0%</td>
                 <td data-val="0.0000">0.0%</td>
                 <td data-val="29955.8715">29955.9 ms</td>
-            </tr>
-            
-            <tr class="model-summary-row" data-model="smolvlm-256m-instruct" onclick="selectModelFromTable('smolvlm-256m-instruct')" title="Click to filter feedback gallery by SmolVLM (256M Instruct)">
-                <td data-val="SmolVLM (256M Instruct)">
-                    <div class="model-name-cell">
-                        <strong>SmolVLM (256M Instruct)</strong>
-                        <span class="filter-hint">🔍 filter</span>
-                    </div>
-                </td>
-                <td data-val="0.0000">0.0%</td>
-                <td data-val="0.0000">0.0%</td>
-                <td data-val="0.0000">0.0%</td>
-                <td data-val="6773.5332">6773.5 ms</td>
             </tr>
             
                 </tbody>
@@ -519,7 +594,7 @@
                     <label for="modelFilterSelect" class="control-label">Model:</label>
                     <select id="modelFilterSelect" class="filter-select" onchange="onModelFilterChange(this.value)">
                         <option value="all">All Models (Combined)</option>
-                        <option value="qwen3-vl-2b-instruct">Qwen3-VL (2B Instruct, 4-bit)</option><option value="internvl3_5-1b">InternVL 3.5 (1B, 2026)</option><option value="minicpm-v-4_6">MiniCPM-V 4.6 (2026)</option><option value="smolvlm2-2.2b-instruct">SmolVLM2 (2.2B Instruct, 4-bit)</option><option value="lfm2.5-vl-450m">LFM2.5-VL (450M, FP16, 2026)</option><option value="qwen3.5-2b">Qwen3.5 (2B, 4-bit, 2026)</option><option value="qwen3.5-0.8b">Qwen3.5 (0.8B, FP16, 2026)</option><option value="ministral-3-3b-instruct-2512">Ministral 3 (3B Instruct 2512, FP8)</option><option value="gemma-4-e2b-it">Gemma 4 (E2B-it, 4-bit)</option><option value="lfm2.5-vl-3b">LFM2.5-VL (3B, 4-bit, 2026)</option><option value="qwen2.5-vl-3b-instruct">Qwen2.5-VL (3B Instruct, 4-bit)</option><option value="lfm2.5-vl-1.6b">LFM2.5-VL (1.6B, FP16, 2026)</option><option value="smolvlm2-500m-instruct">SmolVLM2 (500M Instruct)</option><option value="qwen3.5-4b">Qwen3.5 (4B, 4-bit, 2026)</option><option value="smolvlm-256m-instruct">SmolVLM (256M Instruct)</option>
+                        <option value="qwen3-vl-2b-instruct">Qwen3-VL (2B Instruct, 4-bit)</option><option value="internvl3_5-1b">InternVL 3.5 (1B, 2026)</option><option value="minicpm-v-4_6">MiniCPM-V 4.6 (2026)</option><option value="smolvlm2-2.2b-instruct">SmolVLM2 (2.2B Instruct, 4-bit)</option><option value="lfm2.5-vl-450m">LFM2.5-VL (450M, FP16, 2026)</option><option value="qwen3.5-2b">Qwen3.5 (2B, 4-bit, 2026)</option><option value="qwen3.5-0.8b">Qwen3.5 (0.8B, FP16, 2026)</option><option value="ministral-3-3b-instruct-2512">Ministral 3 (3B Instruct 2512, FP8)</option><option value="gemma-4-e2b-it">Gemma 4 (E2B-it, 4-bit)</option><option value="lfm2.5-vl-3b">LFM2.5-VL (3B, 4-bit, 2026)</option><option value="qwen2.5-vl-3b-instruct">Qwen2.5-VL (3B Instruct, 4-bit)</option><option value="lfm2.5-vl-1.6b">LFM2.5-VL (1.6B, FP16, 2026)</option><option value="smolvlm2-500m-instruct">SmolVLM2 (500M Instruct)</option><option value="qwen3.5-4b">Qwen3.5 (4B, 4-bit, 2026)</option>
                     </select>
                 </div>
                 <div class="btn-group">
@@ -652,17 +727,6 @@
                         </div>
                     </div>
                     <div class="feedback-bubble">"The electric scooter is placed correctly on the ground. It's not leaning against anything."</div>
-                </div>
-                
-                <div class="model-row" data-model="smolvlm-256m-instruct" data-correct="false">
-                    <div class="model-header">
-                        <span class="model-title">SmolVLM (256M Instruct)</span>
-                        <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">5754 ms</span>
-                        </div>
-                    </div>
-                    <div class="feedback-bubble">"Yes."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen2.5-vl-3b-instruct" data-correct="true">
@@ -837,17 +901,6 @@
                         </div>
                     </div>
                     <div class="feedback-bubble">"The electric scooter is not properly placed on the sidewalk. It should be positioned at least 3 feet away from the curb."</div>
-                </div>
-                
-                <div class="model-row" data-model="smolvlm-256m-instruct" data-correct="false">
-                    <div class="model-header">
-                        <span class="model-title">SmolVLM (256M Instruct)</span>
-                        <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">6039 ms</span>
-                        </div>
-                    </div>
-                    <div class="feedback-bubble">"[["Is parked properly"], ["Not parked properly"]]"</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen2.5-vl-3b-instruct" data-correct="true">
@@ -1026,17 +1079,6 @@
                     <div class="feedback-bubble">"The electric scooter is parked correctly. It's not leaning against any objects or blocking anything."</div>
                 </div>
                 
-                <div class="model-row" data-model="smolvlm-256m-instruct" data-correct="false">
-                    <div class="model-header">
-                        <span class="model-title">SmolVLM (256M Instruct)</span>
-                        <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">5622 ms</span>
-                        </div>
-                    </div>
-                    <div class="feedback-bubble">"Yes."</div>
-                </div>
-                
                 <div class="model-row" data-model="qwen2.5-vl-3b-instruct" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen2.5-VL (3B Instruct, 4-bit)</span>
@@ -1212,17 +1254,6 @@
                         </div>
                     </div>
                     <div class="feedback-bubble">"The scooter is placed correctly on the cobblestone path. It's not leaning too much and there's enough space between it and the curb."</div>
-                </div>
-                
-                <div class="model-row" data-model="smolvlm-256m-instruct" data-correct="false">
-                    <div class="model-header">
-                        <span class="model-title">SmolVLM (256M Instruct)</span>
-                        <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">5627 ms</span>
-                        </div>
-                    </div>
-                    <div class="feedback-bubble">"Properly."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen2.5-vl-3b-instruct" data-correct="true">
@@ -1403,17 +1434,6 @@
                     <div class="feedback-bubble">"The electric scooter is placed correctly on the ground. It's not leaning against anything."</div>
                 </div>
                 
-                <div class="model-row" data-model="smolvlm-256m-instruct" data-correct="false">
-                    <div class="model-header">
-                        <span class="model-title">SmolVLM (256M Instruct)</span>
-                        <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">6289 ms</span>
-                        </div>
-                    </div>
-                    <div class="feedback-bubble">"[["Is parked properly", "Not properly"], ["Picked up by police.", "Yes"]]}"</div>
-                </div>
-                
                 <div class="model-row" data-model="qwen2.5-vl-3b-instruct" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen2.5-VL (3B Instruct, 4-bit)</span>
@@ -1592,17 +1612,6 @@
                     <div class="feedback-bubble">"The electric scooter is placed correctly on the ground. It's not leaning against anything."</div>
                 </div>
                 
-                <div class="model-row" data-model="smolvlm-256m-instruct" data-correct="false">
-                    <div class="model-header">
-                        <span class="model-title">SmolVLM (256M Instruct)</span>
-                        <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">6284 ms</span>
-                        </div>
-                    </div>
-                    <div class="feedback-bubble">"[["Is parked properly", "Not properly"], ["Picked up by police.", "Yes"]]}"</div>
-                </div>
-                
                 <div class="model-row" data-model="qwen2.5-vl-3b-instruct" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen2.5-VL (3B Instruct, 4-bit)</span>
@@ -1776,17 +1785,6 @@
                         </div>
                     </div>
                     <div class="feedback-bubble">"Properly placed next to each other, not leaning against each other."</div>
-                </div>
-                
-                <div class="model-row" data-model="smolvlm-256m-instruct" data-correct="false">
-                    <div class="model-header">
-                        <span class="model-title">SmolVLM (256M Instruct)</span>
-                        <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">6385 ms</span>
-                        </div>
-                    </div>
-                    <div class="feedback-bubble">"[["Is parked properly"], ["Not blocked by building entrance doors", "ADAMS"]]}"</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen2.5-vl-3b-instruct" data-correct="true">
@@ -1965,17 +1963,6 @@
                     <div class="feedback-bubble">""</div>
                 </div>
                 
-                <div class="model-row" data-model="smolvlm-256m-instruct" data-correct="false">
-                    <div class="model-header">
-                        <span class="model-title">SmolVLM (256M Instruct)</span>
-                        <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">6392 ms</span>
-                        </div>
-                    </div>
-                    <div class="feedback-bubble">"[["Is parked properly", "No"], ["Possibly not parked properly", "Yes"]]."</div>
-                </div>
-                
                 <div class="model-row" data-model="qwen2.5-vl-3b-instruct" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen2.5-VL (3B Instruct, 4-bit)</span>
@@ -2147,17 +2134,6 @@
                         </div>
                     </div>
                     <div class="feedback-bubble">"The electric scooter is parked correctly. It's not leaning against the railing."</div>
-                </div>
-                
-                <div class="model-row" data-model="smolvlm-256m-instruct" data-correct="false">
-                    <div class="model-header">
-                        <span class="model-title">SmolVLM (256M Instruct)</span>
-                        <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">5725 ms</span>
-                        </div>
-                    </div>
-                    <div class="feedback-bubble">"Yes."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen2.5-vl-3b-instruct" data-correct="true">
@@ -2337,17 +2313,6 @@
                     <div class="feedback-bubble">"The electric scooter is placed correctly next to the curb."</div>
                 </div>
                 
-                <div class="model-row" data-model="smolvlm-256m-instruct" data-correct="false">
-                    <div class="model-header">
-                        <span class="model-title">SmolVLM (256M Instruct)</span>
-                        <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">5853 ms</span>
-                        </div>
-                    </div>
-                    <div class="feedback-bubble">"Yes."</div>
-                </div>
-                
                 <div class="model-row" data-model="qwen2.5-vl-3b-instruct" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen2.5-VL (3B Instruct, 4-bit)</span>
@@ -2523,17 +2488,6 @@
                         </div>
                     </div>
                     <div class="feedback-bubble">"The scooter is not properly placed; there's no space between the scooter and the curb."</div>
-                </div>
-                
-                <div class="model-row" data-model="smolvlm-256m-instruct" data-correct="false">
-                    <div class="model-header">
-                        <span class="model-title">SmolVLM (256M Instruct)</span>
-                        <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">7586 ms</span>
-                        </div>
-                    </div>
-                    <div class="feedback-bubble">"Yes."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen2.5-vl-3b-instruct" data-correct="true">
@@ -2715,17 +2669,6 @@
                     <div class="feedback-bubble">"The electric scooter is parked correctly. It's not leaning against anything and there's no obstruction from other vehicles."</div>
                 </div>
                 
-                <div class="model-row" data-model="smolvlm-256m-instruct" data-correct="false">
-                    <div class="model-header">
-                        <span class="model-title">SmolVLM (256M Instruct)</span>
-                        <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">5537 ms</span>
-                        </div>
-                    </div>
-                    <div class="feedback-bubble">"Yes."</div>
-                </div>
-                
                 <div class="model-row" data-model="qwen2.5-vl-3b-instruct" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen2.5-VL (3B Instruct, 4-bit)</span>
@@ -2900,17 +2843,6 @@
                     <div class="feedback-bubble">"proper"</div>
                 </div>
                 
-                <div class="model-row" data-model="smolvlm-256m-instruct" data-correct="false">
-                    <div class="model-header">
-                        <span class="model-title">SmolVLM (256M Instruct)</span>
-                        <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">6920 ms</span>
-                        </div>
-                    </div>
-                    <div class="feedback-bubble">"Yes."</div>
-                </div>
-                
                 <div class="model-row" data-model="qwen2.5-vl-3b-instruct" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen2.5-VL (3B Instruct, 4-bit)</span>
@@ -3083,17 +3015,6 @@
                         </div>
                     </div>
                     <div class="feedback-bubble">""</div>
-                </div>
-                
-                <div class="model-row" data-model="smolvlm-256m-instruct" data-correct="false">
-                    <div class="model-header">
-                        <span class="model-title">SmolVLM (256M Instruct)</span>
-                        <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">5506 ms</span>
-                        </div>
-                    </div>
-                    <div class="feedback-bubble">"Yes."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen2.5-vl-3b-instruct" data-correct="true">
@@ -3272,17 +3193,6 @@
                     <div class="feedback-bubble">"The electric scooter is parked correctly,"</div>
                 </div>
                 
-                <div class="model-row" data-model="smolvlm-256m-instruct" data-correct="false">
-                    <div class="model-header">
-                        <span class="model-title">SmolVLM (256M Instruct)</span>
-                        <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">5259 ms</span>
-                        </div>
-                    </div>
-                    <div class="feedback-bubble">"Yes."</div>
-                </div>
-                
                 <div class="model-row" data-model="qwen2.5-vl-3b-instruct" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen2.5-VL (3B Instruct, 4-bit)</span>
@@ -3455,17 +3365,6 @@
                         </div>
                     </div>
                     <div class="feedback-bubble">"The scooter is placed correctly on the grass. It's not leaning against anything."</div>
-                </div>
-                
-                <div class="model-row" data-model="smolvlm-256m-instruct" data-correct="false">
-                    <div class="model-header">
-                        <span class="model-title">SmolVLM (256M Instruct)</span>
-                        <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">5549 ms</span>
-                        </div>
-                    </div>
-                    <div class="feedback-bubble">"Yes."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen2.5-vl-3b-instruct" data-correct="true">
@@ -3645,17 +3544,6 @@
                     <div class="feedback-bubble">""</div>
                 </div>
                 
-                <div class="model-row" data-model="smolvlm-256m-instruct" data-correct="false">
-                    <div class="model-header">
-                        <span class="model-title">SmolVLM (256M Instruct)</span>
-                        <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">3642 ms</span>
-                        </div>
-                    </div>
-                    <div class="feedback-bubble">"Yes."</div>
-                </div>
-                
                 <div class="model-row" data-model="qwen2.5-vl-3b-instruct" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen2.5-VL (3B Instruct, 4-bit)</span>
@@ -3831,17 +3719,6 @@
                     <div class="feedback-bubble">"The electric scooter is parked correctly,"</div>
                 </div>
                 
-                <div class="model-row" data-model="smolvlm-256m-instruct" data-correct="false">
-                    <div class="model-header">
-                        <span class="model-title">SmolVLM (256M Instruct)</span>
-                        <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">5215 ms</span>
-                        </div>
-                    </div>
-                    <div class="feedback-bubble">"Yes."</div>
-                </div>
-                
                 <div class="model-row" data-model="qwen2.5-vl-3b-instruct" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen2.5-VL (3B Instruct, 4-bit)</span>
@@ -4013,17 +3890,6 @@
                         </div>
                     </div>
                     <div class="feedback-bubble">"The electric scooter is parked correctly,"</div>
-                </div>
-                
-                <div class="model-row" data-model="smolvlm-256m-instruct" data-correct="false">
-                    <div class="model-header">
-                        <span class="model-title">SmolVLM (256M Instruct)</span>
-                        <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">5454 ms</span>
-                        </div>
-                    </div>
-                    <div class="feedback-bubble">"[True, False]"</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen2.5-vl-3b-instruct" data-correct="true">
@@ -4206,33 +4072,6 @@
                     <div class="feedback-bubble">"The electric scooter is parked correctly on the steps. It's not leaning against any wall or blocking anything."</div>
                 </div>
                 
-                <div class="model-row" data-model="smolvlm-256m-instruct" data-correct="false">
-                    <div class="model-header">
-                        <span class="model-title">SmolVLM (256M Instruct)</span>
-                        <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">10668 ms</span>
-                        </div>
-                    </div>
-                    <div class="feedback-bubble">"{
-    "type": "Scooter",
-    "price": "300",
-    "service": {
-        "city": "New York City",
-        "country": "United States",
-        "region": "Northeast"
-    },
-    "accessories": [
-        {
-            "id": "a6b7589c4eabdccfdaedcdcbdebbddaaadafee",
-            "description": "Electric Scooter Parking On Steps".
-        },
-        {
-            "id": "a6bd7589c4ebdbcfdaedcdbcbebaefdfaeffafeafaf",
-            "category": "Image Categories",
-            ""</div>
-                </div>
-                
                 <div class="model-row" data-model="qwen2.5-vl-3b-instruct" data-correct="false">
                     <div class="model-header">
                         <span class="model-title">Qwen2.5-VL (3B Instruct, 4-bit)</span>
@@ -4408,29 +4247,6 @@
                         </div>
                     </div>
                     <div class="feedback-bubble">"The electric scooter is parked correctly on the steps. It's not leaning against any wall or blocked by anything."</div>
-                </div>
-                
-                <div class="model-row" data-model="smolvlm-256m-instruct" data-correct="false">
-                    <div class="model-header">
-                        <span class="model-title">SmolVLM (256M Instruct)</span>
-                        <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">10878 ms</span>
-                        </div>
-                    </div>
-                    <div class="feedback-bubble">"{
-    "type": "Scooter",
-    "speed": "30 km/h",
-    "price": "5000 EUR",
-    "tax": [
-        {
-            "num": "48967",
-            "unitprice": "Открывающий способ передня лучшие разных компания",
-            "cnt": "100%"
-        },
-        {
-            "num": "48967",
-            "unitprice": "Открывающий способ перед"</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen2.5-vl-3b-instruct" data-correct="true">
@@ -4613,17 +4429,6 @@
                     <div class="feedback-bubble">"The electric scooter is parked correctly. It's not leaning against anything."</div>
                 </div>
                 
-                <div class="model-row" data-model="smolvlm-256m-instruct" data-correct="false">
-                    <div class="model-header">
-                        <span class="model-title">SmolVLM (256M Instruct)</span>
-                        <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">5412 ms</span>
-                        </div>
-                    </div>
-                    <div class="feedback-bubble">"[False, "Pending"]"</div>
-                </div>
-                
                 <div class="model-row" data-model="qwen2.5-vl-3b-instruct" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen2.5-VL (3B Instruct, 4-bit)</span>
@@ -4798,34 +4603,6 @@
                         </div>
                     </div>
                     <div class="feedback-bubble">"The electric scooter is placed correctly on the concrete path next to the fence. It's not leaning against the wall or blocking any other objects."</div>
-                </div>
-                
-                <div class="model-row" data-model="smolvlm-256m-instruct" data-correct="false">
-                    <div class="model-header">
-                        <span class="model-title">SmolVLM (256M Instruct)</span>
-                        <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">10778 ms</span>
-                        </div>
-                    </div>
-                    <div class="feedback-bubble">"{
-    "status": "Pending",
-    "message": [
-        {
-            "id": "36508974-0",
-            "created": "2019-04-01",
-            "text": "Scooter is pending approval from city authorities.",
-            "photo": [
-                {
-                    "id": "a3bccfafcbbdcdgdbcbddbddeeabbaedeeeaae"
-                },
-                {
-                    "id": "aaacceffcfadbcdfdcbfdaecfeefebbebeej"
-                }
-            ]
-        },
-        {
-            "id": "36508974-0"</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen2.5-vl-3b-instruct" data-correct="true">
@@ -5005,17 +4782,6 @@
                     <div class="feedback-bubble">"The electric scooter is parked correctly. It's not leaning against anything and there are no obstacles around."</div>
                 </div>
                 
-                <div class="model-row" data-model="smolvlm-256m-instruct" data-correct="false">
-                    <div class="model-header">
-                        <span class="model-title">SmolVLM (256M Instruct)</span>
-                        <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">5911 ms</span>
-                        </div>
-                    </div>
-                    <div class="feedback-bubble">"[False, "Pending"]"</div>
-                </div>
-                
                 <div class="model-row" data-model="qwen2.5-vl-3b-instruct" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen2.5-VL (3B Instruct, 4-bit)</span>
@@ -5192,17 +4958,6 @@
                         </div>
                     </div>
                     <div class="feedback-bubble">"The electric scooter is parked correctly. It's not leaning against anything."</div>
-                </div>
-                
-                <div class="model-row" data-model="smolvlm-256m-instruct" data-correct="false">
-                    <div class="model-header">
-                        <span class="model-title">SmolVLM (256M Instruct)</span>
-                        <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">5717 ms</span>
-                        </div>
-                    </div>
-                    <div class="feedback-bubble">"Yes."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen2.5-vl-3b-instruct" data-correct="true">
@@ -5391,17 +5146,6 @@
 }"</div>
                 </div>
                 
-                <div class="model-row" data-model="smolvlm-256m-instruct" data-correct="false">
-                    <div class="model-header">
-                        <span class="model-title">SmolVLM (256M Instruct)</span>
-                        <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">5688 ms</span>
-                        </div>
-                    </div>
-                    <div class="feedback-bubble">"No."</div>
-                </div>
-                
                 <div class="model-row" data-model="qwen2.5-vl-3b-instruct" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen2.5-VL (3B Instruct, 4-bit)</span>
@@ -5579,17 +5323,6 @@
                     <div class="feedback-bubble">"The electric scooter is parked correctly on the street."</div>
                 </div>
                 
-                <div class="model-row" data-model="smolvlm-256m-instruct" data-correct="false">
-                    <div class="model-header">
-                        <span class="model-title">SmolVLM (256M Instruct)</span>
-                        <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">7773 ms</span>
-                        </div>
-                    </div>
-                    <div class="feedback-bubble">"[["Is empty", "No"], ["Pending", "Yes"]]}"</div>
-                </div>
-                
                 <div class="model-row" data-model="qwen2.5-vl-3b-instruct" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen2.5-VL (3B Instruct, 4-bit)</span>
@@ -5763,37 +5496,6 @@
                         </div>
                     </div>
                     <div class="feedback-bubble">"The electric scooters appear to have been placed correctly on their kickstands. They are not leaning against each other but rather facing forward."</div>
-                </div>
-                
-                <div class="model-row" data-model="smolvlm-256m-instruct" data-correct="false">
-                    <div class="model-header">
-                        <span class="model-title">SmolVLM (256M Instruct)</span>
-                        <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">12425 ms</span>
-                        </div>
-                    </div>
-                    <div class="feedback-bubble">"{
-    "type": "electric",
-    "speed": "30 km/h",
-    "capacity": [
-        "5-6 people",
-        "4-7 people",
-        "8-9 people"
-    ],
-    "price": {
-        "unit price": "100",
-        "tax price": "100"
-    },
-    "items": [
-        {
-            "item_id": "e1cafoqbjgxvwfzdccaadm",
-            "quantity": "10"
-        },
-        {
-            "item_id": "ebefykcdwypduuwe",
-            "price": "100"
-        }"</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen2.5-vl-3b-instruct" data-correct="true">
@@ -5973,17 +5675,6 @@
                     <div class="feedback-bubble">"The scooter is placed correctly on the ground. It's not leaning against anything."</div>
                 </div>
                 
-                <div class="model-row" data-model="smolvlm-256m-instruct" data-correct="false">
-                    <div class="model-header">
-                        <span class="model-title">SmolVLM (256M Instruct)</span>
-                        <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">5926 ms</span>
-                        </div>
-                    </div>
-                    <div class="feedback-bubble">"[False, "Is it parked properly"?],"</div>
-                </div>
-                
                 <div class="model-row" data-model="qwen2.5-vl-3b-instruct" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen2.5-VL (3B Instruct, 4-bit)</span>
@@ -6158,33 +5849,6 @@
                         </div>
                     </div>
                     <div class="feedback-bubble">"The electric scooter is placed correctly on the ground. It's not leaning against any wall or tree."</div>
-                </div>
-                
-                <div class="model-row" data-model="smolvlm-256m-instruct" data-correct="false">
-                    <div class="model-header">
-                        <span class="model-title">SmolVLM (256M Instruct)</span>
-                        <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">10743 ms</span>
-                        </div>
-                    </div>
-                    <div class="feedback-bubble">"{
-    "type": "SPORTING",
-    "owner": {
-        "name": "HWY POTTERY SCOBOTS",
-        "model": "POTTERY SPOON".
-    },
-    "beverage": {
-        "price": "500 CENTS",
-        "unit price": "498 CENTS"
-    },
-    "accessories": [
-        {
-            "id": "f67a3eafd-cbbcb-4ea8ed-eeccbaaddeab-beefebaeffecce",
-            "description": "A yellow scooter that is parked on a street.".
-        },
-        {
-            "id": ""</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen2.5-vl-3b-instruct" data-correct="false">
@@ -6365,17 +6029,6 @@
                         </div>
                     </div>
                     <div class="feedback-bubble">"The electric scooters have been placed correctly on their kickstands. They appear to be standing up straight and not leaning against each other."</div>
-                </div>
-                
-                <div class="model-row" data-model="smolvlm-256m-instruct" data-correct="false">
-                    <div class="model-header">
-                        <span class="model-title">SmolVLM (256M Instruct)</span>
-                        <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">5685 ms</span>
-                        </div>
-                    </div>
-                    <div class="feedback-bubble">"Pending."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen2.5-vl-3b-instruct" data-correct="true">
@@ -6573,17 +6226,6 @@
                     <div class="feedback-bubble">"The electric scooters appear to have been placed correctly on their kickstays. They are not leaning against each other or blocking any obstacles."</div>
                 </div>
                 
-                <div class="model-row" data-model="smolvlm-256m-instruct" data-correct="false">
-                    <div class="model-header">
-                        <span class="model-title">SmolVLM (256M Instruct)</span>
-                        <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">5631 ms</span>
-                        </div>
-                    </div>
-                    <div class="feedback-bubble">"Yes."</div>
-                </div>
-                
                 <div class="model-row" data-model="qwen2.5-vl-3b-instruct" data-correct="false">
                     <div class="model-header">
                         <span class="model-title">Qwen2.5-VL (3B Instruct, 4-bit)</span>
@@ -6761,17 +6403,6 @@
                     <div class="feedback-bubble">"The scooter is placed correctly on the road. It's not leaning too much and there's enough space between it and the edge of the road."</div>
                 </div>
                 
-                <div class="model-row" data-model="smolvlm-256m-instruct" data-correct="false">
-                    <div class="model-header">
-                        <span class="model-title">SmolVLM (256M Instruct)</span>
-                        <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">5620 ms</span>
-                        </div>
-                    </div>
-                    <div class="feedback-bubble">"Yes."</div>
-                </div>
-                
                 <div class="model-row" data-model="qwen2.5-vl-3b-instruct" data-correct="false">
                     <div class="model-header">
                         <span class="model-title">Qwen2.5-VL (3B Instruct, 4-bit)</span>
@@ -6943,17 +6574,6 @@
                         </div>
                     </div>
                     <div class="feedback-bubble">"The electric scooter is parked correctly. It's not leaning against any wall or blocked by anything."</div>
-                </div>
-                
-                <div class="model-row" data-model="smolvlm-256m-instruct" data-correct="false">
-                    <div class="model-header">
-                        <span class="model-title">SmolVLM (256M Instruct)</span>
-                        <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">6375 ms</span>
-                        </div>
-                    </div>
-                    <div class="feedback-bubble">"Output: [False, "Parked properly"], [50]: The electric scooter parking is not properly parked."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen2.5-vl-3b-instruct" data-correct="false">
@@ -7133,36 +6753,6 @@
                     <div class="feedback-bubble">"The electric scooters have been placed correctly on their kickstands. They appear to be positioned at least 3 meters apart from each other."</div>
                 </div>
                 
-                <div class="model-row" data-model="smolvlm-256m-instruct" data-correct="false">
-                    <div class="model-header">
-                        <span class="model-title">SmolVLM (256M Instruct)</span>
-                        <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">12386 ms</span>
-                        </div>
-                    </div>
-                    <div class="feedback-bubble">"{
-    "type": "go tychetb",
-    "scooters": [
-        {
-            "type": "shnek go",
-            "speed": "30 km h",
-            "price": "€ 500"
-        },
-        {
-            "type": "go tychetb",
-            "price": "€ 499"
-        }
-    ],
-    "sports": {
-        "name": "Go Tychetb",
-        "brand": "GO TYCHTB"
-    },
-    "accessories": [
-        {
-            "id": "a6e78dccf-adbe-cdgjhqvwmzxpwy"</div>
-                </div>
-                
                 <div class="model-row" data-model="qwen2.5-vl-3b-instruct" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen2.5-VL (3B Instruct, 4-bit)</span>
@@ -7340,17 +6930,6 @@
                     <div class="feedback-bubble">"The electric scooter is parked correctly on the side of the street."</div>
                 </div>
                 
-                <div class="model-row" data-model="smolvlm-256m-instruct" data-correct="false">
-                    <div class="model-header">
-                        <span class="model-title">SmolVLM (256M Instruct)</span>
-                        <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">5653 ms</span>
-                        </div>
-                    </div>
-                    <div class="feedback-bubble">"Yes."</div>
-                </div>
-                
                 <div class="model-row" data-model="qwen2.5-vl-3b-instruct" data-correct="false">
                     <div class="model-header">
                         <span class="model-title">Qwen2.5-VL (3B Instruct, 4-bit)</span>
@@ -7526,17 +7105,6 @@
                         </div>
                     </div>
                     <div class="feedback-bubble">"The electric scooter is parked correctly; no issues."</div>
-                </div>
-                
-                <div class="model-row" data-model="smolvlm-256m-instruct" data-correct="false">
-                    <div class="model-header">
-                        <span class="model-title">SmolVLM (256M Instruct)</span>
-                        <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">7294 ms</span>
-                        </div>
-                    </div>
-                    <div class="feedback-bubble">"Yes."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen2.5-vl-3b-instruct" data-correct="false">
@@ -7717,17 +7285,6 @@
                     <div class="feedback-bubble">"The electric scooter is placed correctly on the ground. It's not leaning against any wall or block."</div>
                 </div>
                 
-                <div class="model-row" data-model="smolvlm-256m-instruct" data-correct="false">
-                    <div class="model-header">
-                        <span class="model-title">SmolVLM (256M Instruct)</span>
-                        <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">5617 ms</span>
-                        </div>
-                    </div>
-                    <div class="feedback-bubble">"Yes."</div>
-                </div>
-                
                 <div class="model-row" data-model="qwen2.5-vl-3b-instruct" data-correct="false">
                     <div class="model-header">
                         <span class="model-title">Qwen2.5-VL (3B Instruct, 4-bit)</span>
@@ -7903,17 +7460,6 @@
                         </div>
                     </div>
                     <div class="feedback-bubble">"The electric scooter is parked correctly. It's not leaning against anything."</div>
-                </div>
-                
-                <div class="model-row" data-model="smolvlm-256m-instruct" data-correct="false">
-                    <div class="model-header">
-                        <span class="model-title">SmolVLM (256M Instruct)</span>
-                        <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">5625 ms</span>
-                        </div>
-                    </div>
-                    <div class="feedback-bubble">"Yes."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen2.5-vl-3b-instruct" data-correct="false">
@@ -8093,17 +7639,6 @@
                     <div class="feedback-bubble">"The electric scooter is parked correctly; no issues."</div>
                 </div>
                 
-                <div class="model-row" data-model="smolvlm-256m-instruct" data-correct="false">
-                    <div class="model-header">
-                        <span class="model-title">SmolVLM (256M Instruct)</span>
-                        <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">5733 ms</span>
-                        </div>
-                    </div>
-                    <div class="feedback-bubble">"[True, False]"</div>
-                </div>
-                
                 <div class="model-row" data-model="qwen2.5-vl-3b-instruct" data-correct="false">
                     <div class="model-header">
                         <span class="model-title">Qwen2.5-VL (3B Instruct, 4-bit)</span>
@@ -8280,17 +7815,6 @@
                         </div>
                     </div>
                     <div class="feedback-bubble">"The electric scooter is parked correctly. It's not leaning against anything."</div>
-                </div>
-                
-                <div class="model-row" data-model="smolvlm-256m-instruct" data-correct="false">
-                    <div class="model-header">
-                        <span class="model-title">SmolVLM (256M Instruct)</span>
-                        <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">3927 ms</span>
-                        </div>
-                    </div>
-                    <div class="feedback-bubble">"Yes."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen2.5-vl-3b-instruct" data-correct="false">
@@ -8472,17 +7996,6 @@
                     <div class="feedback-bubble">"The electric scooter is parked correctly. It's not leaning against anything."</div>
                 </div>
                 
-                <div class="model-row" data-model="smolvlm-256m-instruct" data-correct="false">
-                    <div class="model-header">
-                        <span class="model-title">SmolVLM (256M Instruct)</span>
-                        <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">5624 ms</span>
-                        </div>
-                    </div>
-                    <div class="feedback-bubble">"Properly."</div>
-                </div>
-                
                 <div class="model-row" data-model="qwen2.5-vl-3b-instruct" data-correct="false">
                     <div class="model-header">
                         <span class="model-title">Qwen2.5-VL (3B Instruct, 4-bit)</span>
@@ -8659,17 +8172,6 @@
                         </div>
                     </div>
                     <div class="feedback-bubble">"The electric scooters have been placed correctly on their kickstays. They appear to be standing upright and not leaning against each other."</div>
-                </div>
-                
-                <div class="model-row" data-model="smolvlm-256m-instruct" data-correct="false">
-                    <div class="model-header">
-                        <span class="model-title">SmolVLM (256M Instruct)</span>
-                        <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">6033 ms</span>
-                        </div>
-                    </div>
-                    <div class="feedback-bubble">"[true, "NO", "POTSK.RU"]"</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen2.5-vl-3b-instruct" data-correct="false">
@@ -8851,39 +8353,6 @@
                     <div class="feedback-bubble">"The electric scooters have been placed correctly on their kickstands. They appear to be positioned at a safe distance from each other."</div>
                 </div>
                 
-                <div class="model-row" data-model="smolvlm-256m-instruct" data-correct="false">
-                    <div class="model-header">
-                        <span class="model-title">SmolVLM (256M Instruct)</span>
-                        <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">12399 ms</span>
-                        </div>
-                    </div>
-                    <div class="feedback-bubble">"{
-    "type": "Scooter",
-    "speed": "30",
-    "capacity": [5, 6],
-    "price": "49.87",
-    "tax": [
-        "-",
-        "-"
-    ],
-    "rents": [
-        "GOLDEN SCOOTING",
-        "BONY COACHES"
-    ],
-    "facilities": [
-        "KOSTER-HOUSE",
-        "VOLUNTEER STATION"
-    ],
-    "operating hours": [
-        "MONDAY-FRIDAY",
-        "THURSDAY-FRIAMORE"
-    ],
-    "accessories": [
-        "ROCKET CARS"</div>
-                </div>
-                
                 <div class="model-row" data-model="qwen2.5-vl-3b-instruct" data-correct="false">
                     <div class="model-header">
                         <span class="model-title">Qwen2.5-VL (3B Instruct, 4-bit)</span>
@@ -9058,17 +8527,6 @@
                         </div>
                     </div>
                     <div class="feedback-bubble">"The electric scooter is parked correctly. It's not leaning against any wall or being pushed around by someone else."</div>
-                </div>
-                
-                <div class="model-row" data-model="smolvlm-256m-instruct" data-correct="false">
-                    <div class="model-header">
-                        <span class="model-title">SmolVLM (256M Instruct)</span>
-                        <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">5671 ms</span>
-                        </div>
-                    </div>
-                    <div class="feedback-bubble">"Yes."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen2.5-vl-3b-instruct" data-correct="false">
@@ -9249,17 +8707,6 @@
                     <div class="feedback-bubble">"The electric scooter is parked correctly. It's not leaning against any objects or blocking anything."</div>
                 </div>
                 
-                <div class="model-row" data-model="smolvlm-256m-instruct" data-correct="false">
-                    <div class="model-header">
-                        <span class="model-title">SmolVLM (256M Instruct)</span>
-                        <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">5793 ms</span>
-                        </div>
-                    </div>
-                    <div class="feedback-bubble">"[False, "Pending"]"</div>
-                </div>
-                
                 <div class="model-row" data-model="qwen2.5-vl-3b-instruct" data-correct="false">
                     <div class="model-header">
                         <span class="model-title">Qwen2.5-VL (3B Instruct, 4-bit)</span>
@@ -9435,36 +8882,6 @@
                     <div class="feedback-bubble">"The electric scooters appear to be parked correctly. They are not leaning against each other or blocking any obstacles."</div>
                 </div>
                 
-                <div class="model-row" data-model="smolvlm-256m-instruct" data-correct="false">
-                    <div class="model-header">
-                        <span class="model-title">SmolVLM (256M Instruct)</span>
-                        <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">10734 ms</span>
-                        </div>
-                    </div>
-                    <div class="feedback-bubble">"{
-    "type": "shinkec go",
-    "price": "$300",
-    "model": "insignia 4x4",
-    "ccr": "85w",
-    "battery": "7V",
-    "speed": "60 km h",
-    "range": "90 min",
-    "startup price": "free shipping",
-    "taxable mode": "electric",
-    "city": [
-        "festival",
-        "town hall",
-        "parks",
-        "museums",
-        "restaurants"
-    ],
-    "rentals": [
-        "ShineCk Go",
-        "Insignia 4x4""</div>
-                </div>
-                
                 <div class="model-row" data-model="qwen2.5-vl-3b-instruct" data-correct="false">
                     <div class="model-header">
                         <span class="model-title">Qwen2.5-VL (3B Instruct, 4-bit)</span>
@@ -9528,7 +8945,7 @@
     </div>
 
     <script>
-        let currentSortCol = 2;
+        let currentSortCol = 3;
         let currentSortDir = 'desc';
 
         function sortTable(colIndex, type) {
@@ -9542,7 +8959,7 @@
                 currentSortDir = currentSortDir === 'asc' ? 'desc' : 'asc';
             } else {
                 currentSortCol = colIndex;
-                if (colIndex === 0 || colIndex === 4) {
+                if (colIndex === 0 || colIndex === 5) {
                     currentSortDir = 'asc';
                 } else {
                     currentSortDir = 'desc';
