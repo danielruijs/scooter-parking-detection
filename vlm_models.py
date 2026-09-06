@@ -263,6 +263,7 @@ class StandardVLMAdapter(VLMAdapter):
                 tokenize=True,
                 return_dict=True,
                 return_tensors="pt",
+                enable_thinking=False,
             )
         else:  # "two_stage"
             messages = [
@@ -276,7 +277,10 @@ class StandardVLMAdapter(VLMAdapter):
                 },
             ]
             prompt = self.processor.apply_chat_template(
-                messages, add_generation_prompt=True, tokenize=False
+                messages,
+                add_generation_prompt=True,
+                tokenize=False,
+                enable_thinking=False,
             )
             inputs = self.processor(text=prompt, images=[rgb_img], return_tensors="pt")
 
@@ -327,7 +331,10 @@ class Qwen2_5VLAdapter(VLMAdapter):
             },
         ]
         text = self.processor.apply_chat_template(
-            messages, tokenize=False, add_generation_prompt=True
+            messages,
+            tokenize=False,
+            add_generation_prompt=True,
+            enable_thinking=False,
         )
         image_inputs, video_inputs = self.process_vision_info(messages)
         inputs = self.processor(
@@ -350,7 +357,9 @@ class InternVLAdapter(VLMAdapter):
         display_name: str,
         release_date: str,
     ):
-        super().__init__(name, hf_id, display_name, use_4bit=False, release_date=release_date)
+        super().__init__(
+            name, hf_id, display_name, use_4bit=False, release_date=release_date
+        )
         self.transform: Any = None
 
     def load(self):

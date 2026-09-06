@@ -57,7 +57,10 @@ Supported models:
 # Benchmark any supported model
 uv run vlm_benchmark.py --model <model-name> --split [train|val]
 
-# Or evaluate all models in sequence
+# Force re-evaluation even if results already exist in output JSON
+uv run vlm_benchmark.py --model <model-name> --split [train|val] --force
+
+# Or evaluate all models in sequence (skips already evaluated models by default)
 uv run vlm_benchmark.py --model all --split [train|val]
 ```
 

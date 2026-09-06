@@ -121,6 +121,12 @@ def main():
     )
     parser.add_argument("--output-dir", default="vlm_output")
     parser.add_argument("--max-samples", type=int, default=None)
+    parser.add_argument(
+        "--force",
+        "-f",
+        action="store_true",
+        help="Force re-evaluation of models even if results already exist in output JSON",
+    )
     args = parser.parse_args()
 
     out_path = Path(args.output_dir)
@@ -151,7 +157,7 @@ def main():
         else [AVAILABLE_VLM_MODELS[args.model]]
     )
     for adapter in targets:
-        if adapter.name in all_results:
+        if adapter.name in all_results and not args.force:
             print(
                 f"\nSkipping {adapter.display_name} - already evaluated for [{args.split}]."
             )

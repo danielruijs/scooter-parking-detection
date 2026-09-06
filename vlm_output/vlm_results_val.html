@@ -380,6 +380,23 @@
                 <td data-val="5412.1534">5412.2 ms</td>
             </tr>
             
+            <tr class="model-summary-row" data-model="qwen3.5-4b" onclick="selectModelFromTable('qwen3.5-4b')" title="Click row to filter feedback gallery below">
+                <td data-val="Qwen3.5 (4B, 4-bit, 2026)">
+                    <div class="model-name-cell">
+                        <a href="https://huggingface.co/Qwen/Qwen3.5-4B" target="_blank" rel="noopener noreferrer" class="model-hf-link" onclick="event.stopPropagation()" title="Open Qwen3.5 (4B, 4-bit, 2026) on Hugging Face">
+                            <strong>Qwen3.5 (4B, 4-bit, 2026)</strong>
+                            <span class="hf-link-icon">↗</span>
+                        </a>
+                        <span class="filter-hint">🔍 filter</span>
+                    </div>
+                </td>
+                <td data-val="2026-03"><span class="year-pill">Mar 2026</span></td>
+                <td data-val="89.3617">89.4%</td>
+                <td data-val="87.9672">88.0%</td>
+                <td data-val="100.0000">100.0%</td>
+                <td data-val="23584.3896">23584.4 ms</td>
+            </tr>
+            
             <tr class="model-summary-row" data-model="minicpm-v-4_6" onclick="selectModelFromTable('minicpm-v-4_6')" title="Click row to filter feedback gallery below">
                 <td data-val="MiniCPM-V 4.6 (2026)">
                     <div class="model-name-cell">
@@ -567,23 +584,6 @@
                 <td data-val="8269.5687">8269.6 ms</td>
             </tr>
             
-            <tr class="model-summary-row" data-model="qwen3.5-4b" onclick="selectModelFromTable('qwen3.5-4b')" title="Click row to filter feedback gallery below">
-                <td data-val="Qwen3.5 (4B, 4-bit, 2026)">
-                    <div class="model-name-cell">
-                        <a href="https://huggingface.co/Qwen/Qwen3.5-4B" target="_blank" rel="noopener noreferrer" class="model-hf-link" onclick="event.stopPropagation()" title="Open Qwen3.5 (4B, 4-bit, 2026) on Hugging Face">
-                            <strong>Qwen3.5 (4B, 4-bit, 2026)</strong>
-                            <span class="hf-link-icon">↗</span>
-                        </a>
-                        <span class="filter-hint">🔍 filter</span>
-                    </div>
-                </td>
-                <td data-val="2026-02"><span class="year-pill">Feb 2026</span></td>
-                <td data-val="0.0000">0.0%</td>
-                <td data-val="0.0000">0.0%</td>
-                <td data-val="0.0000">0.0%</td>
-                <td data-val="29955.8715">29955.9 ms</td>
-            </tr>
-            
                 </tbody>
             </table>
         </div>
@@ -594,7 +594,7 @@
                     <label for="modelFilterSelect" class="control-label">Model:</label>
                     <select id="modelFilterSelect" class="filter-select" onchange="onModelFilterChange(this.value)">
                         <option value="all">All Models (Combined)</option>
-                        <option value="qwen3-vl-2b-instruct">Qwen3-VL (2B Instruct, 4-bit)</option><option value="internvl3_5-1b">InternVL 3.5 (1B, 2026)</option><option value="minicpm-v-4_6">MiniCPM-V 4.6 (2026)</option><option value="smolvlm2-2.2b-instruct">SmolVLM2 (2.2B Instruct, 4-bit)</option><option value="lfm2.5-vl-450m">LFM2.5-VL (450M, FP16, 2026)</option><option value="qwen3.5-2b">Qwen3.5 (2B, 4-bit, 2026)</option><option value="qwen3.5-0.8b">Qwen3.5 (0.8B, FP16, 2026)</option><option value="ministral-3-3b-instruct-2512">Ministral 3 (3B Instruct 2512, FP8)</option><option value="gemma-4-e2b-it">Gemma 4 (E2B-it, 4-bit)</option><option value="lfm2.5-vl-3b">LFM2.5-VL (3B, 4-bit, 2026)</option><option value="qwen2.5-vl-3b-instruct">Qwen2.5-VL (3B Instruct, 4-bit)</option><option value="lfm2.5-vl-1.6b">LFM2.5-VL (1.6B, FP16, 2026)</option><option value="smolvlm2-500m-instruct">SmolVLM2 (500M Instruct)</option><option value="qwen3.5-4b">Qwen3.5 (4B, 4-bit, 2026)</option>
+                        <option value="qwen3-vl-2b-instruct">Qwen3-VL (2B Instruct, 4-bit)</option><option value="internvl3_5-1b">InternVL 3.5 (1B, 2026)</option><option value="qwen3.5-4b">Qwen3.5 (4B, 4-bit, 2026)</option><option value="minicpm-v-4_6">MiniCPM-V 4.6 (2026)</option><option value="smolvlm2-2.2b-instruct">SmolVLM2 (2.2B Instruct, 4-bit)</option><option value="lfm2.5-vl-450m">LFM2.5-VL (450M, FP16, 2026)</option><option value="qwen3.5-2b">Qwen3.5 (2B, 4-bit, 2026)</option><option value="qwen3.5-0.8b">Qwen3.5 (0.8B, FP16, 2026)</option><option value="ministral-3-3b-instruct-2512">Ministral 3 (3B Instruct 2512, FP8)</option><option value="gemma-4-e2b-it">Gemma 4 (E2B-it, 4-bit)</option><option value="lfm2.5-vl-3b">LFM2.5-VL (3B, 4-bit, 2026)</option><option value="qwen2.5-vl-3b-instruct">Qwen2.5-VL (3B Instruct, 4-bit)</option><option value="lfm2.5-vl-1.6b">LFM2.5-VL (1.6B, FP16, 2026)</option><option value="smolvlm2-500m-instruct">SmolVLM2 (500M Instruct)</option>
                     </select>
                 </div>
                 <div class="btn-group">
@@ -653,25 +653,15 @@
                     <div class="feedback-bubble">"The scooter is lying on its side on the pavement, which is improper. It is not upright, nor is it leaving clear passage or blocking tactile paving. It should be moved to a designated parking spot or upright on the sidewalk."</div>
                 </div>
                 
-                <div class="model-row" data-model="qwen3.5-4b" data-correct="false">
+                <div class="model-row" data-model="qwen3.5-4b" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen3.5 (4B, 4-bit, 2026)</span>
                         <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">26308 ms</span>
+                            <span class="badge badge-correct">✓ Improper</span>
+                            <span class="latency-tag">19337 ms</span>
                         </div>
                     </div>
-                    <div class="feedback-bubble">"The user wants me to evaluate the parking of an electric scooter based on specific rules.
-
-1.  **Analyze the image:**
-    *   The image shows a yellow electric scooter.
-    *   The scooter is lying flat on the ground. It is not upright.
-    *   It is resting on its wheels and frame, not on a kickstand.
-    *   It is on a paved surface, likely a sidewalk or a bike lane area.
-    *   There are shadows of trees nearby.
-
-2.  **Evaluate against rules:**
-    *   **Rule 1 (Proper):** "Must be fully upright and stable on its kickstand." -&gt; The scooter is clearly *not* upright."</div>
+                    <div class="feedback-bubble">"The scooter is lying on its side, not upright on its kickstand. This violates the rule requiring scooters to be fully upright and stable. It also blocks the pavement area, which may impede pedestrian passage."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen3-vl-2b-instruct" data-correct="true">
@@ -830,22 +820,15 @@
                     <div class="feedback-bubble">"The scooter is lying on its side on the sidewalk, which is improper. It is not fully upright, nor is it leaving clear passage for pedestrians. It is also resting directly on the tactile paving, which blocks visually impaired pedestrians."</div>
                 </div>
                 
-                <div class="model-row" data-model="qwen3.5-4b" data-correct="false">
+                <div class="model-row" data-model="qwen3.5-4b" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen3.5 (4B, 4-bit, 2026)</span>
                         <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">29551 ms</span>
+                            <span class="badge badge-correct">✓ Improper</span>
+                            <span class="latency-tag">21419 ms</span>
                         </div>
                     </div>
-                    <div class="feedback-bubble">"The user wants me to evaluate the parking of an electric scooter based on a set of rules.
-
-1.  **Analyze the image:**
-    *   I see an electric scooter (blue/purple) lying on its side on the sidewalk.
-    *   It is not upright. It is fallen over.
-    *   It is blocking part of the sidewalk.
-    *   It is resting near a hedge/bush, but clearly on the ground.
-    *   There is another scooter part (handlebars) visible, suggesting maybe two scooters or one broken apart, but the main body is definitely down. Wait, looking closer, there are two distinct scooters. One is lying on its side near the hedge"</div>
+                    <div class="feedback-bubble">"The scooter is lying on its side on the sidewalk, which is improper. It is not stable and is encroaching on the pedestrian walkway, blocking clear passage."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen3-vl-2b-instruct" data-correct="true">
@@ -1004,24 +987,15 @@
                     <div class="feedback-bubble">"The scooter is lying on its side on the pavement, blocking the curb and obstructing the pedestrian sidewalk. It is not upright or stable, and it is encroaching upon the walkway, which violates the rule against blocking pedestrian areas and tactile paving."</div>
                 </div>
                 
-                <div class="model-row" data-model="qwen3.5-4b" data-correct="false">
+                <div class="model-row" data-model="qwen3.5-4b" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen3.5 (4B, 4-bit, 2026)</span>
                         <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">29171 ms</span>
+                            <span class="badge badge-correct">✓ Improper</span>
+                            <span class="latency-tag">22454 ms</span>
                         </div>
                     </div>
-                    <div class="feedback-bubble">"The user wants me to evaluate the parking of an electric scooter based on a set of rules.
-
-1.  **Analyze the image:**
-    *   I see a yellow and black electric scooter (brand "limo RENT").
-    *   The scooter is lying on its side on the asphalt road surface.
-    *   It is positioned right next to a curb, partially on the grass strip and partially on the road.
-    *   The handlebars are sticking up, but the deck is flat on the ground.
-    *   It is clearly not upright and stable on its kickstand.
-    *   It is encroaching on the road surface (asphalt).
-    *   It is near"</div>
+                    <div class="feedback-bubble">"The scooter is lying on its side on the road, not upright on its kickstand. This violates the rule requiring scooters to be fully upright and stable. Additionally, it is encroaching on the roadway, not staying clear of the pedestrian area."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen3-vl-2b-instruct" data-correct="true">
@@ -1180,25 +1154,15 @@
                     <div class="feedback-bubble">"The scooter is lying on its side on the pavement, which is improper. It is not upright, nor is it leaving clear passage. It is also resting on the tactile paving, which is prohibited."</div>
                 </div>
                 
-                <div class="model-row" data-model="qwen3.5-4b" data-correct="false">
+                <div class="model-row" data-model="qwen3.5-4b" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen3.5 (4B, 4-bit, 2026)</span>
                         <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">29006 ms</span>
+                            <span class="badge badge-correct">✓ Improper</span>
+                            <span class="latency-tag">19894 ms</span>
                         </div>
                     </div>
-                    <div class="feedback-bubble">"The user wants me to evaluate the parking of an electric scooter based on specific rules.
-
-1.  **Analyze the image:**
-    *   The image shows a Lime electric scooter.
-    *   The scooter is lying flat on the ground. It is not upright.
-    *   It is resting on the cobblestone pavement.
-    *   It is not blocking a door or ramp in this specific view, but it is definitely not upright.
-
-2.  **Evaluate against rules:**
-    *   **Rule 1 (Proper):** "Must be fully upright and stable on its kickstand." -&gt; The scooter is lying down, so this is violated.
-    *   **Rule 2 (Impro"</div>
+                    <div class="feedback-bubble">"The scooter is lying on its side on the pavement instead of being upright on its kickstand. This violates the rule requiring scooters to be fully upright and stable."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen3-vl-2b-instruct" data-correct="true">
@@ -1357,26 +1321,15 @@
                     <div class="feedback-bubble">"The scooter is lying on its side on the pavement, which is improper. It is not fully upright, nor is it leaving clear passage for pedestrians. It is also resting on the curb edge, potentially encroaching on the pedestrian sidewalk, and the kickstand is not fully extended to the side, which may violate the requirement for a fully upright and stable position."</div>
                 </div>
                 
-                <div class="model-row" data-model="qwen3.5-4b" data-correct="false">
+                <div class="model-row" data-model="qwen3.5-4b" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen3.5 (4B, 4-bit, 2026)</span>
                         <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">29800 ms</span>
+                            <span class="badge badge-correct">✓ Improper</span>
+                            <span class="latency-tag">20080 ms</span>
                         </div>
                     </div>
-                    <div class="feedback-bubble">"The user wants me to evaluate the parking of an electric scooter based on specific rules.
-
-1.  **Analyze the image:**
-    *   The image shows an electric scooter lying on its side on the asphalt.
-    *   It is not upright. The kickstand is not supporting it vertically.
-    *   It is resting on the ground, not on the sidewalk (though it's close to the curb).
-    *   The handlebars are sticking out.
-    *   There is a water bottle on the handlebars.
-    *   The scooter is clearly fallen over.
-
-2.  **Evaluate against rules:**
-    *   **Rule 1 (Proper):** "Must be fully upright and"</div>
+                    <div class="feedback-bubble">"The scooter is lying on its side and is not stable. It is blocking the pedestrian sidewalk and encroaching on the roadway, which violates proper parking rules."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen3-vl-2b-instruct" data-correct="true">
@@ -1535,26 +1488,15 @@
                     <div class="feedback-bubble">"The scooter is lying on its side on the pavement, which is improper. It is not fully upright, nor is it leaving clear passage for pedestrians. It is also resting on the curb edge, potentially encroaching on the pedestrian sidewalk, and the kickstand is not fully extended to the side, which may violate the requirement for a fully upright and stable position."</div>
                 </div>
                 
-                <div class="model-row" data-model="qwen3.5-4b" data-correct="false">
+                <div class="model-row" data-model="qwen3.5-4b" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen3.5 (4B, 4-bit, 2026)</span>
                         <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">29700 ms</span>
+                            <span class="badge badge-correct">✓ Improper</span>
+                            <span class="latency-tag">20801 ms</span>
                         </div>
                     </div>
-                    <div class="feedback-bubble">"The user wants me to evaluate the parking of an electric scooter based on specific rules.
-
-1.  **Analyze the image:**
-    *   The image shows an electric scooter lying on its side on the asphalt.
-    *   It is not upright. The kickstand is not supporting it vertically.
-    *   It is resting on the ground, not on the sidewalk (though it's close to the curb).
-    *   The handlebars are sticking out.
-    *   There is a water bottle on the handlebars.
-    *   The scooter is clearly fallen over.
-
-2.  **Evaluate against rules:**
-    *   **Rule 1 (Proper):** "Must be fully upright and"</div>
+                    <div class="feedback-bubble">"The scooter is lying on its side and is not stable. It is blocking the pedestrian sidewalk and encroaching on the roadway, which violates proper parking rules."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen3-vl-2b-instruct" data-correct="true">
@@ -1713,23 +1655,15 @@
                     <div class="feedback-bubble">"The scooters are severely cluttered with trash, debris, and litter. They are not properly upright or stable, and multiple units are lying on their side or fallen over, obstructing the sidewalk and blocking tactile paving. This violates the rule for scooters to be fully upright and stable, and blocks pedestrian access."</div>
                 </div>
                 
-                <div class="model-row" data-model="qwen3.5-4b" data-correct="false">
+                <div class="model-row" data-model="qwen3.5-4b" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen3.5 (4B, 4-bit, 2026)</span>
                         <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">32510 ms</span>
+                            <span class="badge badge-correct">✓ Improper</span>
+                            <span class="latency-tag">27543 ms</span>
                         </div>
                     </div>
-                    <div class="feedback-bubble">"The user wants me to evaluate the parking of electric scooters in the provided image based on specific rules.
-
-**1. Analyze the image:**
-*   **Foreground:** There is a large pile of leaves and trash (bottles, cups) covering a significant portion of the sidewalk.
-*   **Scooters:**
-    *   One scooter (grey, blue handle) is lying on its side in the leaf pile.
-    *   Another scooter (grey, blue handle) is also lying on its side in the leaf pile.
-    *   In the background, there are a few scooters standing upright. One is teal/green (Lime brand). Another is grey.
-*   **Location:** The"</div>
+                    <div class="feedback-bubble">"Multiple scooters are lying on their sides or resting on the ground, which violates the rule against fallen or knocked-down scooters. They are also encroaching on the sidewalk area, blocking clear pedestrian passage."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen3-vl-2b-instruct" data-correct="true">
@@ -1888,24 +1822,15 @@
                     <div class="feedback-bubble">"The scooter is lying on its side on the pavement, which is improper. It is not fully upright, nor is it leaving clear passage. It is also resting on the ground and potentially encroaching on the pedestrian sidewalk area."</div>
                 </div>
                 
-                <div class="model-row" data-model="qwen3.5-4b" data-correct="false">
+                <div class="model-row" data-model="qwen3.5-4b" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen3.5 (4B, 4-bit, 2026)</span>
                         <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">27752 ms</span>
+                            <span class="badge badge-correct">✓ Improper</span>
+                            <span class="latency-tag">21317 ms</span>
                         </div>
                     </div>
-                    <div class="feedback-bubble">"The user wants me to evaluate the parking of electric scooters in the provided image based on specific rules.
-
-**1. Analyze the image:**
-*   There are two electric scooters visible.
-*   One scooter (yellow handlebar) is upright in the background. It looks stable on its kickstand.
-*   The other scooter (purple handlebar) is lying flat on the ground in the foreground. It is not upright.
-*   The scooters are parked on a paved area that looks like a sidewalk or a bike lane area (indicated by the faded white bicycle symbol painted on the ground).
-*   The scooter in the foreground is clearly blocking the path. It is lying on the pavement.
-
-**"</div>
+                    <div class="feedback-bubble">"The electric scooter in the foreground is lying on its side on the pavement, which violates the rule requiring scooters to be fully upright and stable on their kickstand. This is improper parking."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen3-vl-2b-instruct" data-correct="true">
@@ -2064,21 +1989,15 @@
                     <div class="feedback-bubble">"The scooter is improperly parked. It is resting on the ground rather than being fully upright on its kickstand, which violates the rule for proper parking. Additionally, it is positioned directly against a green metal fence, which may obstruct pedestrian access or block the view of the sidewalk."</div>
                 </div>
                 
-                <div class="model-row" data-model="qwen3.5-4b" data-correct="false">
+                <div class="model-row" data-model="qwen3.5-4b" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen3.5 (4B, 4-bit, 2026)</span>
                         <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">33440 ms</span>
+                            <span class="badge badge-correct">✓ Improper</span>
+                            <span class="latency-tag">27096 ms</span>
                         </div>
                     </div>
-                    <div class="feedback-bubble">"The user wants me to evaluate the parking of an electric scooter based on specific rules.
-
-**1. Analyze the image:**
-*   **Object:** A blue electric scooter.
-*   **Position:** It is leaning against a green metal railing/fence.
-*   **Stability:** It is not on its kickstand. It is balanced on its wheels, specifically the front wheel, while leaning against the fence. This is unstable and not the standard "proper" parking method (which requires a kickstand).
-*   **Location:** It is parked on a dirt/gravel patch next to a concrete curb. Behind it is a green railing. In front of it is a paved area (looks like a sidewalk or path)."</div>
+                    <div class="feedback-bubble">"The scooter is not fully upright; it is resting on its front wheel and is unstable. It is also parked on unpaved ground (dirt/rocks) rather than a designated parking area, which may obstruct pedestrian passage or create a tripping hazard."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen3-vl-2b-instruct" data-correct="true">
@@ -2237,25 +2156,15 @@
                     <div class="feedback-bubble">"The scooter is lying on its side on the pavement, which is improper. It is not fully upright, nor is it leaving clear passage for pedestrians. It is also resting on the curb edge, potentially obstructing the pedestrian sidewalk and potentially blocking tactile paving if it were to be moved."</div>
                 </div>
                 
-                <div class="model-row" data-model="qwen3.5-4b" data-correct="false">
+                <div class="model-row" data-model="qwen3.5-4b" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen3.5 (4B, 4-bit, 2026)</span>
                         <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">32919 ms</span>
+                            <span class="badge badge-correct">✓ Improper</span>
+                            <span class="latency-tag">25828 ms</span>
                         </div>
                     </div>
-                    <div class="feedback-bubble">"The user wants me to evaluate the parking of an electric scooter based on specific rules.
-
-1.  **Analyze the image:**
-    *   The image shows a yellow electric scooter (brand "WHUUSH").
-    *   The scooter is lying on its side on the asphalt road surface.
-    *   It is not upright.
-    *   It is resting on the curb, partially on the sidewalk edge, but mostly on the road.
-    *   It is definitely not stable on its kickstand.
-
-2.  **Evaluate against rules:**
-    *   **Rule 1 (Proper):** "Must be fully upright and stable on its kickstand." -&gt; The scooter is on its side, so"</div>
+                    <div class="feedback-bubble">"The scooter is lying on its side on the pavement instead of being upright on its kickstand. This violates the rule requiring scooters to be fully upright and stable."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen3-vl-2b-instruct" data-correct="true">
@@ -2414,25 +2323,15 @@
                     <div class="feedback-bubble">"The scooter is lying on its side on the grass, not upright on its kickstand. It is also obstructing the pedestrian sidewalk and blocking the tactile paving (yellow pavers) on the right side."</div>
                 </div>
                 
-                <div class="model-row" data-model="qwen3.5-4b" data-correct="false">
+                <div class="model-row" data-model="qwen3.5-4b" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen3.5 (4B, 4-bit, 2026)</span>
                         <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">19898 ms</span>
+                            <span class="badge badge-correct">✓ Improper</span>
+                            <span class="latency-tag">12544 ms</span>
                         </div>
                     </div>
-                    <div class="feedback-bubble">"The user wants me to evaluate the parking of an electric scooter based on specific rules.
-
-1.  **Analyze the image:**
-    *   The image shows an electric scooter (white body, green handlebars).
-    *   The scooter is lying on its side on the ground.
-    *   The ground is grassy/dirt, not a paved sidewalk.
-    *   The scooter is clearly not upright. It is resting on its wheel/frame.
-
-2.  **Evaluate against rules:**
-    *   **Rule 1 (Proper):** "Must be fully upright and stable on its kickstand." -&gt; The scooter is NOT upright. It is lying on its side.
-    *   **Rule"</div>
+                    <div class="feedback-bubble">"The scooter is lying on its side and is not stable. It is encroaching on the grassy area, which may be part of a sidewalk or pathway, and does not leave clear passage for pedestrians."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen3-vl-2b-instruct" data-correct="true">
@@ -2591,27 +2490,15 @@
                     <div class="feedback-bubble">"The scooter is lying on its side on the pavement, which is improper. It is not upright, nor is it leaving clear passage or blocking tactile paving. It should be upright and positioned correctly on the ground."</div>
                 </div>
                 
-                <div class="model-row" data-model="qwen3.5-4b" data-correct="false">
+                <div class="model-row" data-model="qwen3.5-4b" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen3.5 (4B, 4-bit, 2026)</span>
                         <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">34318 ms</span>
+                            <span class="badge badge-correct">✓ Improper</span>
+                            <span class="latency-tag">25822 ms</span>
                         </div>
                     </div>
-                    <div class="feedback-bubble">"The user wants me to evaluate the parking of an electric scooter based on specific rules.
-
-1.  **Analyze the image:**
-    *   I see a yellow electric scooter.
-    *   It is lying on its side on the pavement.
-    *   It is not upright.
-    *   It is not on its kickstand.
-    *   It is blocking the path where a pedestrian would walk.
-
-2.  **Evaluate against rules:**
-    *   **Proper:**
-        *   "Must be fully upright and stable on its kickstand." -&gt; This scooter is lying on its side, so it fails this.
-        *   "Out of the pedestrian sidewalk/walkway, leaving"</div>
+                    <div class="feedback-bubble">"The scooter is lying on its side and is not upright or stable. This violates the rule that requires scooters to be fully upright and stable on their kickstand."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen3-vl-2b-instruct" data-correct="true">
@@ -2770,22 +2657,15 @@
                     <div class="feedback-bubble">"The scooter is improperly parked as it is leaning heavily against the tree trunk, which violates the rule of being fully upright and stable. Additionally, it is obstructing the pedestrian sidewalk and blocking the base of the tree, which may interfere with pedestrian passage and tree health."</div>
                 </div>
                 
-                <div class="model-row" data-model="qwen3.5-4b" data-correct="false">
+                <div class="model-row" data-model="qwen3.5-4b" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen3.5 (4B, 4-bit, 2026)</span>
                         <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">20054 ms</span>
+                            <span class="badge badge-correct">✓ Improper</span>
+                            <span class="latency-tag">13993 ms</span>
                         </div>
                     </div>
-                    <div class="feedback-bubble">"The user wants me to evaluate the parking of an electric scooter based on specific rules.
-
-**1. Analyze the image:**
-*   **Object:** An electric scooter (white body, green handlebars).
-*   **Location:** It is parked on a grassy area with fallen leaves. There is a large tree trunk right next to it. Behind it is a wooden fence.
-*   **State:** The scooter is upright on its kickstand. It is leaning slightly against the tree trunk.
-*   **Surroundings:**
-    *   **Sidewalk/Walkway:** I don't see a clear paved sidewalk immediately next to the scooter in the foreground, but there is grass. The scooter is on the"</div>
+                    <div class="feedback-bubble">"The scooter is not fully upright; it is leaning against a tree and resting on its wheels, which violates the stability requirement. Additionally, it is parked on the grass near a pedestrian area, potentially encroaching on the sidewalk or walkway, which is improper."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen3-vl-2b-instruct" data-correct="true">
@@ -2944,22 +2824,15 @@
                     <div class="feedback-bubble">"The scooter is improperly parked as it is resting on its kickstand and is positioned directly on the pedestrian sidewalk, encroaching upon the walkway and blocking the curb."</div>
                 </div>
                 
-                <div class="model-row" data-model="qwen3.5-4b" data-correct="false">
+                <div class="model-row" data-model="qwen3.5-4b" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen3.5 (4B, 4-bit, 2026)</span>
                         <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">25031 ms</span>
+                            <span class="badge badge-correct">✓ Improper</span>
+                            <span class="latency-tag">17227 ms</span>
                         </div>
                     </div>
-                    <div class="feedback-bubble">"The user wants me to evaluate the parking of an electric scooter in the provided image.
-
-1.  **Analyze the image:**
-    *   **Subject:** An electric scooter (orange handlebar, black deck).
-    *   **Location:** It is parked on the asphalt road surface, right next to the curb.
-    *   **Orientation:** It is upright on its kickstand.
-    *   **Proximity to Pedestrian Area:** The scooter is positioned very close to the curb. The curb separates the road from the sidewalk. The scooter is clearly on the road side, not encroaching on the sidewalk itself.
-    *   **Tactile Paving:** I need to look for tactile paving"</div>
+                    <div class="feedback-bubble">"The scooter is parked improperly because it is blocking the pedestrian sidewalk and encroaching on the curb area, which violates the rule of leaving clear passage for pedestrians."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen3-vl-2b-instruct" data-correct="true">
@@ -3118,24 +2991,15 @@
                     <div class="feedback-bubble">"The scooter is improperly parked. It is resting on its kickstand and is positioned directly on the pedestrian sidewalk, encroaching upon the walkway and blocking the passage for pedestrians. This violates the rule that scooters must be fully upright and leave clear passage."</div>
                 </div>
                 
-                <div class="model-row" data-model="qwen3.5-4b" data-correct="false">
+                <div class="model-row" data-model="qwen3.5-4b" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen3.5 (4B, 4-bit, 2026)</span>
                         <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">26325 ms</span>
+                            <span class="badge badge-correct">✓ Improper</span>
+                            <span class="latency-tag">18214 ms</span>
                         </div>
                     </div>
-                    <div class="feedback-bubble">"The user wants me to evaluate the parking of an electric scooter based on specific rules.
-
-**1. Analyze the image:**
-*   **Subject:** An electric scooter (blue handlebars, black deck).
-*   **Location:** It is parked on a paved surface. This looks like a sidewalk or a pedestrian path next to a road. There is a curb to the right with a drainage ditch.
-*   **Orientation:** The scooter is upright on its kickstand. It is not fallen over.
-*   **Obstruction:**
-    *   It is parked on the paved area.
-    *   To the left, there is a building wall and some grass/leaves.
-    *   To the right"</div>
+                    <div class="feedback-bubble">"The scooter is parked improperly because it is blocking the pedestrian sidewalk, encroaching on the walkway and preventing clear passage for pedestrians."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen3-vl-2b-instruct" data-correct="true">
@@ -3294,22 +3158,15 @@
                     <div class="feedback-bubble">"The scooter is lying on its side on the grass, which is improper. It is not fully upright, nor is it leaving clear passage for pedestrians or blocking any tactile paving or building access."</div>
                 </div>
                 
-                <div class="model-row" data-model="qwen3.5-4b" data-correct="false">
+                <div class="model-row" data-model="qwen3.5-4b" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen3.5 (4B, 4-bit, 2026)</span>
                         <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">26853 ms</span>
+                            <span class="badge badge-correct">✓ Improper</span>
+                            <span class="latency-tag">21502 ms</span>
                         </div>
                     </div>
-                    <div class="feedback-bubble">"The user wants me to evaluate the parking of an electric scooter based on a set of rules.
-
-**1. Analyze the image:**
-*   **Object:** An electric scooter (yellow handlebars, black deck/wheels).
-*   **Location:** It is lying on the ground.
-*   **State:** The scooter is not upright. It is lying flat on its wheels and deck. It is not on its kickstand.
-*   **Surface:** It is on a patch of grass with fallen leaves, next to a sidewalk.
-*   **Proximity to Pedestrian Area:** It is right next to the curb/sidewalk edge. While it's on the grass, it's very close to the"</div>
+                    <div class="feedback-bubble">"The scooter is lying on its side on the grass, not upright and stable. It is encroaching on the pedestrian area near the curb and sidewalk, blocking clear passage. This violates rules requiring scooters to be fully upright, stable, and out of the pedestrian walkway."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen3-vl-2b-instruct" data-correct="true">
@@ -3468,25 +3325,15 @@
                     <div class="feedback-bubble">"The scooter is improperly parked. It is resting on the ground rather than being fully upright on its kickstand, which violates the rule for proper parking. Additionally, it is positioned directly on the pedestrian sidewalk, encroaching upon the walkway and blocking the passage."</div>
                 </div>
                 
-                <div class="model-row" data-model="qwen3.5-4b" data-correct="false">
+                <div class="model-row" data-model="qwen3.5-4b" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen3.5 (4B, 4-bit, 2026)</span>
                         <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">26033 ms</span>
+                            <span class="badge badge-correct">✓ Improper</span>
+                            <span class="latency-tag">22020 ms</span>
                         </div>
                     </div>
-                    <div class="feedback-bubble">"The user wants me to evaluate the parking of an electric scooter based on specific rules.
-
-**1. Analyze the image:**
-*   **Object:** A blue electric scooter.
-*   **State:** It is upright on its kickstand. It is stable.
-*   **Location:** It is parked on a patch of dirt/grass, next to a tree and a small bush.
-*   **Surroundings:**
-    *   To the left: A tree trunk.
-    *   Behind: A small evergreen bush/tree.
-    *   To the right: A paved path or sidewalk edge.
-    *   Bottom: A curb separating the dirt area from a paved road or path."</div>
+                    <div class="feedback-bubble">"The scooter is parked on the grass/dirt area next to the sidewalk, not on the designated pavement. While it is upright and stable, it is not parked on the proper surface (sidewalk or designated parking area) and may be encroaching on the pedestrian path if the grass is part of the walkway. It should be moved to a proper parking zone."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen3-vl-2b-instruct" data-correct="true">
@@ -3645,23 +3492,15 @@
                     <div class="feedback-bubble">"The scooter is improperly parked as it is resting on its kickstand directly on the road surface, obstructing the lane and blocking the pedestrian sidewalk. It is not fully upright and stable on its kickstand, nor is it leaving clear passage for pedestrians or vehicles."</div>
                 </div>
                 
-                <div class="model-row" data-model="qwen3.5-4b" data-correct="false">
+                <div class="model-row" data-model="qwen3.5-4b" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen3.5 (4B, 4-bit, 2026)</span>
                         <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">33144 ms</span>
+                            <span class="badge badge-correct">✓ Improper</span>
+                            <span class="latency-tag">25549 ms</span>
                         </div>
                     </div>
-                    <div class="feedback-bubble">"The user wants me to evaluate the parking of an electric scooter in the provided image.
-
-1.  **Analyze the image:**
-    *   **Subject:** An electric scooter is parked in the middle of a paved road.
-    *   **Position:** It is standing upright on its kickstand.
-    *   **Location:** It is directly in the center of the driving lane, blocking the path of any vehicle or pedestrian.
-    *   **Context:** The road is a two-lane road with white lane markings. There are trees and a mountain in the background.
-    *   **Rules Check:**
-        *   "Proper": Must be fully upright (Yes), out of pedestrian sidewalk (N/A"</div>
+                    <div class="feedback-bubble">"The scooter is parked in the middle of a roadway, obstructing the travel lane. It is not on the sidewalk or in a designated parking area, and its position blocks the path for vehicles and pedestrians."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen3-vl-2b-instruct" data-correct="true">
@@ -3820,21 +3659,15 @@
                     <div class="feedback-bubble">"The scooter is improperly parked. It is not fully upright and stable; the rear wheel is visibly tipped over, resting on the stairs rather than on the ground. Additionally, it is obstructing the pedestrian sidewalk and blocking the path for pedestrians and other users."</div>
                 </div>
                 
-                <div class="model-row" data-model="qwen3.5-4b" data-correct="false">
+                <div class="model-row" data-model="qwen3.5-4b" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen3.5 (4B, 4-bit, 2026)</span>
                         <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">32882 ms</span>
+                            <span class="badge badge-correct">✓ Improper</span>
+                            <span class="latency-tag">25336 ms</span>
                         </div>
                     </div>
-                    <div class="feedback-bubble">"The user wants me to evaluate the parking of an electric scooter in the provided image.
-
-1.  **Analyze the image:**
-    *   I see a group of people walking down a set of wide stone stairs.
-    *   There is an electric scooter in the foreground.
-    *   The scooter is not upright. It is lying on its side, resting on the steps.
-    *   The kickstand is not down; the wheels are on the ground, and the deck is tilted. Wait, looking closer, the scooter is actually lying on its side, with the wheel on the ground and the deck resting on the steps. It looks like it has been knocked over or is parked in a very unstable, improper"</div>
+                    <div class="feedback-bubble">"The scooter is fallen over and lying on the stairs, blocking the pedestrian pathway and creating a tripping hazard. It must be lifted and parked upright on the sidewalk, away from the stairs."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen3-vl-2b-instruct" data-correct="true">
@@ -3993,28 +3826,15 @@
                     <div class="feedback-bubble">"The scooter is improperly parked. It is resting on the concrete steps rather than on the ground, which violates the rule that vehicles must be fully upright and stable on the pavement. Additionally, it is obstructing the pedestrian sidewalk and blocking the view of the tactile paving (yellow pavers) on the left side."</div>
                 </div>
                 
-                <div class="model-row" data-model="qwen3.5-4b" data-correct="false">
+                <div class="model-row" data-model="qwen3.5-4b" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen3.5 (4B, 4-bit, 2026)</span>
                         <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">33090 ms</span>
+                            <span class="badge badge-correct">✓ Improper</span>
+                            <span class="latency-tag">24899 ms</span>
                         </div>
                     </div>
-                    <div class="feedback-bubble">"The user wants me to evaluate the parking of an electric scooter based on a set of rules.
-
-**1. Analyze the image:**
-*   **Subject:** An electric scooter (black body, blue stem).
-*   **Location:** It is parked on a set of concrete stairs.
-*   **State:** The scooter is upright on its kickstand.
-*   **Surroundings:**
-    *   To the left: Green bushes/plants.
-    *   To the right: A metal railing.
-    *   Behind: More stairs leading up.
-    *   In front: A paved area with some weeds growing through cracks.
-    *   The scooter is physically blocking the stairs.
-
-**"</div>
+                    <div class="feedback-bubble">"The scooter is parked on the stairs, which is a safety hazard and blocks pedestrian access. It is not stable and does not comply with parking rules."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen3-vl-2b-instruct" data-correct="true">
@@ -4173,25 +3993,15 @@
                     <div class="feedback-bubble">"The scooter is improperly parked as it is resting on the concrete steps rather than on the ground, which violates the rule that vehicles must be fully upright and stable on the pavement."</div>
                 </div>
                 
-                <div class="model-row" data-model="qwen3.5-4b" data-correct="false">
+                <div class="model-row" data-model="qwen3.5-4b" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen3.5 (4B, 4-bit, 2026)</span>
                         <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">33115 ms</span>
+                            <span class="badge badge-correct">✓ Improper</span>
+                            <span class="latency-tag">26684 ms</span>
                         </div>
                     </div>
-                    <div class="feedback-bubble">"The user wants me to evaluate the parking of an electric scooter based on a set of rules.
-
-**1. Analyze the image:**
-*   **Subject:** An electric scooter (black body, blue stem).
-*   **Location:** It is parked on a set of concrete stairs.
-*   **State:** The scooter is upright on its kickstand. It is not fallen over.
-*   **Obstruction:** The scooter is physically blocking the stairs. It is resting on the steps, not on the flat pavement.
-*   **Context:** There are plants on the left and a railing on the right. The stairs lead up to a building entrance area.
-
-**2. Evaluate against rules:**
-*   **"</div>
+                    <div class="feedback-bubble">"The scooter is improperly parked because it is resting on the stairs, obstructing pedestrian access and violating safety rules for parking on steps."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen3-vl-2b-instruct" data-correct="true">
@@ -4350,28 +4160,15 @@
                     <div class="feedback-bubble">"The scooter is improperly parked. It is resting on its kickstand, which is not fully upright and stable, and it is positioned directly on the pedestrian sidewalk, obstructing the walkway and blocking the tactile paving."</div>
                 </div>
                 
-                <div class="model-row" data-model="qwen3.5-4b" data-correct="false">
+                <div class="model-row" data-model="qwen3.5-4b" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen3.5 (4B, 4-bit, 2026)</span>
                         <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">32864 ms</span>
+                            <span class="badge badge-correct">✓ Improper</span>
+                            <span class="latency-tag">26866 ms</span>
                         </div>
                     </div>
-                    <div class="feedback-bubble">"The user wants me to evaluate the parking of an electric scooter based on specific rules.
-
-**1. Analyze the image:**
-*   **Object:** An electric scooter (blue and black).
-*   **Location:** It is parked on a set of concrete stairs.
-*   **State:** It is upright on its kickstand.
-*   **Surroundings:**
-    *   To the left: A metal railing, some greenery, and a parking lot area.
-    *   To the right: A chain-link fence and a red wall with graffiti.
-    *   Underneath: Concrete steps leading down.
-
-**2. Evaluate against rules:**
-*   **Proper:**
-    *"</div>
+                    <div class="feedback-bubble">"The scooter is parked on the stairs, which is a safety hazard and blocks pedestrian access. It is not on a designated parking area and obstructs the sidewalk."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen3-vl-2b-instruct" data-correct="true">
@@ -4530,24 +4327,15 @@
                     <div class="feedback-bubble">"The scooter is improperly parked as it is lying on its side on the stairs, blocking the pedestrian path and obstructing the tactile paving. It is not fully upright or stable on its kickstand, and it is encroaching upon the sidewalk."</div>
                 </div>
                 
-                <div class="model-row" data-model="qwen3.5-4b" data-correct="false">
+                <div class="model-row" data-model="qwen3.5-4b" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen3.5 (4B, 4-bit, 2026)</span>
                         <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">32693 ms</span>
+                            <span class="badge badge-correct">✓ Improper</span>
+                            <span class="latency-tag">27990 ms</span>
                         </div>
                     </div>
-                    <div class="feedback-bubble">"The user wants me to evaluate the parking of an electric scooter based on a set of rules.
-
-**1. Analyze the image:**
-*   **Subject:** An electric scooter (blue and black) is lying on the ground.
-*   **Position:** It is lying flat on the concrete surface. It is not upright.
-*   **Location:** It is parked on a sidewalk, specifically near the bottom of a set of stairs.
-*   **Obstructions:**
-    *   It is blocking the path of the sidewalk.
-    *   It is very close to the stairs, potentially blocking access to the stairs or the area right next to them.
-    *   It is not upright, so it's not"</div>
+                    <div class="feedback-bubble">"The scooter is lying on its side, not upright on its kickstand. This violates the rule requiring scooters to be fully upright and stable. Additionally, it is blocking the pedestrian sidewalk, which must remain clear for safe passage."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen3-vl-2b-instruct" data-correct="true">
@@ -4706,25 +4494,15 @@
                     <div class="feedback-bubble">"The scooter is lying on its side on the concrete steps, which violates the rule for proper parking. It must be fully upright and stable on its kickstand. Additionally, it is obstructing the pedestrian walkway and blocking the tactile paving on the left side."</div>
                 </div>
                 
-                <div class="model-row" data-model="qwen3.5-4b" data-correct="false">
+                <div class="model-row" data-model="qwen3.5-4b" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen3.5 (4B, 4-bit, 2026)</span>
                         <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">33164 ms</span>
+                            <span class="badge badge-correct">✓ Improper</span>
+                            <span class="latency-tag">27293 ms</span>
                         </div>
                     </div>
-                    <div class="feedback-bubble">"The user wants me to evaluate the parking of an electric scooter based on a set of rules.
-
-**1. Analyze the image:**
-*   **Subject:** An electric scooter.
-*   **Location:** It is parked on a set of concrete stairs.
-*   **Orientation:** The scooter is upright, but it's positioned *on* the stairs, not on the flat sidewalk next to them. The kickstand is down, but the front wheel is resting on the steps.
-*   **Context:** There is a sidewalk to the left (with a railing) and a wall to the right. The stairs lead down.
-
-**2. Evaluate against rules:**
-*   **Proper:**
-    *   ""</div>
+                    <div class="feedback-bubble">"The scooter is improperly parked because it is lying on its side and blocking the pedestrian sidewalk. It is also obstructing the stairs, which violates the rule against blocking building entrances or stairs."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen3-vl-2b-instruct" data-correct="true">
@@ -4883,26 +4661,15 @@
                     <div class="feedback-bubble">"The scooter is improperly parked. It is resting on the stairs rather than on the sidewalk, which blocks the pedestrian path and obstructs the view of the tactile paving below. Additionally, the scooter is not fully upright and stable on its kickstand, posing a safety hazard."</div>
                 </div>
                 
-                <div class="model-row" data-model="qwen3.5-4b" data-correct="false">
+                <div class="model-row" data-model="qwen3.5-4b" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen3.5 (4B, 4-bit, 2026)</span>
                         <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">32842 ms</span>
+                            <span class="badge badge-correct">✓ Improper</span>
+                            <span class="latency-tag">27143 ms</span>
                         </div>
                     </div>
-                    <div class="feedback-bubble">"The user wants me to evaluate the parking of an electric scooter based on a set of rules.
-
-**1. Analyze the image:**
-*   **Subject:** An electric scooter (blue handlebars, black deck).
-*   **Location:** It is parked on a set of concrete stairs.
-*   **State:** The scooter is upright on its kickstand.
-*   **Context:** There are metal railings on either side of the stairs. The stairs lead down from a sidewalk area.
-
-**2. Evaluate against rules:**
-*   **Proper:**
-    *   *Upright/Stable:* Yes, it's on its kickstand.
-    *   *Out of sidewalk:* No, it"</div>
+                    <div class="feedback-bubble">"The scooter is parked on the stairs, which is a severe violation. It is blocking the emergency exit/stairs and is not stable. This is extremely dangerous and improper."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen3-vl-2b-instruct" data-correct="true">
@@ -5061,26 +4828,15 @@
                     <div class="feedback-bubble">"The scooters are lying on the ground, fallen over, and obstructing the pedestrian walkway. They are not upright, nor are they leaving clear passage, which violates the rules for proper parking."</div>
                 </div>
                 
-                <div class="model-row" data-model="qwen3.5-4b" data-correct="false">
+                <div class="model-row" data-model="qwen3.5-4b" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen3.5 (4B, 4-bit, 2026)</span>
                         <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">28156 ms</span>
+                            <span class="badge badge-correct">✓ Improper</span>
+                            <span class="latency-tag">22239 ms</span>
                         </div>
                     </div>
-                    <div class="feedback-bubble">"The user wants me to evaluate the scooter parking in the image based on specific rules.
-
-1.  **Analyze the image:**
-    *   I see multiple electric scooters.
-    *   They are all lying on their sides on the ground.
-    *   They are not upright.
-    *   They are clustered together.
-    *   The ground looks like a paved area, possibly a sidewalk or a bike lane, with some cracks.
-    *   There is no kickstand visible for most of them; they are just lying flat.
-
-2.  **Evaluate against rules:**
-    *   **Rule 1 (Proper):** "Must be fully upright and stable on its kickstand." -&gt;"</div>
+                    <div class="feedback-bubble">"All scooters are lying on their sides, not upright on kickstands. They are blocking the entire sidewalk area and encroaching on the pedestrian walkway, violating stability and clearance rules."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen3-vl-2b-instruct" data-correct="true">
@@ -5247,25 +5003,15 @@
                     <div class="feedback-bubble">"The scooter is improperly parked. It is resting on its kickstand and is positioned directly on the sidewalk, encroaching upon the pedestrian walkway. This violates the rule that scooters must be fully upright and leave clear passage for pedestrians."</div>
                 </div>
                 
-                <div class="model-row" data-model="qwen3.5-4b" data-correct="false">
+                <div class="model-row" data-model="qwen3.5-4b" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen3.5 (4B, 4-bit, 2026)</span>
                         <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">26856 ms</span>
+                            <span class="badge badge-correct">✓ Improper</span>
+                            <span class="latency-tag">20780 ms</span>
                         </div>
                     </div>
-                    <div class="feedback-bubble">"The user wants me to evaluate the parking of an electric scooter in the provided image.
-
-1.  **Analyze the image:**
-    *   I see an electric scooter (looks like a Lime scooter) lying flat on the ground.
-    *   It is not upright. It is resting on its wheels and frame.
-    *   It is parked on the sidewalk (pedestrian area).
-    *   It is blocking the sidewalk space.
-    *   It is not blocking a specific door or ramp in this specific crop, but it is definitely on the sidewalk.
-    *   The scooter is clearly fallen over or knocked down, not standing on its kickstand.
-
-2.  **Evaluate against rules:**"</div>
+                    <div class="feedback-bubble">"The scooter is lying on its side on the sidewalk, which is improper. It is obstructing the pedestrian walkway and not stable. It should be lifted upright and moved to a designated parking area if available."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen3-vl-2b-instruct" data-correct="true">
@@ -5424,23 +5170,15 @@
                     <div class="feedback-bubble">"The scooters are parked on their side, resting on the pavement rather than being upright on their kickstands. This violates the rule that scooters must be fully upright and stable on their kickstand."</div>
                 </div>
                 
-                <div class="model-row" data-model="qwen3.5-4b" data-correct="false">
+                <div class="model-row" data-model="qwen3.5-4b" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen3.5 (4B, 4-bit, 2026)</span>
                         <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">36713 ms</span>
+                            <span class="badge badge-correct">✓ Improper</span>
+                            <span class="latency-tag">30778 ms</span>
                         </div>
                     </div>
-                    <div class="feedback-bubble">"The user wants me to evaluate the parking of electric scooters in the provided image based on specific rules.
-
-**1. Analyze the image:**
-*   **Subject:** A row of electric scooters (likely shared mobility scooters like Bird or Lime).
-*   **State:** They are all lying flat on the ground. They are not upright. They are not on their kickstands.
-*   **Location:** They are parked on the sidewalk (paved area with red markings near the curb).
-*   **Obstruction:** They are completely blocking the sidewalk area. They are not blocking a specific door or ramp visible in the immediate foreground, but they are definitely encroaching on the pedestrian walkway.
-
-**2"</div>
+                    <div class="feedback-bubble">"Scooters are lying on their sides instead of being upright on kickstands, which is unsafe and violates parking rules. They are also encroaching on the pedestrian sidewalk area."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen3-vl-2b-instruct" data-correct="true">
@@ -5599,25 +5337,15 @@
                     <div class="feedback-bubble">"The scooter is lying on its side on the pavement, which is improper. It is not upright, nor is it leaving clear passage or blocking tactile paving. It must be lifted and repositioned to a proper parking spot."</div>
                 </div>
                 
-                <div class="model-row" data-model="qwen3.5-4b" data-correct="false">
+                <div class="model-row" data-model="qwen3.5-4b" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen3.5 (4B, 4-bit, 2026)</span>
                         <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">31408 ms</span>
+                            <span class="badge badge-correct">✓ Improper</span>
+                            <span class="latency-tag">25462 ms</span>
                         </div>
                     </div>
-                    <div class="feedback-bubble">"The user wants me to evaluate the parking of an electric scooter based on a set of rules.
-
-1.  **Analyze the image:**
-    *   The image shows an electric scooter lying on its side on the pavement.
-    *   It is not upright.
-    *   It is resting on the ground, not on a kickstand.
-    *   It is blocking a manhole cover.
-    *   It is on the road surface, not clearly on a designated parking spot (though the specific spot isn't the main issue, the state is).
-
-2.  **Evaluate against rules:**
-    *   **Proper:** "Must be fully upright and stable on its kickstand." -&gt; The scooter"</div>
+                    <div class="feedback-bubble">"The scooter is lying on its side on the pavement, which is a violation of parking rules. It must be fully upright and stable on its kickstand to be considered properly parked."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen3-vl-2b-instruct" data-correct="true">
@@ -5780,20 +5508,11 @@
                     <div class="model-header">
                         <span class="model-title">Qwen3.5 (4B, 4-bit, 2026)</span>
                         <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">32616 ms</span>
+                            <span class="badge badge-wrong">✗ Improper</span>
+                            <span class="latency-tag">27387 ms</span>
                         </div>
                     </div>
-                    <div class="feedback-bubble">"The user wants me to evaluate the parking of an electric scooter based on specific rules.
-
-**1. Analyze the image:**
-*   **Object:** A yellow electric scooter (looks like a Hainbo brand).
-*   **State:** The scooter is lying on its side. It is not upright. The kickstand is not supporting it vertically; it's resting on the ground.
-*   **Location:** It's on a paved surface, likely a sidewalk or a path next to a building (greenery on the right).
-*   **Obstruction:** The scooter is blocking the path. There is a bag of groceries next to it, further cluttering the area.
-
-**2. Evaluate against rules:**
-*"</div>
+                    <div class="feedback-bubble">"The scooter is not properly parked because it is lying on its side, not upright on its kickstand. This violates the rule requiring scooters to be fully upright and stable."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen3-vl-2b-instruct" data-correct="false">
@@ -5952,25 +5671,15 @@
                     <div class="feedback-bubble">"The scooters are improperly parked. They are resting on their kickstands, which is not allowed. Furthermore, they are positioned directly on the pedestrian sidewalk, encroaching upon the walkway and blocking the passage for pedestrians."</div>
                 </div>
                 
-                <div class="model-row" data-model="qwen3.5-4b" data-correct="false">
+                <div class="model-row" data-model="qwen3.5-4b" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen3.5 (4B, 4-bit, 2026)</span>
                         <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">32865 ms</span>
+                            <span class="badge badge-correct">✓ Proper</span>
+                            <span class="latency-tag">27743 ms</span>
                         </div>
                     </div>
-                    <div class="feedback-bubble">"The user wants me to evaluate the parking of electric scooters in the provided image based on specific urban mobility rules.
-
-**1. Analyze the image:**
-*   **Subject:** Several yellow electric scooters (labeled "ПРИВЕТ" - Privet).
-*   **Location:** They are parked on a paved area.
-*   **Context:**
-    *   To the left: A grassy area with a green fence and a building entrance.
-    *   To the right: A sidewalk/walkway and a street with parked cars.
-    *   The scooters are lined up.
-*   **State of scooters:**
-    *   They are upright on their kickstands."</div>
+                    <div class="feedback-bubble">"Scooters are upright and stable on the sidewalk, not blocking any doors, ramps, or tactile paving. They are parked in a line along the curb, leaving the main walkway clear."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen3-vl-2b-instruct" data-correct="true">
@@ -6158,17 +5867,11 @@
                     <div class="model-header">
                         <span class="model-title">Qwen3.5 (4B, 4-bit, 2026)</span>
                         <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">31311 ms</span>
+                            <span class="badge badge-wrong">✗ Improper</span>
+                            <span class="latency-tag">25137 ms</span>
                         </div>
                     </div>
-                    <div class="feedback-bubble">"The user wants me to evaluate the parking of electric scooters in the provided image based on specific rules.
-
-**1. Analyze the image:**
-*   There are several yellow electric scooters (Lime brand).
-*   They are parked on a paved area.
-*   The paved area has yellow diagonal stripes painted on it. This is a classic marking for a bike lane or a designated parking area, but often these markings are used to indicate a cycle lane or a specific zone.
-*   Crucially, looking at the location, these scooters are parked on the edge of a sidewalk, but they are clearly occupying a space that looks like a cycle lane or a designated parking zone marked with yellow stripes. Wait, let"</div>
+                    <div class="feedback-bubble">"Scooters are parked on yellow tactile paving, which is reserved for visually impaired pedestrians. This violates the rule of not obstructing tactile paving."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen3-vl-2b-instruct" data-correct="true">
@@ -6327,22 +6030,15 @@
                     <div class="feedback-bubble">"The scooter is improperly parked. It is resting on its kickstand, which is not fully upright and stable, and it is positioned directly on the pedestrian sidewalk, obstructing the walkway and blocking the tactile paving."</div>
                 </div>
                 
-                <div class="model-row" data-model="qwen3.5-4b" data-correct="false">
+                <div class="model-row" data-model="qwen3.5-4b" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen3.5 (4B, 4-bit, 2026)</span>
                         <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">26198 ms</span>
+                            <span class="badge badge-correct">✓ Proper</span>
+                            <span class="latency-tag">21133 ms</span>
                         </div>
                     </div>
-                    <div class="feedback-bubble">"The user wants me to evaluate the parking of an electric scooter based on specific rules.
-
-**1. Analyze the image:**
-*   **Object:** A yellow electric scooter (looks like a Lime scooter).
-*   **Position:** It is standing upright on its kickstand. The kickstand is visible on the left side, touching the ground.
-*   **Location:** It is parked on a paved surface, likely a sidewalk or a bike lane area, but definitely not in a marked parking spot (though none are visible). It's on asphalt.
-*   **Obstructions:**
-    *   **Pedestrian sidewalk/walkway:** The scooter is on the pavement. It doesn't seem to be blocking a clear"</div>
+                    <div class="feedback-bubble">"The scooter is fully upright on its kickstand, stable, and parked on the asphalt away from any sidewalks, tactile paving, or building entrances. It does not obstruct any pathways or access points."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen3-vl-2b-instruct" data-correct="true">
@@ -6504,18 +6200,15 @@
                     <div class="feedback-bubble">"The scooter is improperly parked. It is resting on its kickstand, which is not fully upright and stable, and it is positioned directly on the pedestrian sidewalk, obstructing the walkway and blocking the tactile paving."</div>
                 </div>
                 
-                <div class="model-row" data-model="qwen3.5-4b" data-correct="false">
+                <div class="model-row" data-model="qwen3.5-4b" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen3.5 (4B, 4-bit, 2026)</span>
                         <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">26444 ms</span>
+                            <span class="badge badge-correct">✓ Proper</span>
+                            <span class="latency-tag">20665 ms</span>
                         </div>
                     </div>
-                    <div class="feedback-bubble">"The user wants me to evaluate the parking of an electric scooter based on specific rules.
-
-**1. Analyze the image:**
-*   **Object:** A yellow electric scooter (likely a Lime or similar shared scooter, though the branding says "Shapre Go" or similar, actually it looks like a Lime scooter based on the handlebar, but the deck says "Shapre Go" - wait, let me look closer. The deck says "Shapre Go" but the handlebar has a red button typical of Lime. Actually, looking at the deck, it says "Shapre Go". Wait, no, that's "Lime" on the handlebar. Let's look at the deck text. It says"</div>
+                    <div class="feedback-bubble">"The scooter is fully upright on its kickstand, stable, and positioned on the paved area away from the sidewalk and building entrance. It does not obstruct any pathways or tactile paving."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen3-vl-2b-instruct" data-correct="true">
@@ -6677,25 +6370,15 @@
                     <div class="feedback-bubble">"The scooters are parked properly. They are fully upright, resting on their kickstands, and positioned on the paved sidewalk without blocking the pedestrian walkway, tactile paving, or any building entrances and exits."</div>
                 </div>
                 
-                <div class="model-row" data-model="qwen3.5-4b" data-correct="false">
+                <div class="model-row" data-model="qwen3.5-4b" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen3.5 (4B, 4-bit, 2026)</span>
                         <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">34657 ms</span>
+                            <span class="badge badge-correct">✓ Proper</span>
+                            <span class="latency-tag">29573 ms</span>
                         </div>
                     </div>
-                    <div class="feedback-bubble">"The user wants me to evaluate the parking of electric scooters in the provided image based on specific rules.
-
-**1. Analyze the image:**
-*   **Subject:** Several yellow electric scooters (GoTus brand visible).
-*   **Location:** They are parked on a paved area.
-*   **Context:**
-    *   To the left, there is a grassy area and a road.
-    *   To the right, there is a sidewalk made of light-colored paving stones.
-    *   The scooters are lined up in a row.
-    *   The scooters are upright on their kickstands.
-    *   They are parked on the edge of the sidewalk, near the curb"</div>
+                    <div class="feedback-bubble">"All scooters are upright on their kickstands, fully stable, and parked in a designated area on the sidewalk without blocking any doors, ramps, or tactile paving. The arrangement is orderly and does not obstruct pedestrian passage."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen3-vl-2b-instruct" data-correct="true">
@@ -6854,25 +6537,15 @@
                     <div class="feedback-bubble">"The scooter is parked properly. It is fully upright on its kickstand, positioned on the sidewalk, and does not obstruct the tactile paving or any building features."</div>
                 </div>
                 
-                <div class="model-row" data-model="qwen3.5-4b" data-correct="false">
+                <div class="model-row" data-model="qwen3.5-4b" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen3.5 (4B, 4-bit, 2026)</span>
                         <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">28254 ms</span>
+                            <span class="badge badge-correct">✓ Proper</span>
+                            <span class="latency-tag">22981 ms</span>
                         </div>
                     </div>
-                    <div class="feedback-bubble">"The user wants me to evaluate the parking of an electric scooter based on specific rules.
-
-**1. Analyze the image:**
-*   **Object:** An electric scooter (looks like a Bird scooter).
-*   **Position:** It is parked on a sidewalk.
-*   **Orientation:** It is upright on its kickstand.
-*   **Location:** It is parked on the concrete sidewalk area.
-*   **Obstructions:**
-    *   There is a manhole cover in the street behind it.
-    *   There is a curb separating the sidewalk from the street.
-    *   The scooter is parked *on* the sidewalk, but it appears to be in a relatively open area, not directly blocking"</div>
+                    <div class="feedback-bubble">"The scooter is fully upright on its kickstand, positioned on the sidewalk without blocking any doors, ramps, or tactile paving. It leaves clear passage for pedestrians and does not encroach on the street. Parking is compliant with urban mobility rules."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen3-vl-2b-instruct" data-correct="true">
@@ -7035,21 +6708,11 @@
                     <div class="model-header">
                         <span class="model-title">Qwen3.5 (4B, 4-bit, 2026)</span>
                         <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">20178 ms</span>
+                            <span class="badge badge-wrong">✗ Improper</span>
+                            <span class="latency-tag">12844 ms</span>
                         </div>
                     </div>
-                    <div class="feedback-bubble">"The user wants me to evaluate the parking of an electric scooter based on the provided image and a set of rules.
-
-**1. Analyze the image:**
-*   **Subject:** A yellow electric scooter.
-*   **State:** The scooter is lying flat on the ground. It is not upright. The kickstand is not supporting it vertically; it's resting on its wheels or deck.
-*   **Location:** It's on the street/roadway, not on a sidewalk. There are people walking nearby.
-*   **Context:** It looks like a night scene with streetlights.
-
-**2. Evaluate against rules:**
-*   **Rule 1 (Proper):**
-    *   "Must be fully"</div>
+                    <div class="feedback-bubble">"The scooter is lying on its side, not upright on its kickstand. This is improper parking as it blocks the roadway and poses a safety hazard."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen3-vl-2b-instruct" data-correct="false">
@@ -7208,23 +6871,15 @@
                     <div class="feedback-bubble">"The scooter is parked properly. It is fully upright, stable on its kickstand, and positioned on the paved surface without obstructing the pedestrian walkway, tactile paving, or any building features."</div>
                 </div>
                 
-                <div class="model-row" data-model="qwen3.5-4b" data-correct="false">
+                <div class="model-row" data-model="qwen3.5-4b" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen3.5 (4B, 4-bit, 2026)</span>
                         <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">32517 ms</span>
+                            <span class="badge badge-correct">✓ Proper</span>
+                            <span class="latency-tag">27369 ms</span>
                         </div>
                     </div>
-                    <div class="feedback-bubble">"The user wants me to evaluate the parking of an electric scooter based on specific rules.
-
-**1. Analyze the image:**
-*   **Object:** A yellow electric scooter (brand "GOVIB").
-*   **State:** It is upright, standing on its kickstand. It is not fallen over.
-*   **Location:** It is parked on a paved surface.
-*   **Surroundings:**
-    *   The scooter is on a section of pavement that looks like a sidewalk or a pedestrian area.
-    *   There is a distinct change in paving texture. The area in the background (top left) has smaller, lighter grey rectangular pavers. The area in the foreground (bottom right) has"</div>
+                    <div class="feedback-bubble">"The scooter is fully upright on its kickstand, stable, and positioned on the paved area without blocking any sidewalks, doors, or tactile paving. It complies with all parking rules."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen3-vl-2b-instruct" data-correct="true">
@@ -7386,25 +7041,15 @@
                     <div class="feedback-bubble">"The scooters are improperly parked. They are resting on their kickstands, which is generally acceptable, but they are positioned very close together, potentially blocking the pedestrian sidewalk and obstructing the view of the tactile paving (yellow pavers) on the left side. Additionally, the rear wheels of the left scooter appear to be resting on the curb or a low barrier rather than fully on the pavement, which may violate rules regarding proper placement on the road surface."</div>
                 </div>
                 
-                <div class="model-row" data-model="qwen3.5-4b" data-correct="false">
+                <div class="model-row" data-model="qwen3.5-4b" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen3.5 (4B, 4-bit, 2026)</span>
                         <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">32537 ms</span>
+                            <span class="badge badge-correct">✓ Proper</span>
+                            <span class="latency-tag">27036 ms</span>
                         </div>
                     </div>
-                    <div class="feedback-bubble">"The user wants me to evaluate the parking of the electric scooters in the image based on specific rules.
-
-**1. Analyze the image:**
-*   **Subject:** Two yellow electric scooters (likely Yandex Go based on the logo).
-*   **Position:** They are parked on the sidewalk (pedestrian area).
-*   **Orientation:** They are upright on their kickstands. They are not fallen over.
-*   **Obstruction:**
-    *   They are parked on the paved area.
-    *   Looking closely at the background, there is a building entrance with steps and a small ramp.
-    *   The scooters are positioned in front of the building facade.
-    *"</div>
+                    <div class="feedback-bubble">"The scooters are upright, stable, and parked on the sidewalk area without blocking any doors, ramps, or tactile paving. They are not obstructing pedestrian passage."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen3-vl-2b-instruct" data-correct="true">
@@ -7563,25 +7208,15 @@
                     <div class="feedback-bubble">"The scooter is improperly parked. It is resting on its kickstand and is positioned directly on the pedestrian sidewalk, encroaching upon the designated cycle lane marked by the white bicycle symbol on the pavement. This violates the rule that scooters must be fully upright and leave clear passage for pedestrians."</div>
                 </div>
                 
-                <div class="model-row" data-model="qwen3.5-4b" data-correct="false">
+                <div class="model-row" data-model="qwen3.5-4b" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen3.5 (4B, 4-bit, 2026)</span>
                         <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">29162 ms</span>
+                            <span class="badge badge-correct">✓ Proper</span>
+                            <span class="latency-tag">22709 ms</span>
                         </div>
                     </div>
-                    <div class="feedback-bubble">"The user wants me to evaluate the parking of an electric scooter based on specific rules.
-
-**1. Analyze the image:**
-*   **Object:** An electric scooter (looks like a Lime scooter).
-*   **Position:** It is parked on the street, specifically within a marked bike lane (indicated by the white bicycle symbol painted on the asphalt).
-*   **Stability:** The scooter is upright on its kickstand. It is stable.
-*   **Location:** It is clearly inside the bike lane markings.
-*   **Obstructions:** It is not blocking a sidewalk, door, or ramp. However, it is occupying the bike lane.
-
-**2. Evaluate against rules:**
-*   **Pro"</div>
+                    <div class="feedback-bubble">"The scooter is upright and stable on its kickstand, positioned within the marked bike lane area, and does not obstruct any sidewalks, doors, or tactile paving."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen3-vl-2b-instruct" data-correct="true">
@@ -7744,22 +7379,11 @@
                     <div class="model-header">
                         <span class="model-title">Qwen3.5 (4B, 4-bit, 2026)</span>
                         <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">26260 ms</span>
+                            <span class="badge badge-wrong">✗ Improper</span>
+                            <span class="latency-tag">20430 ms</span>
                         </div>
                     </div>
-                    <div class="feedback-bubble">"The user wants me to evaluate the parking of an electric scooter based on specific rules.
-
-**1. Analyze the image:**
-*   **Object:** A blue electric scooter (looks like a JET brand).
-*   **State:** It is upright on its kickstand. It is stable.
-*   **Location:** It is parked on a paved surface.
-*   **Context:**
-    *   There is a curb to the left.
-    *   There is a curb to the right.
-    *   Behind the scooter, there is a grassy/dirt area with trees.
-    *   In front of the scooter (bottom of the image), there is a concrete curb.
-    *"</div>
+                    <div class="feedback-bubble">"The scooter is not fully upright; it is leaning on its front wheel and is not stable on its kickstand. This violates the rule requiring scooters to be fully upright and stable."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen3-vl-2b-instruct" data-correct="true">
@@ -7918,24 +7542,15 @@
                     <div class="feedback-bubble">"The scooter is improperly parked. It is resting on its kickstand, which is not fully upright and stable, and it is positioned directly on the pedestrian sidewalk, obstructing the walkway and potentially blocking tactile paving."</div>
                 </div>
                 
-                <div class="model-row" data-model="qwen3.5-4b" data-correct="false">
+                <div class="model-row" data-model="qwen3.5-4b" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen3.5 (4B, 4-bit, 2026)</span>
                         <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">31622 ms</span>
+                            <span class="badge badge-correct">✓ Proper</span>
+                            <span class="latency-tag">25617 ms</span>
                         </div>
                     </div>
-                    <div class="feedback-bubble">"The user wants me to evaluate the parking of an electric scooter based on specific rules.
-
-**1. Analyze the image:**
-*   **Object:** An electric scooter (yellow and orange, brand "GOTU" visible).
-*   **State:** It is upright. The kickstand is down. It is stable.
-*   **Location:** It is parked on a paved surface. The pavement looks like grey rectangular tiles or pavers.
-*   **Surroundings:**
-    *   There is a curb in the background with some grass/vegetation.
-    *   There is a white wall behind the curb.
-    *   There are no visible tactile paving (yellow or textured pavers) directly"</div>
+                    <div class="feedback-bubble">"The scooter is fully upright on its kickstand, stable, and positioned on the paved area without blocking any doors, ramps, or tactile paving. It leaves clear passage for pedestrians."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen3-vl-2b-instruct" data-correct="true">
@@ -8097,23 +7712,15 @@
                     <div class="feedback-bubble">"The scooters are parked improperly. They are resting on their kickstands, which is generally acceptable, but they are positioned directly on the pedestrian sidewalk/walkway, encroaching upon the pedestrian area and blocking the view of the tactile paving (yellow pavers) behind them. This violates the rule to leave clear passage and not block tactile paving."</div>
                 </div>
                 
-                <div class="model-row" data-model="qwen3.5-4b" data-correct="false">
+                <div class="model-row" data-model="qwen3.5-4b" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen3.5 (4B, 4-bit, 2026)</span>
                         <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">32143 ms</span>
+                            <span class="badge badge-correct">✓ Proper</span>
+                            <span class="latency-tag">27824 ms</span>
                         </div>
                     </div>
-                    <div class="feedback-bubble">"The user wants me to evaluate the parking of electric scooters in the provided image based on specific rules.
-
-**1. Analyze the image:**
-- There are four electric scooters lined up.
-- They are all upright on their kickstands.
-- They are parked on a paved surface, likely a sidewalk or a pedestrian area near a building.
-- Behind the scooters, there is a bench and a small pyramid-shaped structure (possibly a sculpture or planter).
-- The scooters are not blocking any visible doors, ramps, or crosswalks in the immediate foreground.
-- The scooters are not blocking tactile paving. I see some paving stones in the background, but the scooters are on a smoother,"</div>
+                    <div class="feedback-bubble">"All scooters are upright and stable on their kickstands. They are parked on the paved area away from the pedestrian sidewalk, leaving clear passage for pedestrians. No scooters are blocking tactile paving, entrances, or crosswalks."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen3-vl-2b-instruct" data-correct="true">
@@ -8279,20 +7886,11 @@
                     <div class="model-header">
                         <span class="model-title">Qwen3.5 (4B, 4-bit, 2026)</span>
                         <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">35621 ms</span>
+                            <span class="badge badge-wrong">✗ Improper</span>
+                            <span class="latency-tag">29883 ms</span>
                         </div>
                     </div>
-                    <div class="feedback-bubble">"The user wants me to evaluate the parking of electric scooters in the provided image based on specific rules.
-
-**1. Analyze the image:**
-- There are three yellow electric scooters parked on a paved area.
-- The scooters are upright on their kickstands.
-- They are parked on a brick-paved area, which looks like a sidewalk or a pedestrian area next to a road.
-- There is a black metal railing separating the paved area from a grassy area.
-- There is a road in the background.
-- I need to check for specific violations:
-    - **Proper:** Upright? Yes. Stable? Yes. Out of pedestrian sidewalk? They are on the sidewalk/pav"</div>
+                    <div class="feedback-bubble">"Scooters are lying on their sides instead of being upright on kickstands, which violates stability and safety requirements. This creates a tripping hazard and blocks the pedestrian walkway."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen3-vl-2b-instruct" data-correct="true">
@@ -8454,21 +8052,15 @@
                     <div class="feedback-bubble">"The scooter is correctly parked on its kickstand, fully upright, and positioned on the pavement without obstructing the pedestrian walkway, tactile paving, or any building features."</div>
                 </div>
                 
-                <div class="model-row" data-model="qwen3.5-4b" data-correct="false">
+                <div class="model-row" data-model="qwen3.5-4b" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen3.5 (4B, 4-bit, 2026)</span>
                         <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">29100 ms</span>
+                            <span class="badge badge-correct">✓ Proper</span>
+                            <span class="latency-tag">22689 ms</span>
                         </div>
                     </div>
-                    <div class="feedback-bubble">"The user wants me to evaluate the parking of an electric scooter in the provided image.
-
-1.  **Analyze the image:**
-    *   **Object:** An orange electric scooter (looks like a Lime scooter).
-    *   **Position:** It is parked on a paved area.
-    *   **Stability:** The scooter is upright. The kickstand is down. It looks stable.
-    *   **Location:** It is parked on what appears to be a sidewalk or a paved area adjacent to a building. There are no visible tactile paving (yellow or textured pavers) directly under or immediately next to the scooter in a way that suggests obstruction. The scooter is not blocking a door, ramp, or crosswalk"</div>
+                    <div class="feedback-bubble">"The scooter is fully upright on its kickstand, positioned on the paved area away from the sidewalk and building entrance, and does not obstruct any tactile paving or access points."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen3-vl-2b-instruct" data-correct="true">
@@ -8630,23 +8222,15 @@
                     <div class="feedback-bubble">"The scooter is parked properly. It is fully upright, stable on its kickstand, and positioned on the paved surface without blocking the pedestrian walkway, tactile paving, or any building access points."</div>
                 </div>
                 
-                <div class="model-row" data-model="qwen3.5-4b" data-correct="false">
+                <div class="model-row" data-model="qwen3.5-4b" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen3.5 (4B, 4-bit, 2026)</span>
                         <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">32373 ms</span>
+                            <span class="badge badge-correct">✓ Proper</span>
+                            <span class="latency-tag">27289 ms</span>
                         </div>
                     </div>
-                    <div class="feedback-bubble">"The user wants me to evaluate the parking of an electric scooter based on a set of rules.
-
-**1. Analyze the image:**
-*   **Subject:** An orange electric scooter (looks like a Lime scooter).
-*   **Position:** It is parked on a paved area.
-*   **State:** It is upright, standing on its kickstand. It is not fallen over.
-*   **Location:** It is on a paved walkway. There are trees lining the path. It looks like a pedestrian area or a wide sidewalk.
-*   **Obstructions:**
-    *   **Tactile Paving:** I need to look closely at the ground. The ground is paved with rectangular stones. There are"</div>
+                    <div class="feedback-bubble">"The scooter is fully upright on its kickstand, positioned on the paved area without blocking any sidewalks, doors, or tactile paving. It leaves clear passage for pedestrians."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen3-vl-2b-instruct" data-correct="true">
@@ -8808,23 +8392,15 @@
                     <div class="feedback-bubble">"The scooters are parked properly. They are fully upright, stable on their kickstands, and positioned on the paved surface without blocking the pedestrian walkway or any tactile paving."</div>
                 </div>
                 
-                <div class="model-row" data-model="qwen3.5-4b" data-correct="false">
+                <div class="model-row" data-model="qwen3.5-4b" data-correct="true">
                     <div class="model-header">
                         <span class="model-title">Qwen3.5 (4B, 4-bit, 2026)</span>
                         <div class="model-badges">
-                            <span class="badge badge-wrong">✗ Unknown</span>
-                            <span class="latency-tag">28472 ms</span>
+                            <span class="badge badge-correct">✓ Proper</span>
+                            <span class="latency-tag">22047 ms</span>
                         </div>
                     </div>
-                    <div class="feedback-bubble">"The user wants me to evaluate the parking of the electric scooters in the image based on specific rules.
-
-**1. Analyze the image:**
-*   **Subject:** Three yellow electric scooters (Yandex Go brand).
-*   **State:** They are all standing upright on their kickstands. They are not fallen over.
-*   **Location:** They are parked on a paved surface, likely a sidewalk or a designated parking area on a sidewalk. The ground is made of rectangular paving stones.
-*   **Obstruction:**
-    *   They are lined up in a row.
-    *   They are not blocking a visible crosswalk (though one might be nearby, it's not clearly obstructed in the"</div>
+                    <div class="feedback-bubble">"Scooters are fully upright on their kickstands, stable, and positioned on the paved area without blocking any sidewalks, doors, or tactile paving."</div>
                 </div>
                 
                 <div class="model-row" data-model="qwen3-vl-2b-instruct" data-correct="true">
