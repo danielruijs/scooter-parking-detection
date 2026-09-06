@@ -72,7 +72,7 @@ where `{split}` is the dataset split (`train` or `val`) that was evaluated.
 
 #### View Results in Browser
 
-Serve the interactive gallery from the repository root:
+Serve from the repository root:
 
 ```bash
 uv run python -m http.server 8000

@@ -38,7 +38,7 @@ async function loadBenchmarkGallery(split) {
             galleryGrid.innerHTML = `
                 <div class="state-message" style="grid-column: 1/-1;">
                     <p style="color: #f87171; font-weight: 600; margin-bottom: 8px;">Failed to load benchmark predictions for ${split} split.</p>
-                    <p style="font-size: 13px; color: var(--text-muted);">Ensure <code>vlm_predictions_${split}.json</code> is present in the current directory.</p>
+                    <p style="font-size: 13px; color: var(--text-muted);">Could not locate <code>vlm_predictions_${split}.json</code>.</p>
                 </div>
             `;
         }
@@ -148,8 +148,8 @@ function renderGallery(split, resultsByModel) {
         const errClass = anyMisclassified ? 'card-has-error' : 'card-all-correct';
         const fileName = rel.split('/').pop().split('\\').pop();
 
-        // Image path pointing directly to dataset image relative to vlm_output/
-        const imgSrc = `../${escapeHtml(rel.replace(/\\/g, '/'))}`;
+        // Optimized thumbnail located in gallery/images/<split>/<fileName>
+        const imgSrc = `images/${split}/${escapeHtml(fileName)}`;
 
         return `
             <div class="gallery-card ${errClass}" data-gt="${gtCls}" data-err="${anyMisclassified}" data-search="${escapeHtml(rel.toLowerCase())}">
