@@ -7,7 +7,6 @@ from PIL import Image
 
 from vlm_config import AVAILABLE_VLM_MODELS, SYSTEM_PROMPT, USER_PROMPT
 from vlm_models import VLMAdapter
-from vlm_report import save_benchmark_reports
 from vlm_types import BenchmarkResult, DatasetImage, PredictionRecord
 
 sys.stdout.reconfigure(encoding="utf-8")
@@ -163,12 +162,14 @@ def main():
             )
         else:
             all_results[adapter.name] = run_model_benchmark(adapter, items)
-        save_benchmark_reports(items, all_results, out_path, split=args.split)
 
-    html_file = out_path / f"vlm_results_{args.split}.html"
-    print(
-        f"\nAll benchmark tasks complete for [{args.split}]! HTML gallery ready at {html_file.resolve()}"
-    )
+        # Save predictions JSON incrementally after each model
+        out_path.mkdir(parents=True, exist_ok=True)
+        pred_json_data = {k: v.model_dump() for k, v in all_results.items()}
+        pred_json.write_text(json.dumps(pred_json_data, indent=2), encoding="utf-8")
+        print(f"Saved {args.split} predictions to {pred_json}")
+
+    print(f"\nAll benchmark tasks complete for [{args.split}]")
 
 
 if __name__ == "__main__":
