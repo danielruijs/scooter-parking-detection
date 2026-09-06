@@ -72,7 +72,7 @@ def generate_html_gallery(
 
             model_rows.append(
                 f"""
-                <div class="model-row">
+                <div class="model-row" data-model="{k}" data-correct="{str(rec.is_correct).lower()}">
                     <div class="model-header">
                         <span class="model-title">{results_by_model[k].display_name}</span>
                         <div class="model-badges">
@@ -102,20 +102,36 @@ def generate_html_gallery(
         """
         cards_html.append(card_markup)
 
+    # Default sort by Macro F1 descending (with accuracy as tie-breaker)
+    sorted_model_keys = sorted(
+        model_keys,
+        key=lambda k: (results_by_model[k].macro_f1, results_by_model[k].accuracy),
+        reverse=True,
+    )
     summary_rows = []
-    for k in model_keys:
+    for k in sorted_model_keys:
         res = results_by_model[k]
         summary_rows.append(
             f"""
-            <tr>
-                <td><strong>{res.display_name}</strong></td>
-                <td>{res.accuracy:.1f}%</td>
-                <td>{res.macro_f1:.1f}%</td>
-                <td>{res.parse_rate:.1f}%</td>
-                <td>{res.mean_latency_ms:.1f} ms</td>
+            <tr class="model-summary-row" data-model="{k}" onclick="selectModelFromTable('{k}')" title="Click to filter feedback gallery by {res.display_name}">
+                <td data-val="{res.display_name}">
+                    <div class="model-name-cell">
+                        <strong>{res.display_name}</strong>
+                        <span class="filter-hint">🔍 filter</span>
+                    </div>
+                </td>
+                <td data-val="{res.accuracy:.4f}">{res.accuracy:.1f}%</td>
+                <td data-val="{res.macro_f1:.4f}">{res.macro_f1:.1f}%</td>
+                <td data-val="{res.parse_rate:.4f}">{res.parse_rate:.1f}%</td>
+                <td data-val="{res.mean_latency_ms:.4f}">{res.mean_latency_ms:.1f} ms</td>
             </tr>
             """
         )
+
+    model_options = [
+        f'<option value="{k}">{results_by_model[k].display_name}</option>'
+        for k in sorted_model_keys
+    ]
 
     split_title = split.upper()
     html_content = f"""<!DOCTYPE html>
@@ -172,11 +188,72 @@ def generate_html_gallery(
         table {{ width: 100%; border-collapse: collapse; text-align: left; font-size: 14px; }}
         th, td {{ padding: 10px 14px; border-bottom: 1px solid var(--border); }}
         th {{ color: var(--text-muted); font-weight: 600; background: rgba(255,255,255,0.02); }}
+        th.sortable {{
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.15s, color 0.15s;
+            position: relative;
+            white-space: nowrap;
+        }}
+        th.sortable:hover {{
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+        }}
+        th.sortable .sort-icon {{
+            display: inline-block;
+            margin-left: 6px;
+            font-size: 11px;
+            opacity: 0.45;
+            vertical-align: middle;
+        }}
+        th.sortable.sorted-asc,
+        th.sortable.sorted-desc {{
+            color: #fff;
+            background: rgba(59, 130, 246, 0.12);
+        }}
+        th.sortable.sorted-asc .sort-icon,
+        th.sortable.sorted-desc .sort-icon {{
+            opacity: 1;
+            color: var(--primary);
+        }}
+
+        tr.model-summary-row {{
+            cursor: pointer;
+            transition: background-color 0.15s;
+        }}
+        tr.model-summary-row:hover {{
+            background: rgba(59, 130, 246, 0.08);
+        }}
+        tr.model-summary-row.selected-model-row {{
+            background: rgba(59, 130, 246, 0.22) !important;
+        }}
+        .model-name-cell {{
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }}
+        .filter-hint {{
+            font-size: 11px;
+            color: var(--primary);
+            opacity: 0;
+            transition: opacity 0.15s;
+            background: rgba(59, 130, 246, 0.15);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }}
+        tr.model-summary-row:hover .filter-hint {{
+            opacity: 1;
+        }}
+        .table-hint {{
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }}
         
         .controls {{
             display: flex;
             flex-wrap: wrap;
-            gap: 12px;
+            gap: 14px;
             align-items: center;
             justify-content: space-between;
             margin-bottom: 24px;
@@ -184,6 +261,44 @@ def generate_html_gallery(
             padding: 14px 18px;
             border-radius: 10px;
             border: 1px solid var(--border);
+        }}
+        .controls-left {{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+        }}
+        .controls-right {{
+            display: flex;
+            align-items: center;
+        }}
+        .control-item {{
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }}
+        .control-label {{
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }}
+        .filter-select {{
+            background: #0f172a;
+            border: 1px solid var(--border);
+            color: #fff;
+            padding: 7px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            outline: none;
+            transition: border-color 0.15s;
+            max-width: 280px;
+        }}
+        .filter-select:focus {{
+            border-color: var(--primary);
         }}
         .btn-group {{ display: flex; gap: 8px; flex-wrap: wrap; }}
         .btn {{
@@ -230,6 +345,12 @@ def generate_html_gallery(
         .gallery-card:hover {{
             transform: translateY(-2px);
             border-color: #475569;
+        }}
+        .gallery-card.model-error {{
+            border-color: rgba(239, 68, 68, 0.55);
+        }}
+        .gallery-card.model-correct {{
+            border-color: rgba(16, 185, 129, 0.3);
         }}
         .card-img-container {{
             position: relative;
@@ -313,15 +434,18 @@ def generate_html_gallery(
         </header>
 
         <div class="metrics-card">
-            <h2>Summary Performance Table ({split_title})</h2>
-            <table>
+            <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px;">
+                <h2>Summary Performance Table ({split_title})</h2>
+                <span class="table-hint">💡 Click column to sort &bull; Click model row to filter feedback gallery</span>
+            </div>
+            <table id="summaryTable">
                 <thead>
                     <tr>
-                        <th>Model</th>
-                        <th>Accuracy</th>
-                        <th>Macro F1</th>
-                        <th>Valid JSON Rate</th>
-                        <th>Mean Latency</th>
+                        <th class="sortable" onclick="sortTable(0, 'string')">Model <span class="sort-icon">⇅</span></th>
+                        <th class="sortable" onclick="sortTable(1, 'number')">Accuracy <span class="sort-icon">⇅</span></th>
+                        <th class="sortable sorted-desc" onclick="sortTable(2, 'number')">Macro F1 <span class="sort-icon">▼</span></th>
+                        <th class="sortable" onclick="sortTable(3, 'number')">Valid JSON Rate <span class="sort-icon">⇅</span></th>
+                        <th class="sortable" onclick="sortTable(4, 'number')">Mean Latency <span class="sort-icon">⇅</span></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -330,14 +454,25 @@ def generate_html_gallery(
             </table>
         </div>
 
-        <div class="controls">
-            <div class="btn-group">
-                <button class="btn active" onclick="filterGallery('all')">Show All ({len(items)})</button>
-                <button class="btn" onclick="filterGallery('errors')">Misclassified Only</button>
-                <button class="btn" onclick="filterGallery('proper')">Ground Truth: Proper</button>
-                <button class="btn" onclick="filterGallery('improper')">Ground Truth: Improper</button>
+        <div class="controls" id="galleryControls">
+            <div class="controls-left">
+                <div class="control-item">
+                    <label for="modelFilterSelect" class="control-label">Model:</label>
+                    <select id="modelFilterSelect" class="filter-select" onchange="onModelFilterChange(this.value)">
+                        <option value="all">All Models (Combined)</option>
+                        {"".join(model_options)}
+                    </select>
+                </div>
+                <div class="btn-group">
+                    <button class="btn active" id="btnFilterAll" onclick="filterGallery('all')">Show All ({len(items)})</button>
+                    <button class="btn" id="btnFilterErrors" onclick="filterGallery('errors')">Misclassified Only</button>
+                    <button class="btn" id="btnFilterProper" onclick="filterGallery('proper')">GT: Proper</button>
+                    <button class="btn" id="btnFilterImproper" onclick="filterGallery('improper')">GT: Improper</button>
+                </div>
             </div>
-            <input type="text" id="searchBox" class="search-box" placeholder="Filter by image name or keyword..." oninput="searchGallery()"/>
+            <div class="controls-right">
+                <input type="text" id="searchBox" class="search-box" placeholder="Filter by image name or keyword..." oninput="searchGallery()"/>
+            </div>
         </div>
 
         <div class="gallery-grid" id="galleryGrid">
@@ -346,7 +481,140 @@ def generate_html_gallery(
     </div>
 
     <script>
+        let currentSortCol = 2;
+        let currentSortDir = 'desc';
+
+        function sortTable(colIndex, type) {{
+            const table = document.getElementById('summaryTable');
+            if (!table) return;
+            const tbody = table.querySelector('tbody');
+            const rows = Array.from(tbody.querySelectorAll('tr'));
+            const ths = table.querySelectorAll('thead th');
+
+            if (currentSortCol === colIndex) {{
+                currentSortDir = currentSortDir === 'asc' ? 'desc' : 'asc';
+            }} else {{
+                currentSortCol = colIndex;
+                if (colIndex === 0 || colIndex === 4) {{
+                    currentSortDir = 'asc';
+                }} else {{
+                    currentSortDir = 'desc';
+                }}
+            }}
+
+            rows.sort((a, b) => {{
+                const cellA = a.children[colIndex];
+                const cellB = b.children[colIndex];
+                let valA = cellA.getAttribute('data-val') !== null ? cellA.getAttribute('data-val') : cellA.innerText.trim();
+                let valB = cellB.getAttribute('data-val') !== null ? cellB.getAttribute('data-val') : cellB.innerText.trim();
+
+                if (type === 'number') {{
+                    valA = parseFloat(valA) || 0;
+                    valB = parseFloat(valB) || 0;
+                    return currentSortDir === 'asc' ? valA - valB : valB - valA;
+                }} else {{
+                    valA = valA.toLowerCase();
+                    valB = valB.toLowerCase();
+                    if (valA < valB) return currentSortDir === 'asc' ? -1 : 1;
+                    if (valA > valB) return currentSortDir === 'asc' ? 1 : -1;
+                    return 0;
+                }}
+            }});
+
+            ths.forEach((th, idx) => {{
+                th.classList.remove('sorted-asc', 'sorted-desc');
+                const icon = th.querySelector('.sort-icon');
+                if (idx === colIndex) {{
+                    th.classList.add(currentSortDir === 'asc' ? 'sorted-asc' : 'sorted-desc');
+                    if (icon) icon.textContent = currentSortDir === 'asc' ? '▲' : '▼';
+                }} else {{
+                    if (icon) icon.textContent = '⇅';
+                }}
+            }});
+
+            rows.forEach(row => tbody.appendChild(row));
+        }}
+
         let currentFilter = 'all';
+        let currentSelectedModel = 'all';
+
+        function onModelFilterChange(modelKey) {{
+            currentSelectedModel = modelKey;
+            highlightSelectedModelRow(modelKey);
+            updateFilterCounts();
+            applyFilters();
+        }}
+
+        function selectModelFromTable(modelKey) {{
+            const select = document.getElementById('modelFilterSelect');
+            if (select) {{
+                if (currentSelectedModel === modelKey) {{
+                    select.value = 'all';
+                    onModelFilterChange('all');
+                }} else {{
+                    select.value = modelKey;
+                    onModelFilterChange(modelKey);
+                    const controls = document.getElementById('galleryControls');
+                    if (controls) {{
+                        controls.scrollIntoView({{ behavior: 'smooth', block: 'start' }});
+                    }}
+                }}
+            }}
+        }}
+
+        function highlightSelectedModelRow(modelKey) {{
+            document.querySelectorAll('tr.model-summary-row').forEach(row => {{
+                if (row.getAttribute('data-model') === modelKey && modelKey !== 'all') {{
+                    row.classList.add('selected-model-row');
+                }} else {{
+                    row.classList.remove('selected-model-row');
+                }}
+            }});
+        }}
+
+        function updateFilterCounts() {{
+            const cards = document.querySelectorAll('.gallery-card');
+            let countAll = 0;
+            let countErrors = 0;
+            let countProper = 0;
+            let countImproper = 0;
+
+            cards.forEach(card => {{
+                const gt = card.getAttribute('data-gt');
+                const modelRows = Array.from(card.querySelectorAll('.model-row'));
+
+                if (currentSelectedModel === 'all') {{
+                    countAll++;
+                    if (card.getAttribute('data-err') === 'true') countErrors++;
+                    if (gt === 'proper') countProper++;
+                    if (gt === 'improper') countImproper++;
+                }} else {{
+                    const row = modelRows.find(r => r.getAttribute('data-model') === currentSelectedModel);
+                    if (row) {{
+                        countAll++;
+                        if (row.getAttribute('data-correct') === 'false') countErrors++;
+                        if (gt === 'proper') countProper++;
+                        if (gt === 'improper') countImproper++;
+                    }}
+                }}
+            }});
+
+            const btnAll = document.getElementById('btnFilterAll');
+            const btnErrors = document.getElementById('btnFilterErrors');
+            const btnProper = document.getElementById('btnFilterProper');
+            const btnImproper = document.getElementById('btnFilterImproper');
+
+            if (btnAll) btnAll.textContent = `Show All (${{countAll}})`;
+            if (btnErrors) {{
+                if (currentSelectedModel === 'all') {{
+                    btnErrors.textContent = `Misclassified (Any Model) (${{countErrors}})`;
+                }} else {{
+                    btnErrors.textContent = `Misclassified Only (${{countErrors}})`;
+                }}
+            }}
+            if (btnProper) btnProper.textContent = `GT: Proper (${{countProper}})`;
+            if (btnImproper) btnImproper.textContent = `GT: Improper (${{countImproper}})`;
+        }}
 
         function filterGallery(type) {{
             currentFilter = type;
@@ -365,15 +633,49 @@ def generate_html_gallery(
 
             cards.forEach(card => {{
                 const gt = card.getAttribute('data-gt');
-                const hasErr = card.getAttribute('data-err') === 'true';
-                const text = card.getAttribute('data-search') + ' ' + card.innerText.toLowerCase();
+                const modelRows = Array.from(card.querySelectorAll('.model-row'));
+                let cardHasModel = false;
+                let isMisclassified = false;
+
+                if (currentSelectedModel === 'all') {{
+                    cardHasModel = true;
+                    isMisclassified = card.getAttribute('data-err') === 'true';
+                    modelRows.forEach(r => {{ r.style.display = ''; }});
+                    card.classList.remove('model-error', 'model-correct');
+                }} else {{
+                    const row = modelRows.find(r => r.getAttribute('data-model') === currentSelectedModel);
+                    if (row) {{
+                        cardHasModel = true;
+                        isMisclassified = row.getAttribute('data-correct') === 'false';
+                        modelRows.forEach(r => {{
+                            r.style.display = (r === row) ? '' : 'none';
+                        }});
+                        card.classList.toggle('model-error', isMisclassified);
+                        card.classList.toggle('model-correct', !isMisclassified);
+                    }} else {{
+                        cardHasModel = false;
+                    }}
+                }}
+
+                if (!cardHasModel) {{
+                    card.style.display = 'none';
+                    return;
+                }}
 
                 let matchesFilter = true;
-                if (currentFilter === 'errors') matchesFilter = hasErr;
+                if (currentFilter === 'errors') matchesFilter = isMisclassified;
                 else if (currentFilter === 'proper') matchesFilter = (gt === 'proper');
                 else if (currentFilter === 'improper') matchesFilter = (gt === 'improper');
 
-                let matchesSearch = query === '' || text.includes(query);
+                const rel = card.getAttribute('data-search') || '';
+                let visibleText = rel;
+                modelRows.forEach(r => {{
+                    if (r.style.display !== 'none') {{
+                        visibleText += ' ' + r.innerText.toLowerCase();
+                    }}
+                }});
+
+                let matchesSearch = query === '' || visibleText.includes(query);
 
                 if (matchesFilter && matchesSearch) {{
                     card.style.display = 'flex';
@@ -382,6 +684,9 @@ def generate_html_gallery(
                 }}
             }});
         }}
+
+        // Initialize counts on load
+        updateFilterCounts();
     </script>
 </body>
 </html>
