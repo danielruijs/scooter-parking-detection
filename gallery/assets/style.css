@@ -352,7 +352,8 @@ tr.model-summary-row:hover .filter-hint {
 .card-img-container {
     position: relative;
     background: #090d16;
-    height: 240px;
+    min-height: 200px;
+    max-height: 420px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -361,8 +362,10 @@ tr.model-summary-row:hover .filter-hint {
 
 .card-img-container img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
+    max-height: 420px;
+    object-fit: contain;
+    display: block;
 }
 
 .img-overlay {
