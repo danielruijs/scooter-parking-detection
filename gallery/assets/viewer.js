@@ -259,7 +259,7 @@ function renderGallery(resultsByModel) {
                         <span class="model-title">${escapeHtml(resultsByModel[k].display_name)}</span>
                         <div class="model-badges">
                             ${predBadge}
-                            <span class="latency-tag">${rec.latency_ms.toFixed(0)} ms</span>
+                            <span class="latency-tag" title="Inference latency measured on NVIDIA GeForce GTX 1660 SUPER (6 GB VRAM)">${rec.latency_ms.toFixed(0)} ms</span>
                         </div>
                     </div>
                     <div class="feedback-bubble">"${escapeHtml(rec.feedback)}"</div>
