@@ -4,14 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scooter Parking Detection - Zero-Shot VLM Benchmark Gallery</title>
-    <link rel="stylesheet" href="assets/style.css?v=4">
+    <link rel="stylesheet" href="assets/style.css?v=7">
 </head>
 <body>
     <div class="container">
         <header>
             <div class="header-top">
-                <div style="display: flex; align-items: center; gap: 12px;">
+                <div class="title-area">
                     <h1>🛴 Scooter Parking VLM Benchmark</h1>
+                    <div class="header-links">
+                        <a href="https://github.com/danielruijs/scooter-parking-detection" target="_blank" rel="noopener noreferrer" class="header-link" title="Open GitHub Repository">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                            <span>GitHub</span>
+                            <span class="external-icon">↗</span>
+                        </a>
+                        <a href="https://www.kaggle.com/datasets/prodigyanalysis/improper-scooter-parking-detection" target="_blank" rel="noopener noreferrer" class="header-link" title="Open Kaggle Dataset">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.825 23.859c-.022.092-.117.141-.281.141h-3.139c-.187 0-.351-.082-.492-.248l-5.178-6.589-1.448 1.374v5.186c0 .188-.093.282-.281.282H5.531c-.187 0-.281-.094-.281-.282V.28c0-.187.094-.281.281-.281h2.475c.188 0 .281.094.281.281v14.475l6.326-6.495c.141-.164.305-.246.492-.246h3.256c.141 0 .224.047.258.141.047.117.023.21-.07.281l-6.537 6.354 6.842 8.788c.094.094.106.188.07.281z"/></svg>
+                            <span>Dataset</span>
+                            <span class="external-icon">↗</span>
+                        </a>
+                    </div>
                 </div>
                 <div class="split-nav">
                     <span class="split-label">Split:</span>
@@ -22,7 +34,7 @@
                     </div>
                 </div>
             </div>
-            <p class="subtitle">Zero-shot evaluation on classification accuracy and natural language actionable feedback generation.</p>
+            <p class="subtitle">Zero-shot evaluation on classification accuracy and natural language actionable feedback generation on the <a href="https://www.kaggle.com/datasets/prodigyanalysis/improper-scooter-parking-detection" target="_blank" rel="noopener noreferrer" class="text-link">Kaggle Improper Scooter Parking Detection</a> dataset.</p>
         </header>
 
         <div class="metrics-card">
@@ -74,7 +86,7 @@
         </div>
     </div>
 
-    <script src="assets/viewer.js?v=5"></script>
+    <script src="assets/viewer.js?v=6"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             if (typeof initGallery === 'function') {
