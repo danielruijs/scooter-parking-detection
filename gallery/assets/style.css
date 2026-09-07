@@ -302,6 +302,49 @@ tr.model-summary-row:hover .filter-hint {
     white-space: nowrap;
 }
 
+.param-pill {
+    display: inline-block;
+    padding: 2px 7px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--text-heading);
+    border: 1px solid var(--border-subtle);
+    font-family: monospace;
+    white-space: nowrap;
+}
+
+.quant-pill {
+    display: inline-block;
+    padding: 2px 7px;
+    border-radius: 6px;
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    border: 1px solid transparent;
+    white-space: nowrap;
+}
+
+.quant-4bit {
+    background: rgba(245, 158, 11, 0.12);
+    color: #fcd34d;
+    border-color: rgba(245, 158, 11, 0.25);
+}
+
+.quant-fp16 {
+    background: rgba(59, 130, 246, 0.12);
+    color: #93c5fd;
+    border-color: rgba(59, 130, 246, 0.25);
+}
+
+.model-subtag {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-muted);
+    margin-left: 6px;
+}
+
 /* Controls Toolbar */
 .controls {
     display: flex;

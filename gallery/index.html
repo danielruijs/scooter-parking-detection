@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scooter Parking Detection - Zero-Shot VLM Benchmark Gallery</title>
-    <link rel="stylesheet" href="assets/style.css?v=8">
+    <link rel="stylesheet" href="assets/style.css?v=10">
 </head>
 <body>
     <div class="container">
@@ -46,16 +46,18 @@
                 <thead>
                     <tr>
                         <th class="sortable" onclick="sortTable(0, 'string')">Model <span class="sort-icon">⇅</span></th>
-                        <th class="sortable" onclick="sortTable(1, 'string')">Release Date <span class="sort-icon">⇅</span></th>
-                        <th class="sortable" onclick="sortTable(2, 'number')">Accuracy <span class="sort-icon">⇅</span></th>
-                        <th class="sortable sorted-desc" onclick="sortTable(3, 'number')">Macro F1 <span class="sort-icon">▼</span></th>
-                        <th class="sortable" onclick="sortTable(4, 'number')">Valid JSON Rate <span class="sort-icon">⇅</span></th>
-                        <th class="sortable" onclick="sortTable(5, 'number')" title="Mean inference latency on NVIDIA GeForce GTX 1660 SUPER (6 GB VRAM)">Mean Latency (GTX 1660 SUPER) <span class="sort-icon">⇅</span></th>
+                        <th class="sortable" onclick="sortTable(1, 'number')">Params <span class="sort-icon">⇅</span></th>
+                        <th class="sortable" onclick="sortTable(2, 'string')">Quantization <span class="sort-icon">⇅</span></th>
+                        <th class="sortable" onclick="sortTable(3, 'string')">Release Date <span class="sort-icon">⇅</span></th>
+                        <th class="sortable" onclick="sortTable(4, 'number')">Accuracy <span class="sort-icon">⇅</span></th>
+                        <th class="sortable sorted-desc" onclick="sortTable(5, 'number')">Macro F1 <span class="sort-icon">▼</span></th>
+                        <th class="sortable" onclick="sortTable(6, 'number')">Valid JSON Rate <span class="sort-icon">⇅</span></th>
+                        <th class="sortable" onclick="sortTable(7, 'number')" title="Mean inference latency on NVIDIA GeForce GTX 1660 SUPER (6 GB VRAM)">Mean Latency (GTX 1660 SUPER) <span class="sort-icon">⇅</span></th>
                     </tr>
                 </thead>
                 <tbody id="summaryTableBody">
                     <tr>
-                        <td colspan="6" style="text-align: center; color: var(--text-muted); padding: 24px;">Loading performance metrics...</td>
+                        <td colspan="8" style="text-align: center; color: var(--text-muted); padding: 24px;">Loading performance metrics...</td>
                     </tr>
                 </tbody>
             </table>
@@ -86,7 +88,7 @@
         </div>
     </div>
 
-    <script src="assets/viewer.js?v=6"></script>
+    <script src="assets/viewer.js?v=12"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             if (typeof initGallery === 'function') {

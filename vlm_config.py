@@ -33,7 +33,7 @@ AVAILABLE_VLM_MODELS: dict[str, VLMAdapter] = {
     "lfm2.5-vl-450m": StandardVLMAdapter(
         name="lfm2.5-vl-450m",
         hf_id="LiquidAI/LFM2.5-VL-450M",
-        display_name="LFM2.5-VL (450M, FP16)",
+        display_name="LFM2.5-VL 450M",
         use_4bit=False,
         style="two_stage",
         image_size=None,
@@ -44,7 +44,7 @@ AVAILABLE_VLM_MODELS: dict[str, VLMAdapter] = {
     "lfm2.5-vl-1.6b": StandardVLMAdapter(
         name="lfm2.5-vl-1.6b",
         hf_id="LiquidAI/LFM2.5-VL-1.6B",
-        display_name="LFM2.5-VL (1.6B, FP16)",
+        display_name="LFM2.5-VL 1.6B",
         use_4bit=False,
         style="two_stage",
         image_size=None,
@@ -55,7 +55,7 @@ AVAILABLE_VLM_MODELS: dict[str, VLMAdapter] = {
     "lfm2.5-vl-3b": StandardVLMAdapter(
         name="lfm2.5-vl-3b",
         hf_id="LiquidAI/LFM2.5-VL-3B",
-        display_name="LFM2.5-VL (3B, 4-bit)",
+        display_name="LFM2.5-VL 3B",
         use_4bit=True,
         style="two_stage",
         image_size=None,
@@ -67,7 +67,7 @@ AVAILABLE_VLM_MODELS: dict[str, VLMAdapter] = {
     "ministral-3-3b-instruct-2512": StandardVLMAdapter(
         name="ministral-3-3b-instruct-2512",
         hf_id="mistralai/Ministral-3-3B-Instruct-2512",
-        display_name="Ministral 3 (3B Instruct 2512, FP8)",
+        display_name="Ministral 3 3B Instruct 2512",
         use_4bit=False,
         style="two_stage",
         image_size=None,
@@ -79,7 +79,7 @@ AVAILABLE_VLM_MODELS: dict[str, VLMAdapter] = {
     "qwen3.5-0.8b": StandardVLMAdapter(
         name="qwen3.5-0.8b",
         hf_id="Qwen/Qwen3.5-0.8B",
-        display_name="Qwen3.5 (0.8B, FP16)",
+        display_name="Qwen3.5 0.8B",
         use_4bit=False,
         style="tokenized",
         image_size=(640, 640),
@@ -90,7 +90,7 @@ AVAILABLE_VLM_MODELS: dict[str, VLMAdapter] = {
     "qwen3.5-2b": StandardVLMAdapter(
         name="qwen3.5-2b",
         hf_id="Qwen/Qwen3.5-2B",
-        display_name="Qwen3.5 (2B, 4-bit)",
+        display_name="Qwen3.5 2B",
         use_4bit=True,
         style="tokenized",
         image_size=(640, 640),
@@ -101,7 +101,7 @@ AVAILABLE_VLM_MODELS: dict[str, VLMAdapter] = {
     "qwen3.5-4b": StandardVLMAdapter(
         name="qwen3.5-4b",
         hf_id="Qwen/Qwen3.5-4B",
-        display_name="Qwen3.5 (4B, 4-bit)",
+        display_name="Qwen3.5 4B",
         use_4bit=True,
         style="tokenized",
         image_size=(640, 640),
@@ -112,7 +112,7 @@ AVAILABLE_VLM_MODELS: dict[str, VLMAdapter] = {
     "qwen3-vl-2b-instruct": StandardVLMAdapter(
         name="qwen3-vl-2b-instruct",
         hf_id="Qwen/Qwen3-VL-2B-Instruct",
-        display_name="Qwen3-VL (2B Instruct, 4-bit)",
+        display_name="Qwen3-VL 2B Instruct",
         use_4bit=True,
         style="tokenized",
         image_size=(640, 640),
@@ -124,7 +124,7 @@ AVAILABLE_VLM_MODELS: dict[str, VLMAdapter] = {
     "gemma-4-e2b-it": StandardVLMAdapter(
         name="gemma-4-e2b-it",
         hf_id="google/gemma-4-E2B-it",
-        display_name="Gemma 4 (E2B-it, 4-bit)",
+        display_name="Gemma 4 E2B-it",
         use_4bit=True,
         style="tokenized",
         image_size=(448, 448),
@@ -148,7 +148,7 @@ AVAILABLE_VLM_MODELS: dict[str, VLMAdapter] = {
     "smolvlm2-2.2b-instruct": StandardVLMAdapter(
         name="smolvlm2-2.2b-instruct",
         hf_id="HuggingFaceTB/SmolVLM2-2.2B-Instruct",
-        display_name="SmolVLM2 (2.2B Instruct, 4-bit)",
+        display_name="SmolVLM2 2.2B Instruct",
         use_4bit=True,
         style="two_stage",
         image_size=(640, 640),
@@ -159,7 +159,7 @@ AVAILABLE_VLM_MODELS: dict[str, VLMAdapter] = {
     "smolvlm2-500m-instruct": StandardVLMAdapter(
         name="smolvlm2-500m-instruct",
         hf_id="HuggingFaceTB/SmolVLM2-500M-Instruct",
-        display_name="SmolVLM2 (500M Instruct)",
+        display_name="SmolVLM2 500M Instruct",
         use_4bit=False,
         style="two_stage",
         image_size=(640, 640),
@@ -171,14 +171,14 @@ AVAILABLE_VLM_MODELS: dict[str, VLMAdapter] = {
     "qwen2.5-vl-3b-instruct": Qwen2_5VLAdapter(
         name="qwen2.5-vl-3b-instruct",
         hf_id="Qwen/Qwen2.5-VL-3B-Instruct",
-        display_name="Qwen2.5-VL (3B Instruct, 4-bit)",
+        display_name="Qwen2.5-VL 3B Instruct",
         use_4bit=True,
         release_date="Jan 2025",
     ),
     "internvl3_5-1b": InternVLAdapter(
         name="internvl3_5-1b",
         hf_id="OpenGVLab/InternVL3_5-1B",
-        display_name="InternVL 3.5 (1B)",
+        display_name="InternVL 3.5 1B",
         release_date="Aug 2026",
     ),
 }

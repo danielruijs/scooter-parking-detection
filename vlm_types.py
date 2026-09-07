@@ -33,6 +33,8 @@ class BenchmarkResult(BaseModel):
     display_name: str
     hf_id: str
     release_date: str
+    params: str
+    quantization: str
     accuracy: float
     macro_f1: float
     precision_macro: float
@@ -69,6 +71,8 @@ class BenchmarkResult(BaseModel):
             display_name=adapter.display_name,
             hf_id=adapter.hf_id,
             release_date=adapter.release_date,
+            params=adapter.params,
+            quantization=adapter.quantization,
             accuracy=acc,
             macro_f1=f1,
             precision_macro=prec,

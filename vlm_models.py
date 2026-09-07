@@ -89,6 +89,32 @@ def extract_prediction(raw_text: str) -> tuple[bool | None, str, bool]:
     return None, cleaned, False
 
 
+def format_param_count(num_params: int) -> str:
+    if num_params >= 1_000_000_000:
+        val_b = num_params / 1_000_000_000
+        rounded = round(val_b)
+        return f"{rounded}B" if abs(val_b - rounded) < 0.08 else f"{val_b:.1f}B"
+    elif num_params >= 1_000_000:
+        val_m = num_params / 1_000_000
+        if val_m >= 750:
+            return f"{num_params / 1_000_000_000:.1f}B"
+        return f"{round(val_m / 10) * 10}M" if val_m > 100 else f"{round(val_m)}M"
+    return str(num_params)
+
+
+def count_model_parameters(model: Any) -> int:
+    """Count total parameters, accounting for 4-bit packed tensors in bitsandbytes."""
+    if model is None:
+        return 0
+    total = 0
+    for p in model.parameters():
+        if hasattr(p, "quant_state") or type(p).__name__ == "Params4bit":
+            total += p.numel() * 2
+        else:
+            total += p.numel()
+    return total
+
+
 class VLMAdapter(ABC):
     """Base interface for all vision-language model adapters."""
 
@@ -108,6 +134,11 @@ class VLMAdapter(ABC):
         self.device = DEVICE
         self.model: Any = None
         self.processor: Any = None
+        self.params: str = ""
+
+    @property
+    def quantization(self) -> str:
+        return "4-bit" if self.use_4bit else "FP16"
 
     def _load_hf(
         self,
@@ -190,6 +221,8 @@ class VLMAdapter(ABC):
 
     def unload(self):
         """Unload model and free GPU VRAM."""
+        if self.model is not None:
+            self.params = format_param_count(count_model_parameters(self.model))
         del self.model
         del self.processor
         self.model = None

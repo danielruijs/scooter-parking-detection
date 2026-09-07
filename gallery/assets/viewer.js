@@ -5,9 +5,26 @@ const monthMap = {
     'Sep': '09', 'Oct': '10', 'Nov': '11', 'Dec': '12'
 };
 
+
+function parseParamCount(str) {
+    if (!str) return 0;
+    const s = str.trim().toUpperCase();
+    const num = parseFloat(s);
+    if (isNaN(num)) return 0;
+    if (s.endsWith('B')) return num * 1000;
+    if (s.endsWith('M')) return num;
+    return num;
+}
+
+function getQuantClass(quant) {
+    if (quant === '4-bit') return 'quant-4bit';
+    if (quant === 'FP16') return 'quant-fp16';
+    return '';
+}
+
 const datasets = { val: null, train: null, combined: null };
 let activeSplit = 'combined';
-let currentSortCol = 3;
+let currentSortCol = 5;
 let currentSortDir = 'desc';
 let currentFilter = 'all';
 let currentSelectedModel = 'all';
@@ -181,6 +198,11 @@ function renderGallery(resultsByModel) {
             ? `${parts[1]}-${monthMap[parts[0]]}` 
             : dateStr;
 
+        const paramsStr = res.params || '';
+        const quantStr = res.quantization || '';
+        const paramSortVal = parseParamCount(paramsStr);
+        const quantClass = getQuantClass(quantStr);
+
         return `
             <tr class="model-summary-row" data-model="${escapeHtml(k)}" onclick="selectModelFromTable('${escapeHtml(k)}')" title="Click row to filter feedback gallery below">
                 <td data-val="${escapeHtml(res.display_name)}">
@@ -192,6 +214,8 @@ function renderGallery(resultsByModel) {
                         <span class="filter-hint">🔍 filter</span>
                     </div>
                 </td>
+                <td data-val="${paramSortVal}"><span class="param-pill">${escapeHtml(paramsStr)}</span></td>
+                <td data-val="${escapeHtml(quantStr)}"><span class="quant-pill ${quantClass}">${escapeHtml(quantStr)}</span></td>
                 <td data-val="${escapeHtml(sortVal)}"><span class="year-pill">${escapeHtml(dateStr)}</span></td>
                 <td data-val="${res.accuracy.toFixed(4)}">${res.accuracy.toFixed(1)}%</td>
                 <td data-val="${res.macro_f1.toFixed(4)}">${res.macro_f1.toFixed(1)}%</td>
@@ -205,7 +229,12 @@ function renderGallery(resultsByModel) {
     const modelSelect = document.getElementById('modelFilterSelect');
     const prevSelected = currentSelectedModel;
     modelSelect.innerHTML = '<option value="all">All Models (Combined)</option>' +
-        sortedModelKeys.map(k => `<option value="${escapeHtml(k)}">${escapeHtml(resultsByModel[k].display_name)}</option>`).join('');
+        sortedModelKeys.map(k => {
+            const item = resultsByModel[k];
+            const q = item.quantization || '';
+            const label = q ? `${item.display_name} • ${q}` : item.display_name;
+            return `<option value="${escapeHtml(k)}">${escapeHtml(label)}</option>`;
+        }).join('');
 
     if (sortedModelKeys.includes(prevSelected)) {
         modelSelect.value = prevSelected;
@@ -253,10 +282,14 @@ function renderGallery(resultsByModel) {
                 ? `<span class="badge badge-correct">✓ ${escapeHtml(rec.pred_label)}</span>`
                 : `<span class="badge badge-wrong">✗ ${escapeHtml(rec.pred_label)}</span>`;
 
+            const item = resultsByModel[k];
+            const q = item.quantization || '';
+            const subtag = q ? `<span class="model-subtag">${escapeHtml(q)}</span>` : '';
+
             return `
                 <div class="model-row" data-model="${escapeHtml(k)}" data-correct="${rec.is_correct}">
                     <div class="model-header">
-                        <span class="model-title">${escapeHtml(resultsByModel[k].display_name)}</span>
+                        <span class="model-title">${escapeHtml(item.display_name)} ${subtag}</span>
                         <div class="model-badges">
                             ${predBadge}
                             <span class="latency-tag" title="Inference latency measured on NVIDIA GeForce GTX 1660 SUPER (6 GB VRAM)">${rec.latency_ms.toFixed(0)} ms</span>
@@ -302,7 +335,9 @@ function sortTable(colIndex, type) {
         currentSortDir = currentSortDir === 'asc' ? 'desc' : 'asc';
     } else {
         currentSortCol = colIndex;
-        currentSortDir = (colIndex === 0 || colIndex === 5) ? 'asc' : 'desc';
+        // Ascending by default: Model (0), Quantization (2), Latency (7)
+        // Descending by default: Params (1), Release Date (3), Accuracy (4), Macro F1 (5), Valid JSON (6)
+        currentSortDir = (colIndex === 0 || colIndex === 2 || colIndex === 7) ? 'asc' : 'desc';
     }
 
     rows.sort((a, b) => {
