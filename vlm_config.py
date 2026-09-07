@@ -33,7 +33,7 @@ AVAILABLE_VLM_MODELS: dict[str, VLMAdapter] = {
     "lfm2.5-vl-450m": StandardVLMAdapter(
         name="lfm2.5-vl-450m",
         hf_id="LiquidAI/LFM2.5-VL-450M",
-        display_name="LFM2.5-VL (450M, FP16, 2026)",
+        display_name="LFM2.5-VL (450M, FP16)",
         use_4bit=False,
         style="two_stage",
         image_size=None,
@@ -44,7 +44,7 @@ AVAILABLE_VLM_MODELS: dict[str, VLMAdapter] = {
     "lfm2.5-vl-1.6b": StandardVLMAdapter(
         name="lfm2.5-vl-1.6b",
         hf_id="LiquidAI/LFM2.5-VL-1.6B",
-        display_name="LFM2.5-VL (1.6B, FP16, 2026)",
+        display_name="LFM2.5-VL (1.6B, FP16)",
         use_4bit=False,
         style="two_stage",
         image_size=None,
@@ -55,7 +55,7 @@ AVAILABLE_VLM_MODELS: dict[str, VLMAdapter] = {
     "lfm2.5-vl-3b": StandardVLMAdapter(
         name="lfm2.5-vl-3b",
         hf_id="LiquidAI/LFM2.5-VL-3B",
-        display_name="LFM2.5-VL (3B, 4-bit, 2026)",
+        display_name="LFM2.5-VL (3B, 4-bit)",
         use_4bit=True,
         style="two_stage",
         image_size=None,
@@ -79,7 +79,7 @@ AVAILABLE_VLM_MODELS: dict[str, VLMAdapter] = {
     "qwen3.5-0.8b": StandardVLMAdapter(
         name="qwen3.5-0.8b",
         hf_id="Qwen/Qwen3.5-0.8B",
-        display_name="Qwen3.5 (0.8B, FP16, 2026)",
+        display_name="Qwen3.5 (0.8B, FP16)",
         use_4bit=False,
         style="tokenized",
         image_size=(640, 640),
@@ -90,7 +90,7 @@ AVAILABLE_VLM_MODELS: dict[str, VLMAdapter] = {
     "qwen3.5-2b": StandardVLMAdapter(
         name="qwen3.5-2b",
         hf_id="Qwen/Qwen3.5-2B",
-        display_name="Qwen3.5 (2B, 4-bit, 2026)",
+        display_name="Qwen3.5 (2B, 4-bit)",
         use_4bit=True,
         style="tokenized",
         image_size=(640, 640),
@@ -101,7 +101,7 @@ AVAILABLE_VLM_MODELS: dict[str, VLMAdapter] = {
     "qwen3.5-4b": StandardVLMAdapter(
         name="qwen3.5-4b",
         hf_id="Qwen/Qwen3.5-4B",
-        display_name="Qwen3.5 (4B, 4-bit, 2026)",
+        display_name="Qwen3.5 (4B, 4-bit)",
         use_4bit=True,
         style="tokenized",
         image_size=(640, 640),
@@ -136,7 +136,7 @@ AVAILABLE_VLM_MODELS: dict[str, VLMAdapter] = {
     "minicpm-v-4_6": StandardVLMAdapter(
         name="minicpm-v-4_6",
         hf_id="openbmb/MiniCPM-V-4_6",
-        display_name="MiniCPM-V 4.6 (2026)",
+        display_name="MiniCPM-V 4.6",
         use_4bit=False,
         style="two_stage",
         image_size=(448, 448),
@@ -178,7 +178,7 @@ AVAILABLE_VLM_MODELS: dict[str, VLMAdapter] = {
     "internvl3_5-1b": InternVLAdapter(
         name="internvl3_5-1b",
         hf_id="OpenGVLab/InternVL3_5-1B",
-        display_name="InternVL 3.5 (1B, 2026)",
+        display_name="InternVL 3.5 (1B)",
         release_date="Aug 2026",
     ),
 }
