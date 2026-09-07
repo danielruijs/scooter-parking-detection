@@ -4,205 +4,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scooter Parking Detection - Zero-Shot VLM Benchmark Gallery</title>
-    <style>
-        :root {
-            --bg: #0f172a;
-            --surface: #1e293b;
-            --surface-hover: #273549;
-            --border: #334155;
-            --text: #f8fafc;
-            --text-muted: #94a3b8;
-            --proper: #10b981;
-            --improper: #ef4444;
-            --primary: #3b82f6;
-            --accent: #8b5cf6;
-        }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            padding: 32px 20px;
-            line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .container {
-            width: 100%;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        .title-badge {
-            display: inline-block;
-            background: rgba(59, 130, 246, 0.15);
-            color: #60a5fa;
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            padding: 4px 14px;
-            border-radius: 9999px;
-            font-size: 13px;
-            font-weight: 600;
-            margin-bottom: 14px;
-            letter-spacing: 0.5px;
-        }
-        h1 {
-            font-size: 32px;
-            font-weight: 800;
-            color: #ffffff;
-            letter-spacing: -0.5px;
-            margin-bottom: 10px;
-        }
-        p.subtitle {
-            color: var(--text-muted);
-            font-size: 16px;
-            max-width: 650px;
-            margin: 0 auto;
-        }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 24px;
-            margin-bottom: 40px;
-        }
-        .card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 28px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
-            text-decoration: none;
-            color: inherit;
-        }
-        .card:hover {
-            transform: translateY(-3px);
-            border-color: #64748b;
-            box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.5);
-            background: var(--surface-hover);
-        }
-        .card-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 16px;
-        }
-        .split-pill {
-            padding: 4px 12px;
-            border-radius: 9999px;
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-        .split-val {
-            background: rgba(16, 185, 129, 0.15);
-            color: #34d399;
-            border: 1px solid rgba(16, 185, 129, 0.3);
-        }
-        .split-train {
-            background: rgba(139, 92, 246, 0.15);
-            color: #a78bfa;
-            border: 1px solid rgba(139, 92, 246, 0.3);
-        }
-        .card-icon {
-            font-size: 26px;
-        }
-        .card h2 {
-            font-size: 20px;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 10px;
-        }
-        .card p {
-            font-size: 14px;
-            color: var(--text-muted);
-            margin-bottom: 24px;
-            flex-grow: 1;
-        }
-        .card-action {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            color: #60a5fa;
-        }
-        .card:hover .card-action {
-            color: #93c5fd;
-        }
-        footer {
-            margin-top: auto;
-            text-align: center;
-            font-size: 14px;
-            color: var(--text-muted);
-            padding: 20px 0;
-            border-top: 1px solid var(--border);
-            width: 100%;
-            max-width: 900px;
-        }
-        footer a {
-            color: #60a5fa;
-            text-decoration: none;
-        }
-        footer a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <link rel="stylesheet" href="assets/style.css?v=2">
 </head>
 <body>
     <div class="container">
         <header>
-            <div class="title-badge">Zero-Shot VLM Benchmarks</div>
-            <h1>Scooter Parking Detection</h1>
-            <p class="subtitle">
-                Interactive zero-shot evaluation galleries comparing multi-model parking classifications, accuracy, latency, and feedback messages.
-            </p>
+            <div class="header-top">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <h1>🛴 Scooter Parking VLM Benchmark</h1>
+                </div>
+                <div class="split-nav">
+                    <span class="split-label">Split:</span>
+                    <div class="split-pill-container">
+                        <button class="split-btn active" id="splitBtnCombined" onclick="switchSplit('combined')">Combined (train+val)</button>
+                        <button class="split-btn" id="splitBtnVal" onclick="switchSplit('val')">Validation</button>
+                        <button class="split-btn" id="splitBtnTrain" onclick="switchSplit('train')">Train</button>
+                    </div>
+                </div>
+            </div>
+            <p class="subtitle">Zero-shot evaluation on classification accuracy and natural language actionable feedback generation.</p>
         </header>
 
-        <div class="grid">
-            <a href="val.html" class="card">
-                <div>
-                    <div class="card-header">
-                        <span class="split-pill split-val">Validation Set</span>
-                        <span class="card-icon">🎯</span>
-                    </div>
-                    <h2>Validation Split Gallery</h2>
-                    <p>
-                        Primary benchmark results on unseen validation images.
-                    </p>
-                </div>
-                <div class="card-action">
-                    Open Validation Gallery <span>&rarr;</span>
-                </div>
-            </a>
-
-            <a href="train.html" class="card">
-                <div>
-                    <div class="card-header">
-                        <span class="split-pill split-train">Train Set</span>
-                        <span class="card-icon">📊</span>
-                    </div>
-                    <h2>Train Split Gallery</h2>
-                    <p>
-                        Because models are evaluated strictly zero-shot without fine-tuning, the train split serves as an additional unseen test set.
-                    </p>
-                </div>
-                <div class="card-action">
-                    Open Train Gallery <span>&rarr;</span>
-                </div>
-            </a>
+        <div class="metrics-card">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px;">
+                <h2 id="tableHeading">Summary Performance Table (Combined: Train + Val)</h2>
+                <span class="table-hint">💡 Click model name for Hugging Face page &bull; Click row to filter gallery &bull; Click column to sort</span>
+            </div>
+            <table id="summaryTable">
+                <thead>
+                    <tr>
+                        <th class="sortable" onclick="sortTable(0, 'string')">Model <span class="sort-icon">⇅</span></th>
+                        <th class="sortable" onclick="sortTable(1, 'string')">Release Date <span class="sort-icon">⇅</span></th>
+                        <th class="sortable" onclick="sortTable(2, 'number')">Accuracy <span class="sort-icon">⇅</span></th>
+                        <th class="sortable sorted-desc" onclick="sortTable(3, 'number')">Macro F1 <span class="sort-icon">▼</span></th>
+                        <th class="sortable" onclick="sortTable(4, 'number')">Valid JSON Rate <span class="sort-icon">⇅</span></th>
+                        <th class="sortable" onclick="sortTable(5, 'number')">Mean Latency <span class="sort-icon">⇅</span></th>
+                    </tr>
+                </thead>
+                <tbody id="summaryTableBody">
+                    <tr>
+                        <td colspan="6" style="text-align: center; color: var(--text-muted); padding: 24px;">Loading performance metrics...</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
 
-        <footer>
-            <span>Repository: <a href="https://github.com/danielruijs/scooter-parking-detection" target="_blank" rel="noopener noreferrer">danielruijs/scooter-parking-detection</a></span>
-        </footer>
+        <div class="controls" id="galleryControls">
+            <div class="controls-left">
+                <div class="control-item">
+                    <label for="modelFilterSelect" class="control-label">Model:</label>
+                    <select id="modelFilterSelect" class="filter-select" onchange="onModelFilterChange(this.value)">
+                        <option value="all">All Models (Combined)</option>
+                    </select>
+                </div>
+                <div class="btn-group">
+                    <button class="btn active" id="btnFilterAll" onclick="filterGallery('all')">Show All</button>
+                    <button class="btn" id="btnFilterErrors" onclick="filterGallery('errors')">Misclassified Only</button>
+                    <button class="btn" id="btnFilterProper" onclick="filterGallery('proper')">GT: Proper</button>
+                    <button class="btn" id="btnFilterImproper" onclick="filterGallery('improper')">GT: Improper</button>
+                </div>
+            </div>
+            <div class="controls-right">
+                <input type="text" id="searchBox" class="search-box" placeholder="Filter by image name or keyword..." oninput="searchGallery()"/>
+            </div>
+        </div>
+
+        <div class="gallery-grid" id="galleryGrid">
+            <div class="state-message" style="grid-column: 1/-1;">Loading gallery images and predictions...</div>
+        </div>
     </div>
+
+    <script src="assets/viewer.js?v=3"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof initGallery === 'function') {
+                initGallery();
+            }
+        });
+    </script>
 </body>
 </html>

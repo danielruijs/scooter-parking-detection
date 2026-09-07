@@ -5,7 +5,8 @@ const monthMap = {
     'Sep': '09', 'Oct': '10', 'Nov': '11', 'Dec': '12'
 };
 
-let currentData = null;
+const datasets = { val: null, train: null, combined: null };
+let activeSplit = 'combined';
 let currentSortCol = 3;
 let currentSortDir = 'desc';
 let currentFilter = 'all';
@@ -20,40 +21,144 @@ function escapeHtml(str) {
         .replace(/"/g, '&quot;');
 }
 
-async function loadBenchmarkGallery(split) {
-    const tableBody = document.getElementById('summaryTableBody');
-    const galleryGrid = document.getElementById('galleryGrid');
-    const modelSelect = document.getElementById('modelFilterSelect');
+function computeMetrics(records, baseInfo) {
+    const total = records.length;
+    if (total === 0) {
+        return { ...baseInfo, accuracy: 0, macro_f1: 0, parse_rate: 0, mean_latency_ms: 0, records: [] };
+    }
+
+    const yTrue = records.map(r => r.gt_proper ? 1 : 0);
+    const yPred = records.map(r => r.pred_proper === true ? 1 : (r.pred_proper === false ? 0 : -1));
+
+    let correctCount = 0;
+    let parseCount = 0;
+    let latencySum = 0;
+
+    for (let i = 0; i < total; i++) {
+        if (yTrue[i] === yPred[i]) correctCount++;
+        if (records[i].parse_success) parseCount++;
+        latencySum += records[i].latency_ms || 0;
+    }
+
+    // Macro F1 matching scikit-learn average='macro', zero_division=0
+    const classes = Array.from(new Set([...yTrue, ...yPred])).sort((a, b) => a - b);
+    let f1Sum = 0;
+    for (const c of classes) {
+        let tp = 0, fp = 0, fn = 0;
+        for (let i = 0; i < total; i++) {
+            if (yTrue[i] === c && yPred[i] === c) tp++;
+            if (yTrue[i] !== c && yPred[i] === c) fp++;
+            if (yTrue[i] === c && yPred[i] !== c) fn++;
+        }
+        const p = (tp + fp) > 0 ? tp / (tp + fp) : 0;
+        const r = (tp + fn) > 0 ? tp / (tp + fn) : 0;
+        const f1 = (p + r) > 0 ? (2 * p * r) / (p + r) : 0;
+        f1Sum += f1;
+    }
+    const macroF1 = classes.length > 0 ? (f1Sum / classes.length) * 100 : 0;
+
+    return {
+        ...baseInfo,
+        accuracy: (correctCount / total) * 100,
+        macro_f1: macroF1,
+        parse_rate: (parseCount / total) * 100,
+        mean_latency_ms: latencySum / total,
+        records
+    };
+}
+
+let isInitialized = false;
+
+async function initGallery() {
+    if (isInitialized) return;
+    isInitialized = true;
+
+    const params = new URLSearchParams(window.location.search);
+    const splitParam = params.get('split');
+    if (['combined', 'val', 'train'].includes(splitParam)) {
+        activeSplit = splitParam;
+    }
 
     try {
-        let response = await fetch(`./vlm_output/vlm_predictions_${split}.json`);
-        if (!response.ok) {
-            response = await fetch(`../vlm_output/vlm_predictions_${split}.json`);
+        const [valData, trainData] = await Promise.all([
+            fetchData('val'),
+            fetchData('train')
+        ]);
+
+        datasets.val = valData;
+        datasets.train = trainData;
+
+        // Build combined dataset
+        const combined = {};
+        const allModelKeys = Array.from(new Set([...Object.keys(valData || {}), ...Object.keys(trainData || {})]));
+        for (const k of allModelKeys) {
+            const valEntry = valData?.[k];
+            const trainEntry = trainData?.[k];
+            const base = valEntry || trainEntry;
+            const records = [...(valEntry?.records || []), ...(trainEntry?.records || [])];
+            combined[k] = computeMetrics(records, base);
         }
-        if (!response.ok) {
-            throw new Error(`Failed to load predictions: HTTP ${response.status}`);
-        }
-        currentData = await response.json();
-        renderGallery(split, currentData);
+        datasets.combined = combined;
+
+        switchSplit(activeSplit);
     } catch (err) {
         console.error('Error loading benchmark data:', err);
+        const galleryGrid = document.getElementById('galleryGrid');
         if (galleryGrid) {
             galleryGrid.innerHTML = `
                 <div class="state-message" style="grid-column: 1/-1;">
-                    <p style="color: #f87171; font-weight: 600; margin-bottom: 8px;">Failed to load benchmark predictions for ${split} split.</p>
-                    <p style="font-size: 13px; color: var(--text-muted);">Could not locate <code>vlm_predictions_${split}.json</code>.</p>
+                    <p style="color: #f87171; font-weight: 600; margin-bottom: 8px;">Failed to load benchmark predictions.</p>
+                    <p style="font-size: 13px; color: var(--text-muted);">${escapeHtml(err.message)}</p>
                 </div>
             `;
         }
     }
 }
 
-function renderGallery(split, resultsByModel) {
+async function fetchData(split) {
+    let response = await fetch(`./vlm_output/vlm_predictions_${split}.json`);
+    if (!response.ok) {
+        response = await fetch(`../vlm_output/vlm_predictions_${split}.json`);
+    }
+    if (!response.ok) {
+        throw new Error(`HTTP ${response.status} loading predictions for ${split}`);
+    }
+    return await response.json();
+}
+
+function switchSplit(split) {
+    if (!datasets[split]) return;
+    activeSplit = split;
+
+    // Update split buttons
+    document.querySelectorAll('.split-btn').forEach(b => b.classList.remove('active'));
+    const btnMap = { combined: 'splitBtnCombined', val: 'splitBtnVal', train: 'splitBtnTrain' };
+    document.getElementById(btnMap[split])?.classList.add('active');
+
+    // Update heading
+    const titleMap = {
+        combined: 'Summary Performance Table (Combined: Train + Val)',
+        val: 'Summary Performance Table (Validation Split)',
+        train: 'Summary Performance Table (Train Split)'
+    };
+    const headingEl = document.getElementById('tableHeading');
+    if (headingEl) headingEl.textContent = titleMap[split];
+
+    // Sync URL param
+    const url = new URL(window.location);
+    url.searchParams.set('split', split);
+    window.history.replaceState({}, '', url);
+
+    renderGallery(datasets[split]);
+}
+
+function renderGallery(resultsByModel) {
     const modelKeys = Object.keys(resultsByModel);
+    const galleryGrid = document.getElementById('galleryGrid');
     if (modelKeys.length === 0) {
-        document.getElementById('galleryGrid').innerHTML = `
+        galleryGrid.innerHTML = `
             <div class="state-message" style="grid-column: 1/-1;">
-                No models evaluated yet for ${split} split.
+                No models evaluated yet for this split.
             </div>
         `;
         return;
@@ -96,10 +201,21 @@ function renderGallery(split, resultsByModel) {
         `;
     }).join('');
 
-    // 2. Render Model Dropdown
+    // 2. Render Model Dropdown (preserve selection if exists)
     const modelSelect = document.getElementById('modelFilterSelect');
+    const prevSelected = currentSelectedModel;
     modelSelect.innerHTML = '<option value="all">All Models (Combined)</option>' +
         sortedModelKeys.map(k => `<option value="${escapeHtml(k)}">${escapeHtml(resultsByModel[k].display_name)}</option>`).join('');
+
+    if (sortedModelKeys.includes(prevSelected)) {
+        modelSelect.value = prevSelected;
+        currentSelectedModel = prevSelected;
+        highlightSelectedModelRow(prevSelected);
+    } else {
+        modelSelect.value = 'all';
+        currentSelectedModel = 'all';
+        highlightSelectedModelRow('all');
+    }
 
     // 3. Build unique images list from first model's records
     const recordsFirst = resultsByModel[modelKeys[0]].records;
@@ -111,11 +227,9 @@ function renderGallery(split, resultsByModel) {
         });
     });
 
-    // Update total count button
     const btnAll = document.getElementById('btnFilterAll');
     if (btnAll) btnAll.textContent = `Show All (${recordsFirst.length})`;
 
-    const galleryGrid = document.getElementById('galleryGrid');
     galleryGrid.innerHTML = recordsFirst.map(item => {
         const rel = item.rel_path;
         const gtProper = item.gt_proper;
@@ -123,6 +237,11 @@ function renderGallery(split, resultsByModel) {
         const gtBadge = gtProper 
             ? '<span class="badge badge-proper">GT: Proper</span>' 
             : '<span class="badge badge-improper">GT: Improper</span>';
+
+        const itemSplit = rel.includes('/val/') || rel.includes('\\val\\') ? 'val' : 'train';
+        const splitBadge = activeSplit === 'combined'
+            ? `<span class="badge badge-split-${itemSplit}">${itemSplit.toUpperCase()}</span>`
+            : '';
 
         let anyMisclassified = false;
         const modelRowsHtml = modelKeys.map(k => {
@@ -150,15 +269,13 @@ function renderGallery(split, resultsByModel) {
 
         const errClass = anyMisclassified ? 'card-has-error' : 'card-all-correct';
         const fileName = rel.split('/').pop().split('\\').pop();
-
-        // Optimized thumbnail located in gallery/images/<split>/<fileName>
-        const imgSrc = `images/${split}/${escapeHtml(fileName)}`;
+        const imgSrc = `images/${itemSplit}/${escapeHtml(fileName)}`;
 
         return `
             <div class="gallery-card ${errClass}" data-gt="${gtCls}" data-err="${anyMisclassified}" data-search="${escapeHtml(rel.toLowerCase())}">
                 <div class="card-img-container">
                     <img src="${imgSrc}" alt="${escapeHtml(rel)}" loading="lazy"/>
-                    <div class="img-overlay">${gtBadge}</div>
+                    <div class="img-overlay">${gtBadge}${splitBadge}</div>
                 </div>
                 <div class="card-body">
                     <div class="card-filename" title="${escapeHtml(rel)}">${escapeHtml(fileName)}</div>
@@ -171,6 +288,7 @@ function renderGallery(split, resultsByModel) {
     }).join('');
 
     updateFilterCounts();
+    applyFilters();
 }
 
 function sortTable(colIndex, type) {
@@ -184,11 +302,7 @@ function sortTable(colIndex, type) {
         currentSortDir = currentSortDir === 'asc' ? 'desc' : 'asc';
     } else {
         currentSortCol = colIndex;
-        if (colIndex === 0 || colIndex === 5) {
-            currentSortDir = 'asc';
-        } else {
-            currentSortDir = 'desc';
-        }
+        currentSortDir = (colIndex === 0 || colIndex === 5) ? 'asc' : 'desc';
     }
 
     rows.sort((a, b) => {
@@ -282,7 +396,11 @@ function updateFilterCounts() {
 
 function filterGallery(type) {
     currentFilter = type;
-    document.querySelectorAll('.btn-group .btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.btn-group .btn').forEach(b => {
+        if (['btnFilterAll', 'btnFilterErrors', 'btnFilterProper', 'btnFilterImproper'].includes(b.id)) {
+            b.classList.remove('active');
+        }
+    });
     const activeMap = {
         'all': 'btnFilterAll',
         'errors': 'btnFilterErrors',
@@ -349,7 +467,7 @@ function applyFilters() {
             }
         });
 
-        let matchesSearch = query === '' || visibleText.includes(query);
+        const matchesSearch = query === '' || visibleText.includes(query);
 
         if (matchesFilter && matchesSearch) {
             card.style.display = 'flex';
@@ -358,3 +476,20 @@ function applyFilters() {
         }
     });
 }
+
+// Global window bindings
+window.initGallery = initGallery;
+window.loadBenchmarkGallery = initGallery;
+window.switchSplit = switchSplit;
+window.sortTable = sortTable;
+window.onModelFilterChange = onModelFilterChange;
+window.selectModelFromTable = selectModelFromTable;
+window.filterGallery = filterGallery;
+window.searchGallery = searchGallery;
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => initGallery());
+} else {
+    initGallery();
+}
+
