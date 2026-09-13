@@ -202,6 +202,7 @@ function renderGallery(resultsByModel) {
         const quantStr = res.quantization || '';
         const paramSortVal = parseParamCount(paramsStr);
         const quantClass = getQuantClass(quantStr);
+        const latencySec = (res.mean_latency_ms || 0) / 1000;
 
         return `
             <tr class="model-summary-row" data-model="${escapeHtml(k)}" onclick="selectModelFromTable('${escapeHtml(k)}')" title="Click row to filter feedback gallery below">
@@ -220,7 +221,7 @@ function renderGallery(resultsByModel) {
                 <td data-val="${res.accuracy.toFixed(4)}">${res.accuracy.toFixed(1)}%</td>
                 <td data-val="${res.macro_f1.toFixed(4)}">${res.macro_f1.toFixed(1)}%</td>
                 <td data-val="${res.parse_rate.toFixed(4)}">${res.parse_rate.toFixed(1)}%</td>
-                <td data-val="${res.mean_latency_ms.toFixed(4)}">${res.mean_latency_ms.toFixed(1)} ms</td>
+                <td data-val="${latencySec.toFixed(4)}">${latencySec.toFixed(1)} s</td>
             </tr>
         `;
     }).join('');
