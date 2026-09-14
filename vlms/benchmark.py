@@ -22,7 +22,7 @@ def load_dataset_images(
                 items.append(
                     DatasetImage(
                         path=img_path,
-                        rel_path=img_path.as_posix(),
+                        image_name=img_path.name,
                         gt_proper=is_proper,
                         gt_label=cls_name,
                     )
@@ -63,7 +63,7 @@ def run_model_benchmark(
 
         pred_proper = res["is_proper"]
         rec = PredictionRecord(
-            rel_path=item.rel_path,
+            image_name=item.image_name,
             gt_proper=item.gt_proper,
             gt_label=item.gt_label,
             pred_proper=pred_proper,

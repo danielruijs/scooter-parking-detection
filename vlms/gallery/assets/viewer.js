@@ -112,7 +112,10 @@ async function initGallery() {
             const valEntry = valData?.[k];
             const trainEntry = trainData?.[k];
             const base = valEntry || trainEntry;
-            const records = [...(valEntry?.records || []), ...(trainEntry?.records || [])];
+            const records = [
+                ...(valEntry?.records || []).map(r => ({ ...r, split: 'val' })),
+                ...(trainEntry?.records || []).map(r => ({ ...r, split: 'train' }))
+            ];
             combined[k] = computeMetrics(records, base);
         }
         datasets.combined = combined;
@@ -253,8 +256,7 @@ function renderGallery(resultsByModel) {
     modelKeys.forEach(k => {
         lookups[k] = {};
         resultsByModel[k].records.forEach(r => {
-            const fname = r.rel_path.split('/').pop().split('\\').pop();
-            lookups[k][fname] = r;
+            lookups[k][r.image_name] = r;
         });
     });
 
@@ -262,15 +264,14 @@ function renderGallery(resultsByModel) {
     if (btnAll) btnAll.textContent = `Show All (${recordsFirst.length})`;
 
     galleryGrid.innerHTML = recordsFirst.map(item => {
-        const rel = item.rel_path;
-        const fileName = rel.split('/').pop().split('\\').pop();
+        const fileName = item.image_name;
         const gtProper = item.gt_proper;
         const gtCls = gtProper ? 'proper' : 'improper';
         const gtBadge = gtProper 
             ? '<span class="badge badge-proper">GT: Proper</span>' 
             : '<span class="badge badge-improper">GT: Improper</span>';
 
-        const itemSplit = rel.includes('/val/') || rel.includes('\\val\\') ? 'val' : 'train';
+        const itemSplit = item.split || activeSplit;
         const splitBadge = activeSplit === 'combined'
             ? `<span class="badge badge-split-${itemSplit}">${itemSplit.toUpperCase()}</span>`
             : '';
@@ -285,14 +286,14 @@ function renderGallery(resultsByModel) {
                 ? `<span class="badge badge-correct">✓ ${escapeHtml(rec.pred_label)}</span>`
                 : `<span class="badge badge-wrong">✗ ${escapeHtml(rec.pred_label)}</span>`;
 
-            const item = resultsByModel[k];
-            const q = item.quantization || '';
+            const itemModel = resultsByModel[k];
+            const q = itemModel.quantization || '';
             const subtag = q ? `<span class="model-subtag">${escapeHtml(q)}</span>` : '';
 
             return `
                 <div class="model-row" data-model="${escapeHtml(k)}" data-correct="${rec.is_correct}">
                     <div class="model-header">
-                        <span class="model-title">${escapeHtml(item.display_name)} ${subtag}</span>
+                        <span class="model-title">${escapeHtml(itemModel.display_name)} ${subtag}</span>
                         <div class="model-badges">
                             ${predBadge}
                             <span class="latency-tag" title="Inference latency measured on NVIDIA GeForce GTX 1660 SUPER (6 GB VRAM)">${rec.latency_ms.toFixed(0)} ms</span>
@@ -307,13 +308,13 @@ function renderGallery(resultsByModel) {
         const imgSrc = `images/${itemSplit}/${escapeHtml(fileName)}`;
 
         return `
-            <div class="gallery-card ${errClass}" data-gt="${gtCls}" data-err="${anyMisclassified}" data-search="${escapeHtml(rel.toLowerCase())}">
+            <div class="gallery-card ${errClass}" data-gt="${gtCls}" data-err="${anyMisclassified}" data-search="${escapeHtml(fileName.toLowerCase())}">
                 <div class="card-img-container">
-                    <img src="${imgSrc}" alt="${escapeHtml(rel)}" loading="lazy"/>
+                    <img src="${imgSrc}" alt="${escapeHtml(fileName)}" loading="lazy"/>
                     <div class="img-overlay">${gtBadge}${splitBadge}</div>
                 </div>
                 <div class="card-body">
-                    <div class="card-filename" title="${escapeHtml(rel)}">${escapeHtml(fileName)}</div>
+                    <div class="card-filename" title="${escapeHtml(fileName)}">${escapeHtml(fileName)}</div>
                     <div class="models-container">
                         ${modelRowsHtml}
                     </div>

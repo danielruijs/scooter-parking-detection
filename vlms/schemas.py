@@ -10,13 +10,13 @@ if TYPE_CHECKING:
 
 class DatasetImage(BaseModel):
     path: Path
-    rel_path: str
+    image_name: str
     gt_proper: bool
     gt_label: str
 
 
 class PredictionRecord(BaseModel):
-    rel_path: str
+    image_name: str
     gt_proper: bool
     gt_label: str
     pred_proper: bool | None
