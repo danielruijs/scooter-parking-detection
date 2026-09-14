@@ -1,4 +1,4 @@
-from vlm_models import (
+from models import (
     InternVLAdapter,
     Qwen2_5VLAdapter,
     StandardVLMAdapter,

@@ -3,11 +3,10 @@ import json
 import sys
 from pathlib import Path
 
+from config import AVAILABLE_VLM_MODELS, SYSTEM_PROMPT, USER_PROMPT
+from models import VLMAdapter
 from PIL import Image
-
-from vlm_config import AVAILABLE_VLM_MODELS, SYSTEM_PROMPT, USER_PROMPT
-from vlm_models import VLMAdapter
-from vlm_types import BenchmarkResult, DatasetImage, PredictionRecord
+from schemas import BenchmarkResult, DatasetImage, PredictionRecord
 
 sys.stdout.reconfigure(encoding="utf-8")
 
@@ -115,10 +114,14 @@ def main():
     )
     parser.add_argument(
         "--data-dir",
-        default="data",
+        default="../data",
         help="Root data directory containing train and val folders",
     )
-    parser.add_argument("--output-dir", default="vlm_output")
+    parser.add_argument(
+        "--output-dir",
+        default="output",
+        help="Directory to save prediction JSON files",
+    )
     parser.add_argument("--max-samples", type=int, default=None)
     parser.add_argument(
         "--force",

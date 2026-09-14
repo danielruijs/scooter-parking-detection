@@ -4,13 +4,13 @@ Static web gallery for visual exploration and comparison of zero-shot VLM predic
 
 ## Running Locally
 
-Serve from the repository root:
+Serve the gallery:
 
 ```bash
 uv run python -m http.server 8000
 ```
 
-Then open [http://localhost:8000/gallery/](http://localhost:8000/gallery/).
+Then open [http://localhost:8000/](http://localhost:8000/).
 
 ## Regenerating Thumbnails
 

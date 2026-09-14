@@ -133,9 +133,9 @@ async function initGallery() {
 }
 
 async function fetchData(split) {
-    let response = await fetch(`./vlm_output/vlm_predictions_${split}.json`);
+    let response = await fetch(`./output/vlm_predictions_${split}.json`);
     if (!response.ok) {
-        response = await fetch(`../vlm_output/vlm_predictions_${split}.json`);
+        response = await fetch(`../output/vlm_predictions_${split}.json`);
     }
     if (!response.ok) {
         throw new Error(`HTTP ${response.status} loading predictions for ${split}`);
@@ -253,7 +253,8 @@ function renderGallery(resultsByModel) {
     modelKeys.forEach(k => {
         lookups[k] = {};
         resultsByModel[k].records.forEach(r => {
-            lookups[k][r.rel_path] = r;
+            const fname = r.rel_path.split('/').pop().split('\\').pop();
+            lookups[k][fname] = r;
         });
     });
 
@@ -262,6 +263,7 @@ function renderGallery(resultsByModel) {
 
     galleryGrid.innerHTML = recordsFirst.map(item => {
         const rel = item.rel_path;
+        const fileName = rel.split('/').pop().split('\\').pop();
         const gtProper = item.gt_proper;
         const gtCls = gtProper ? 'proper' : 'improper';
         const gtBadge = gtProper 
@@ -275,7 +277,7 @@ function renderGallery(resultsByModel) {
 
         let anyMisclassified = false;
         const modelRowsHtml = modelKeys.map(k => {
-            const rec = lookups[k][rel];
+            const rec = lookups[k][fileName];
             if (!rec) return '';
             if (!rec.is_correct) anyMisclassified = true;
 
@@ -302,7 +304,6 @@ function renderGallery(resultsByModel) {
         }).join('');
 
         const errClass = anyMisclassified ? 'card-has-error' : 'card-all-correct';
-        const fileName = rel.split('/').pop().split('\\').pop();
         const imgSrc = `images/${itemSplit}/${escapeHtml(fileName)}`;
 
         return `

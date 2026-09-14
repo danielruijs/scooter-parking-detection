@@ -3,7 +3,7 @@ from pathlib import Path
 from PIL import Image
 
 GALLERY_DIR = Path(__file__).resolve().parent
-REPO_ROOT = GALLERY_DIR.parent
+REPO_ROOT = GALLERY_DIR.parent.parent
 
 
 def generate_gallery_thumbnails(

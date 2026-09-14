@@ -5,7 +5,7 @@ from pydantic import BaseModel
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
 
 if TYPE_CHECKING:
-    from vlm_models import VLMAdapter
+    from models import VLMAdapter
 
 
 class DatasetImage(BaseModel):
