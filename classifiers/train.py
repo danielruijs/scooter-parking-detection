@@ -5,14 +5,13 @@ import evaluate
 import numpy as np
 import torch
 from datasets import load_dataset
+from models import MODELS, VisionModel
 from transformers import (
     AutoImageProcessor,
     AutoModelForImageClassification,
     Trainer,
     TrainingArguments,
 )
-
-from models import MODELS, VisionModel
 
 
 def compute_metrics(eval_pred):
@@ -89,10 +88,11 @@ def main():
     p.add_argument("--epochs", type=int, default=10)
     p.add_argument("--batch-size", type=int, default=16)
     p.add_argument("--lr", type=float, default=5e-5)
-    p.add_argument("--output-dir", default="output")
+    p.add_argument("--data-dir", default="../data", help="Path to data directory")
+    p.add_argument("--output-dir", default="output", help="Path to output directory")
     args = p.parse_args()
 
-    ds = load_dataset("imagefolder", data_dir="data")
+    ds = load_dataset("imagefolder", data_dir=args.data_dir)
     targets = (
         MODELS.values() if (args.all or args.model == "all") else [MODELS[args.model]]
     )

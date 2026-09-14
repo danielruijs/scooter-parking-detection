@@ -5,11 +5,10 @@ from pathlib import Path
 import evaluate
 import numpy as np
 import torch
+from models import MODELS, VisionModel
 from PIL import Image
 from tabulate import tabulate
 from transformers import AutoImageProcessor, AutoModelForImageClassification
-
-from models import MODELS, VisionModel
 
 
 def benchmark(
@@ -90,7 +89,7 @@ def main():
     p = argparse.ArgumentParser(
         description="Benchmark vision models on scooter dataset"
     )
-    p.add_argument("--val-dir", default="data/val")
+    p.add_argument("--val-dir", default="../data/val")
     p.add_argument(
         "--model-dir",
         default="output",
