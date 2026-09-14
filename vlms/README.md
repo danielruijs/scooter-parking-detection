@@ -4,7 +4,7 @@ Evaluate modern multimodal Vision-Language Models (zero-shot) for proper/imprope
 
 ## Supported Models
 
-Supported models are defined in [`config.py`](config.py):
+Supported models are defined in [`config.py`](config.py).
 
 > Gated models (e.g. Gemma 4) require a Hugging Face token - copy `.env.example` to `.env` and set `HF_TOKEN`.
 

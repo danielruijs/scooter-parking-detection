@@ -4,7 +4,7 @@ Fine-tune and benchmark vision classifiers for binary scooter parking detection 
 
 ## Supported Models
 
-Supported models are defined in [`models.py`](models.py):
+Supported models are defined in [`models.py`](models.py).
 
 ## 1. Fine-Tuning
 
